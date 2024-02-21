@@ -15,6 +15,7 @@
   position: relative;
   z-index: 0;
   /* margin-right: 30px; */
+  margin: 20px 0px;
 }
 
 .description {
@@ -172,6 +173,10 @@
   }
  .description{
   padding: 0px 80px;
+  gap: 10px;
+ }
+ .description h4{
+  width: 100%;
  }
   .circle_5{
     max-width: 70%;
@@ -187,8 +192,12 @@
     flex-wrap: nowrap;
   }
   .description{
-    padding: 20px 30px;
+    padding: 10px 30px;
+    gap: 5px;
 
+  }
+  .description h4{
+    width: 100%;
   }
   .circle_5{
     width: 50%;

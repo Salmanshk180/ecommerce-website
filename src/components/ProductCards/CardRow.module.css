@@ -1,0 +1,14 @@
+.card_row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media screen and (max-width: 1170px) {
+
+    #second_row{
+        display: none;
+    }
+}

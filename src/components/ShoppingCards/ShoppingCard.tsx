@@ -11,17 +11,32 @@ const ShoppingCard = () => {
           <div className={styles.product_container_1}>
             <div className={styles.product_1}>
               <img src={p1} alt="" />
-              <div className={styles.product_description}>hii</div>
+              <div className={styles.product_description}>
+                <div>
+                  <h6 className={styles.title}>The Product Of The Week</h6>
+                  <button className={styles.desc_button}>Explore More</button>
+                </div>
+              </div>
             </div>
           </div>
           <div className={styles.product_container_2}>
             <div className={styles.product_2}>
               <img src={p2} alt="" />
-              <div className={styles.product_description}>hii</div>
+              <div className={styles.product_description}>
+                <div>
+                  <h6 className={styles.title}>The Product Of The Week</h6>
+                  <button className={styles.desc_button}>Explore More</button>
+                </div>
+              </div>
             </div>
             <div className={styles.product_3}>
               <img src={p3} alt="" />
-              <div className={styles.product_description}>hii</div>
+              <div className={styles.product_description}>
+                <div>
+                  <h6 className={styles.title}>The Product Of The Week</h6>
+                  <button className={styles.desc_button}>Explore More</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

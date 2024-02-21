@@ -1,0 +1,31 @@
+.sales{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: #737373;
+  }
+  .price_container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-weight: bold;
+  }
+  .original_price{
+    color: #737373;
+  }
+  .discount_price{
+    color: #23856D;
+  }
+
+  .time,.lesson,.progress{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2px;
+    font-size: 14px;
+  }

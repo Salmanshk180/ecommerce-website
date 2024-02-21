@@ -1,0 +1,15 @@
+.first_color,.second_color,.third_color,.fourth_color{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  }
+  .first_color{
+    background-color: #23A6F0;
+  }
+  .second_color{
+    background-color: #23856D;
+  }.third_color{
+    background-color: #E77C40;
+  }.fourth_color{
+    background-color: #252B42;
+  }

@@ -1,0 +1,26 @@
+.load_more_btn{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .load_more_btn > button{
+    padding: 15px 40px;
+    border-radius: 25px;
+    background: transparent;
+    border: 1px solid #23A6F0;
+    color: #23A6F0;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  @media screen and (max-width: 535px) {
+    .load_more_btn > button{
+      border: 0;
+      padding: 0;
+      margin-block: 20px;
+      font-size: 14px;
+      color: #737373;
+    }
+  }

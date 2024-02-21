@@ -34,7 +34,7 @@
 .footer_content {
   max-width: 1440px;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;

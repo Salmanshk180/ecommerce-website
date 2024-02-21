@@ -1,0 +1,14 @@
+.price_container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-weight: bold;
+  }
+  .original_price{
+    color: #737373;
+  }
+  .discount_price{
+    color: #23856D;
+  }
