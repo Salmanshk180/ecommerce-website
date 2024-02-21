@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
-import Header from "../../components/Header/Header";
-import ShopHeader from "../../components/ShopHeader/ShopHeader";
-import Clients from "../../components/clients/Clients";
-import ShoppingCard from "../../components/ShoppingCards/ShoppingCard";
-import Footer from "../../components/Footer/Footer";
-import ProductCards from "../../components/ProductCards/ProductCards";
-import DesktopContent from "../../components/DesktopContent/DesktopContent";
-import DesktopFeatures from "../../components/DesktopFeatures/DesktopFeatures";
-import FeatureBlogs from "../../components/FeatureBlogs/FeatureBlogs";
+import Header from "../../components/HomeComponents/Header/Header";
+import ShopHeader from "../../components/HomeComponents/ShopHeader/ShopHeader";
+import Clients from "../../components/HomeComponents/clients/Clients";
+import ShoppingCard from "../../components/HomeComponents/ShoppingCards/ShoppingCard";
+import Footer from "../../components/HomeComponents/Footer/Footer";
+import ProductCards from "../../components/HomeComponents/ProductCards/ProductCards";
+import DesktopContent from "../../components/HomeComponents/DesktopContent/DesktopContent";
+import DesktopFeatures from "../../components/HomeComponents/DesktopFeatures/DesktopFeatures";
+import FeatureBlogs from "../../components/HomeComponents/FeatureBlogs/FeatureBlogs";
 const Home = () => {
   return (
     <Fragment>
@@ -16,9 +16,9 @@ const Home = () => {
       <Clients />
       <ShoppingCard />
       <ProductCards />
-      <DesktopContent/>
-      <DesktopFeatures/>
-      <FeatureBlogs/>
+      <DesktopContent />
+      <DesktopFeatures />
+      <FeatureBlogs />
       <Footer />
     </Fragment>
   );

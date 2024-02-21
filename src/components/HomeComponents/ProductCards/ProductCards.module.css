@@ -1,0 +1,39 @@
+.product_cards {
+  padding: 20px 24px;
+  max-width: 1440px;
+  margin: auto;
+}
+.container{
+    /* margin: 50px 0px; */
+}
+.description{
+    margin-block: 20px;
+}
+
+.title_1{
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    color: #737373;
+}
+.title_2{
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    color: #252B42;
+}
+.title_3{
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    color: #737373;
+}
+.load_button{
+    margin-block: 20px;
+    padding: 15px 40px;
+    background: transparent;
+    border: 1px solid #23A6F0;
+    color: #23A6F0;
+    font-size: 14px;
+    font-weight: 700;
+}
