@@ -12,13 +12,16 @@ interface ArrayProp {
   showColors: boolean;
 }
 interface Props {
+  numberOfRows: number;
+  width: number;
   initialState: Array<ArrayProp>;
 }
 const CardRow = (props: Props) => {
+  let numberOfRows= props.numberOfRows;
   return (
     <Fragment>
-      <div className={styles.card_row}>
-        {props.initialState.slice(0,).map((data) => (
+      <div className={styles.card_row} style={{width:`${props.width}%`}}>
+        {props.initialState.slice(0,numberOfRows).map((data) => (
           <Card
             src={data.src}
             title={data.title}
@@ -29,7 +32,6 @@ const CardRow = (props: Props) => {
           />
         ))}
       </div>
-   
     </Fragment>
   );
 };

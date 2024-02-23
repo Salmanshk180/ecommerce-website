@@ -6,7 +6,7 @@ import p2 from "../../../assets/product-2.svg";
 import p3 from "../../../assets/product-3.svg";
 import p4 from "../../../assets/product-4.svg";
 import p5 from "../../../assets/product-5.svg";
-import breakpoints from "../../../utils/BreakPoints/BreakPoints";
+import useBreakpoint from "../../../utils/BreakPoints/useBreakpoints";
 const initialState = [
   {
     src: p1,
@@ -90,10 +90,11 @@ const initialState = [
   },
 ];
 const ProductCards = () => {
+  const breakpoint = useBreakpoint();
   let numberOfCards = 10;
-  // if (breakpoints == "xs" || breakpoints == "sm" || breakpoints == "md") {
-  //   numberOfCards = 5;
-  // }
+  if (breakpoint === "xs") {
+    numberOfCards = 5;
+  }
   return (
     <Fragment>
       <div className={styles.product_cards}>
@@ -105,7 +106,7 @@ const ProductCards = () => {
               Problems trying to resolve the conflict between
             </h6>
           </div>
-          <CardRow initialState={initialState}/>
+          <CardRow initialState={initialState} width={75} numberOfRows={numberOfCards}/>
           <button className={styles.load_button}>LOAD MORE PRODUCTS</button>
         </div>
       </div>

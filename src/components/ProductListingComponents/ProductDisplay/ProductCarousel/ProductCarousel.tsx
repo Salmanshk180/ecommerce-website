@@ -1,74 +1,33 @@
 import { Fragment } from "react";
 import styles from "./ProductCarousel.module.css";
 import CardRow from "../../../HomeComponents/ProductCards/CardRow";
-import p1 from "../../../../assets/product-1.svg";
-import p2 from "../../../../assets/product-2.svg";
-import p3 from "../../../../assets/product-3.svg";
-import p4 from "../../../../assets/product-4.svg";
-import p5 from "../../../../assets/product-5.svg";
-const initialState = [
-  {
-    src: p1,
-    title: "Graphic Design",
-    description: "English Department",
-    price: 6.48,
-    original_price: 16.48,
-    showColors: true,
 
-  },
-  {
-    src: p2,
-    title: "Graphic Design",
-    description: "English Department",
-    price: 6.48,
-    original_price: 16.48,
-    showColors: true,
-
-  },
-  {
-    src: p3,
-    title: "Graphic Design",
-    description: "English Department",
-    price: 6.48,
-    original_price: 16.48,
-    showColors: true,
-
-  },
-  {
-    src: p3,
-    title: "Graphic Design",
-    description: "English Department",
-    price: 6.48,
-    original_price: 16.48,
-    showColors: true,
-
-  },
-  {
-    src: p3,
-    title: "Graphic Design",
-    description: "English Department",
-    price: 6.48,
-    original_price: 16.48,
-    showColors: true,
-
-  },
-  {
-    src: p3,
-    title: "Graphic Design",
-    description: "English Department",
-    price: 6.48,
-    original_price: 16.48,
-    showColors: true,
-
-  },
- 
-
-];
-const ProductCarousel = () => {
+interface ObjectProps {
+  initialState: {
+    src: string;
+    title: string;
+    description: string;
+    price: number;
+    original_price: number;
+    showColors: boolean;
+  }[];
+}
+interface Props {
+  min: number;
+  max: number;
+  data: Array<ObjectProps>;
+}
+const ProductCarousel = (props: Props) => {
   return (
     <Fragment>
       <div className={styles.product_carousel}>
-        <CardRow initialState={initialState} />
+        {props.data.slice(props.min, props.max).map((data) => (
+          <CardRow
+            initialState={data.initialState}
+            width={100}
+            numberOfRows={10}
+          />
+        ))}
       </div>
     </Fragment>
   );

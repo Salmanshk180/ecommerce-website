@@ -3,28 +3,33 @@ import styles from "./Sidebar.module.css";
 import Filter from "./Filter/Filter";
 import Price from "./Price/Price";
 import Brands from "./Brands/Brands";
-const Sidebar = () => {
-  const [show, setShow] = useState<boolean>(false);
+interface Props {
+  show: boolean;
+  setShow: (show: boolean) => void;
+}
+const Sidebar = (props: Props) => {
   const changeShow = () => {
-    setShow(!show);
+    props.setShow(!props.show);
   };
   return (
     <Fragment>
       <div className={styles.sidebar}>
         <div
-          className={`${styles["container"]} ${show ? styles["active"] : styles["inactive"]}`}
+          className={`${styles["container"]} ${
+            props.show ? styles["active"] : styles["inactive"]
+          }`}
         >
           <p className={styles.title}>Filter By</p>
-            <div className={styles.line}></div>
+          <div className={styles.line}></div>
           <div className={styles["components"]}>
+            <button className={styles["close_btn"]} onClick={changeShow}>
+              Close
+            </button>
             <Filter />
             <Price />
             <Brands />
           </div>
         </div>
-        <button className={styles.toggle_btn} onClick={changeShow}>
-          Filter By
-        </button>
       </div>
     </Fragment>
   );

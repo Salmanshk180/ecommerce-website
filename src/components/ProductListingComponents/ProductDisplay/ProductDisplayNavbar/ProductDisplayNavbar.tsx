@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 import styles from "./ProductDisplayNavbar.module.css";
-const ProductDisplayNavbar = () => {
+interface Props {
+  show: boolean;
+  setShow: (show: boolean) => void;
+}
+const ProductDisplayNavbar = (props:Props) => {
   return (
     <Fragment>
       <div className={styles.navbar}>
@@ -10,6 +14,7 @@ const ProductDisplayNavbar = () => {
         </div>
         <div className={styles.sort_container}>
           <p className={styles.sort_text}>Sort By</p>
+          <button className={styles.filter_btn} onClick={()=>props.setShow(!props.show)}>Filter By</button>
           <select name="sort" id="sort">
             <option value="Popularity">Popularity</option>
             <option value="Latest">Latest</option>

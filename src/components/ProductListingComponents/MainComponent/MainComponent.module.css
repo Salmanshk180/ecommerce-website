@@ -9,9 +9,18 @@
 }
 
 .sidebar{
-    width: 30%;
+    width: 20%;
 }
 .product_display{
-    width: 70%;
+    width: 80%;
     margin: auto;
+}
+
+@media  (max-width: 767px) {
+  .sidebar,.product_display{
+    width: 100%;
+  }
+  .main_component{
+    justify-content: center;
+  }
 }
