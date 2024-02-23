@@ -8,8 +8,8 @@ function App() {
   return (
     <Fragment>
       <div className="App">
-        <Home/>
-        {/* <ProductListing /> */}
+        {/* <Home/> */}
+        <ProductListing />
       </div>
     </Fragment>
   );

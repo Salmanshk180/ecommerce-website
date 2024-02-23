@@ -1,14 +1,18 @@
 .card_row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 30px;
+  width: 75%;
+  margin: auto;
 }
 
 @media screen and (max-width: 1170px) {
-
-    #second_row{
-        display: none;
-    }
+  .card_row{
+    justify-content: center;
+  }
+  #second_row {
+    display: none;
+  }
 }

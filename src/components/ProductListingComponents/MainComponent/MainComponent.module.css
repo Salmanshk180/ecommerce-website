@@ -1,0 +1,17 @@
+.main_component {
+  padding: 20px 24px;
+  max-width: 1440px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sidebar{
+    width: 30%;
+}
+.product_display{
+    width: 70%;
+    margin: auto;
+}

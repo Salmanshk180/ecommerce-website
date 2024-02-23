@@ -1,0 +1,39 @@
+.navbar{
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   text-align: left;
+   gap: 20px;
+}
+
+.sort_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.heading{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.subheading{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.sort_text{
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.sort_container > select{
+    padding: 10px 20px;
+    border:1px solid #DDDDDD;
+    background: #F9F9F9;
+    font-weight: 400;
+    font-size: 16px;
+}
