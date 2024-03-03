@@ -13,9 +13,13 @@ const Sidebar = (props: Props) => {
   };
   return (
     <Fragment>
-      <div className={styles.sidebar}>
+      <div
+        className={`${styles.sidebar} ${
+          props.show ? styles["sidebar_active"] : styles["sidebar_inactive"]
+        }`}
+      >
         <div
-          className={`${styles["container"]} ${
+          className={`${styles["container"]}  ${
             props.show ? styles["active"] : styles["inactive"]
           }`}
         >

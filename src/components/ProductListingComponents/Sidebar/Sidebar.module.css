@@ -3,20 +3,19 @@
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
 }
-.components{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap;
-
+.components {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -31,6 +30,17 @@
   display: none;
 }
 @media (max-width: 768px) {
+  .sidebar_active{
+    z-index: 5;
+    position: fixed;
+    /* background-color: #454545; */
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    /* opacity: 0.7; */
+    backdrop-filter: brightness(0.5);
+  }
   .container {
     z-index: 2;
     top: 200%;
@@ -44,12 +54,12 @@
     border: 1px solid black;
     left: 0;
     align-items: center;
-    box-shadow: 0px 0px 50px 1px #ccc;
+    height: 100vh;
     transition: top 0.5s ease-in-out;
+    opacity: 1;
   }
   .line {
-    top: -10%;
-    border-radius: 20px;
+    border-radius: 10px;
     position: relative;
     display: block;
     width: 100px;
@@ -58,7 +68,7 @@
   }
   .components {
     width: 100%;
-   flex-direction: row;
+    flex-direction: row;
   }
   .toggle_btn {
     display: block;
@@ -74,14 +84,10 @@
   .active {
     top: 20%;
   }
-  .sidebar{
-    width: fit-content;
-    margin: auto;
-  }
- .active .close_btn{
-  display: block;
+  .active .close_btn {
+    display: block;
     position: absolute;
-    top: 5%;
+    /* top: 5%; */
     right: 5%;
     background: transparent;
     border: none;
