@@ -1,0 +1,25 @@
+.about-clients {
+  max-width: 1440px;
+  margin: auto;
+  padding: 20px 24px;
+}
+
+.text-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: auto;
+}
+
+.text_heading{
+    font-weight: 700;
+    font-size: 40px;
+    color: #252B42;
+}
+
+.text_subheading{
+    font-weight: 400;
+    font-size: 14px;
+    color: #737373;
+    text-align: center;
+}

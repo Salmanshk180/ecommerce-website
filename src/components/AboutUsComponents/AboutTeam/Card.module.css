@@ -18,11 +18,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-.social-media img {
-  background-color: #23a6f0;
-  border-radius: 50%;
+.name{
+    font-weight: 700;
+    font-size: 16px;
+    color: #252b42;
+}
+
+.profession{
+    font-weight: 700;
+    font-size: 14px;
+    color: #737373;
 }
