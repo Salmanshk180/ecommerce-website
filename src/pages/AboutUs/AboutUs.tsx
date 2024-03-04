@@ -4,6 +4,7 @@ import LightNavbar from "../../components/HomeComponents/Navbars/LightNavbar";
 import AboutHeader from "../../components/AboutUsComponents/AboutHeader/AboutHeader";
 import Footer from "../../components/HomeComponents/Footer/Footer";
 import AboutContent from "../../components/AboutUsComponents/AboutContent/AboutContent";
+import AboutStats from "../../components/AboutUsComponents/AboutStats/AboutStats";
 const AboutUs = () => {
   return (
     <React.Fragment>
@@ -12,6 +13,7 @@ const AboutUs = () => {
           <LightNavbar />
           <AboutHeader />
           <AboutContent />
+          <AboutStats/>
           <Footer />
         </div>
       </div>
