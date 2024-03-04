@@ -1,0 +1,24 @@
+.bar {
+  background-color: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.first_part{
+    flex-grow: 1;
+    text-align: start;
+}
+.second_part {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+    .bar{
+        padding:20px 0;
+    }
+}

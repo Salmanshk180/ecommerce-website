@@ -1,0 +1,19 @@
+.shopping_cart {
+  max-width: 1440px;
+  margin: auto;
+  padding: 20px 24px;
+}
+
+.main_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  
+}
+.first_container,
+.second_container {
+  /* width: 100%; */
+  flex-grow: 1;
+}

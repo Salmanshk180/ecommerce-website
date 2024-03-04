@@ -5,6 +5,7 @@ import ProductListing from "./pages/ProductListing/ProductListing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import ContactUs from "./pages/ContactUs/ContactUs";
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,10 @@ function App() {
     {
       path: "/contact-us",
       element: <ContactUs />,
+    },
+    {
+      path: "/shopping-cart",
+      element: <ShoppingCart />,
     },
   ]);
   return (

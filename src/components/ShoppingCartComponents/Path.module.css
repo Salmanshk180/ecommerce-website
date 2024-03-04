@@ -1,0 +1,12 @@
+.path{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    color: #737373;
+    font-weight: 700;
+}
+
+.current{
+    color: #000;
+}

@@ -1,0 +1,30 @@
+.total_cart {
+  border: 1px solid black;
+  /* height: 200px; */
+  padding: 20px 0px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  font-weight: 500;
+}
+.title{
+    text-align: left;
+    margin-left: 50px;
+    font-weight: 700;
+
+}
+.total_cart hr{
+    width: 86%;
+    margin: auto;
+}
+
+.checkout_btn{
+    padding: 15px 40px;
+    background-color: #23A6F0;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}
