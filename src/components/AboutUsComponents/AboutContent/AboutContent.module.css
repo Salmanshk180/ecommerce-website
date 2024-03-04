@@ -1,0 +1,43 @@
+.about-content {
+  max-width: 1440px;
+  margin: auto;
+  padding: 20px 24px;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.text-container-1 div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: start;
+  width: 80%;
+  /* margin: auto; */
+}
+.text-container-2 {
+  text-align: start;
+  width: 40%;
+  margin: auto;
+}
+.para-1 {
+  color: #e74040;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.para-2 {
+  font-weight: 700;
+  font-size: 24px;
+  color: #252b42;
+}
+
+.para-3{
+    font-weight: 400;
+    font-size: 14px;
+    color: #737373;
+}
