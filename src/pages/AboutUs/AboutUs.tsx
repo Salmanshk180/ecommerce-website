@@ -8,6 +8,7 @@ import AboutStats from "../../components/AboutUsComponents/AboutStats/AboutStats
 import AboutVideo from "../../components/AboutUsComponents/AboutVideo/AboutVideo";
 import AboutTeam from "../../components/AboutUsComponents/AboutTeam/AboutTeam";
 import AboutClients from "../../components/AboutUsComponents/AboutClients/AboutClients";
+import Testimonial from "../../components/AboutUsComponents/Testimonial/Testimonial";
 const AboutUs = () => {
   return (
     <React.Fragment>
@@ -19,7 +20,8 @@ const AboutUs = () => {
           <AboutStats />
           <AboutVideo />
           <AboutTeam />
-          <AboutClients/>
+          <AboutClients />
+          <Testimonial />
           <Footer />
         </div>
       </div>
