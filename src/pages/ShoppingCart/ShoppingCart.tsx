@@ -9,23 +9,21 @@ import TotalCart from "../../components/ShoppingCartComponents/TotalCart";
 const ShoppingCart = () => {
   return (
     <React.Fragment>
-      <Header />
-      <div className={styles['shopping_cart']}>
-        <div className={styles['container']}>
-            <Path/>
+      <div className={styles["shopping_cart"]}>
+        <div className={styles["container"]}>
+          <Path />
         </div>
-        <div className={styles['main_container']}>
-            <div className={styles['first_container']}>
-                <Bar/>
-                <Card/>
-                <Card/>
-            </div>
-            <div className={styles['second_container']}>
-               <TotalCart/>
-            </div>
+        <div className={styles["main_container"]}>
+          <div className={styles["first_container"]}>
+            <Bar />
+            <Card />
+            <Card />
+          </div>
+          <div className={styles["second_container"]}>
+            <TotalCart />
+          </div>
         </div>
-      </div>  
-      <Footer />
+      </div>
     </React.Fragment>
   );
 };

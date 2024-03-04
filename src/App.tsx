@@ -6,29 +6,52 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
+import Layout from "./layout/Layout";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Layout />,
+      children: [
+        {
+          path: "",
+          element: <Home />,
+        },
+        {
+          path: "/about-us",
+          element: <AboutUs />,
+        },
+        {
+          path: "/contact-us",
+          element: <ContactUs />,
+        },
+        {
+          path: "/products",
+          element: <ProductListing />,
+        },
+        {
+          path: "/shopping-cart",
+          element: <ShoppingCart />,
+        },
+      ],
     },
-    {
-      path: "/products",
-      element: <ProductListing />,
-    },
-    {
-      path: "/about-us",
-      element: <AboutUs />,
-    },
-    {
-      path: "/contact-us",
-      element: <ContactUs />,
-    },
-    {
-      path: "/shopping-cart",
-      element: <ShoppingCart />,
-    },
+    // {
+    //   path: "/products",
+    //   element: <ProductListing />,
+    // },
+    // {
+    //   path: "/about-us",
+    //   element: <AboutUs />,
+    // },
+    // {
+    //   path: "/contact-us",
+    //   element: <ContactUs />,
+    // },
+    // {
+    //   path: "/shopping-cart",
+    //   element: <ShoppingCart />,
+    // },
   ]);
   return (
     <Fragment>

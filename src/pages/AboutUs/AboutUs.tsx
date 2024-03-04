@@ -9,12 +9,12 @@ import AboutVideo from "../../components/AboutUsComponents/AboutVideo/AboutVideo
 import AboutTeam from "../../components/AboutUsComponents/AboutTeam/AboutTeam";
 import AboutClients from "../../components/AboutUsComponents/AboutClients/AboutClients";
 import Testimonial from "../../components/AboutUsComponents/Testimonial/Testimonial";
+import DarkNavbar from "../../components/HomeComponents/Navbars/DarkNavbar";
 const AboutUs = () => {
   return (
     <React.Fragment>
       <div className={styles["about-us"]}>
         <div className={styles["container"]}>
-          <LightNavbar />
           <AboutHeader />
           <AboutContent />
           <AboutStats />
@@ -22,7 +22,6 @@ const AboutUs = () => {
           <AboutTeam />
           <AboutClients />
           <Testimonial />
-          <Footer />
         </div>
       </div>
     </React.Fragment>

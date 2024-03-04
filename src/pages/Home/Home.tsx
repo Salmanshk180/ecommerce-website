@@ -11,7 +11,6 @@ import FeatureBlogs from "../../components/HomeComponents/FeatureBlogs/FeatureBl
 const Home = () => {
   return (
     <Fragment>
-      <Header />
       <ShopHeader />
       <Clients />
       <ShoppingCard />
@@ -19,7 +18,6 @@ const Home = () => {
       <DesktopContent />
       <DesktopFeatures />
       <FeatureBlogs />
-      <Footer />
     </Fragment>
   );
 };

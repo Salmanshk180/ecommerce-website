@@ -1,0 +1,15 @@
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Header from '../components/HomeComponents/Header/Header'
+import Footer from '../components/HomeComponents/Footer/Footer'
+const Layout = () => {
+  return (
+   <React.Fragment>
+    <Header/>
+    <Outlet/>
+    <Footer/>
+   </React.Fragment>
+  )
+}
+
+export default Layout

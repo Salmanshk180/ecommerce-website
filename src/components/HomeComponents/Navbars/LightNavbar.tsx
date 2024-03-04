@@ -6,6 +6,7 @@ import search from "../../../assets/search.svg";
 import cart from "../../../assets/cart.svg";
 import likes from "../../../assets/likes.svg";
 import togglebtn from "../../../assets/togglebtn.svg";
+import { NavLink } from "react-router-dom";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
 
@@ -29,16 +30,16 @@ const LightNavbar = () => {
           >
             <div className={styles["nav-links-container"]}>
               <nav className={styles["nav-links"]}>
-                <a href="#">Home</a>
+                <NavLink to="/">Home</NavLink>
                 <a href="#">
                   <select className={styles["select-button"]}>
                     <option value="shop">Shop</option>
                   </select>
                 </a>
-                <a href="#">About</a>
-                <a href="#">Blog</a>
-                <a href="#">Contact</a>
-                <a href="#">Pages</a>
+                <NavLink to="/about-us">About</NavLink>
+                <NavLink to="/blog">Blog</NavLink>
+                <NavLink to="/contact-us">Contact</NavLink>
+                <NavLink to="/pages">Pages</NavLink>
               </nav>
             </div>
             <div className={styles["nav-buttons-container"]}>

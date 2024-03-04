@@ -9,12 +9,9 @@ const ProductListing = () => {
   return (
     <Fragment>
       <div className="">
-        <DarkNavbar background_color="#23856D" />
-        <LightNavbar />
         <Container />
         <MainComponent />
         <Clients />
-        <Footer />
       </div>
     </Fragment>
   );
