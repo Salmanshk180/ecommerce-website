@@ -6,6 +6,7 @@ import Footer from "../../components/HomeComponents/Footer/Footer";
 import AboutContent from "../../components/AboutUsComponents/AboutContent/AboutContent";
 import AboutStats from "../../components/AboutUsComponents/AboutStats/AboutStats";
 import AboutVideo from "../../components/AboutUsComponents/AboutVideo/AboutVideo";
+import AboutTeam from "../../components/AboutUsComponents/AboutTeam/AboutTeam";
 const AboutUs = () => {
   return (
     <React.Fragment>
@@ -16,6 +17,7 @@ const AboutUs = () => {
           <AboutContent />
           <AboutStats />
           <AboutVideo />
+          <AboutTeam />
           <Footer />
         </div>
       </div>
