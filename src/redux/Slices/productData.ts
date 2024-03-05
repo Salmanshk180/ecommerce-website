@@ -1,15 +1,10 @@
-import { Fragment, useState } from "react";
-import ProductDisplayNavbar from "./ProductDisplayNavbar/ProductDisplayNavbar";
-import styles from "./ProductDisplay.module.css";
-import ProductCarousel from "./ProductCarousel/ProductCarousel";
-import Pagination from "../Pagination/Pagination";
-import p1 from "../../../assets/product-1.svg";
-import p2 from "../../../assets/product-2.svg";
-import p3 from "../../../assets/product-3.svg";
-import p4 from "../../../assets/product-4.svg";
-import p5 from "../../../assets/product-5.svg";
-import { useSelector } from "react-redux";
-const CarouselData = [
+import { createSlice } from "@reduxjs/toolkit";
+import p1 from "../../assets/product-1.svg";
+import p2 from "../../assets/product-2.svg";
+import p3 from "../../assets/product-3.svg";
+import p4 from "../../assets/product-4.svg";
+import p5 from "../../assets/product-5.svg";
+export const initialState = [
   {
     initialState: [
       {
@@ -19,6 +14,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Women's cloathing",
       },
       {
         src: p2,
@@ -27,6 +23,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Women's cloathing",
       },
       {
         src: p3,
@@ -35,6 +32,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Women's cloathing",
       },
       {
         src: p4,
@@ -43,6 +41,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Kid's Cloathing",
       },
       {
         src: p5,
@@ -51,6 +50,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Kid's cloathing",
       },
       {
         src: p1,
@@ -59,6 +59,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Footwear",
       },
       {
         src: p2,
@@ -67,6 +68,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Footwear",
       },
       {
         src: p3,
@@ -75,6 +77,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Watches",
       },
       {
         src: p4,
@@ -83,6 +86,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Watches",
       },
       {
         src: p5,
@@ -91,6 +95,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Watches",
       },
     ],
   },
@@ -103,6 +108,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Beauty",
       },
       {
         src: p4,
@@ -111,6 +117,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Beauty",
       },
       {
         src: p3,
@@ -119,6 +126,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Beauty",
       },
       {
         src: p2,
@@ -127,6 +135,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Handbags",
       },
       {
         src: p1,
@@ -135,6 +144,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Handbags",
       },
       {
         src: p5,
@@ -143,6 +153,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Handbags",
       },
       {
         src: p4,
@@ -151,6 +162,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Jwellery",
       },
       {
         src: p3,
@@ -159,6 +171,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Jwellery",
       },
       {
         src: p2,
@@ -167,6 +180,7 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Jwellery",
       },
       {
         src: p1,
@@ -175,36 +189,16 @@ const CarouselData = [
         price: 6.48,
         original_price: 16.48,
         showColors: true,
+        category: "Jwellery",
       },
     ],
   },
 ];
 
-interface Props {
-  show: boolean;
-  setShow: (show: boolean) => void;
-}
-const ProductDisplay = (props: Props) => {
-  const [sliceMin, setSliceMin] = useState<number>(0);
-  const [sliceMax, setSliceMax] = useState<number>(1);
-  const productData = useSelector((state: { product: any }) => state.product);
-  return (
-    <Fragment>
-      <div className={styles.product_display}>
-        <div className={styles.navbar}>
-          <ProductDisplayNavbar show={props.show} setShow={props.setShow} />
-        </div>
-        <div className={styles.carousel}>
-          <ProductCarousel data={productData} min={sliceMin} max={sliceMax} />
-          <Pagination
-            numberOfCarousel={productData.length}
-            setSliceMin={setSliceMin}
-            setSliceMax={setSliceMax}
-          />
-        </div>
-      </div>
-    </Fragment>
-  );
-};
+const productSlice = createSlice({
+  name: "product",
+  initialState,
+  reducers: {},
+});
 
-export default ProductDisplay;
+export default productSlice.reducer;

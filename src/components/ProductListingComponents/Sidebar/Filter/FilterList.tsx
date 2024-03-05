@@ -19,7 +19,7 @@ const FilterList = () => {
         <div className={styles.container}>
           <ul>
             {FilterArray.map((data) => (
-              <li>{data.text}</li>
+              <List text={data.text}/>
             ))}
           </ul>
         </div>

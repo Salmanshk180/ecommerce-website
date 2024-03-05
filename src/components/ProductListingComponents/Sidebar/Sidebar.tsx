@@ -62,28 +62,57 @@ const Sidebar = (props: Props) => {
                 style={{ fontSize: "14px" }}
               >
                 <button
-                  onClick={() => setShowCategory(!showCategory)}
+                  onClick={() => {
+                    setShowCategory(!showCategory);
+                    setShowBrands(false);
+                    setShowPrice(false);
+                  }}
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   Category
-                  <img src={greaterThan} alt="" style={showCategory ? { transform: 'rotate(90deg)' } : undefined}  />
+                  <img
+                    src={greaterThan}
+                    alt=""
+                    style={
+                      showCategory ? { transform: "rotate(90deg)" } : undefined
+                    }
+                  />
                 </button>
                 {showCategory ? <FilterList /> : ""}
 
                 <button
-                  onClick={() => setShowPrice(!showPrice)}
+                  onClick={() => {
+                    setShowPrice(!showPrice);
+                    setShowBrands(false);
+                    setShowCategory(false);
+                  }}
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   Price
-                  <img src={greaterThan} alt=""style={showPrice ? { transform: 'rotate(90deg)' }:undefined} />
+                  <img
+                    src={greaterThan}
+                    alt=""
+                    style={
+                      showPrice ? { transform: "rotate(90deg)" } : undefined
+                    }
+                  />
                 </button>
                 {showPrice ? <Price /> : ""}
                 <button
-                  onClick={() => setShowBrands(!showBrands)}
+                  onClick={() => {setShowBrands(!showBrands)
+                    setShowCategory(false);
+                    setShowPrice(false);
+                  }}
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   Brands
-                  <img src={greaterThan} alt="" style={showBrands ? { transform: 'rotate(90deg)' }:undefined} />
+                  <img
+                    src={greaterThan}
+                    alt=""
+                    style={
+                      showBrands ? { transform: "rotate(90deg)" } : undefined
+                    }
+                  />
                 </button>
                 {showBrands ? <Brands /> : ""}
               </div>
