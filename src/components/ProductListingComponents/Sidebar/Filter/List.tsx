@@ -5,7 +5,7 @@ interface Props {
 const List = (props: Props) => {
   return (
     <Fragment>
-      <li style={{ listStyle: "none" }}>{props.text}</li>
+      <button style={{ background:"transparent",border:"none",fontSize:"16px"}}>{props.text}</button>
     </Fragment>
   );
 };

@@ -1,0 +1,13 @@
+.container li{
+    list-style: none;
+    text-align: center;
+}
+
+.container ul{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0px 0px 0px;
+}

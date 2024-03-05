@@ -25,7 +25,10 @@ const useBreakpoint = (): string => {
     if (0 < windowSize.width && windowSize.width < 600) {
       setBreakPoint(breakpoints[0]);
     }
-    if (600 < windowSize.width && windowSize.width < 960) {
+    if (600 < windowSize.width && windowSize.width < 768) {
+      setBreakPoint(breakpoints[0]);
+    }
+    if (768 < windowSize.width && windowSize.width < 960) {
       setBreakPoint(breakpoints[600]);
     }
     if (960 < windowSize.width && windowSize.width < 1280) {
