@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useState } from "react";
 import styles from "./Price.module.css";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";

@@ -11,7 +11,7 @@ const ShoppingCart = () => {
     <React.Fragment>
       <div className={styles["shopping_cart"]}>
         <div className={styles["container"]}>
-          <Path />
+          <Path currentPath="Cart" />
         </div>
         <div className={styles["main_container"]}>
           <div className={styles["first_container"]}>

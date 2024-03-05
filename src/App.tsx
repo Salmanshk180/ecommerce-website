@@ -7,6 +7,7 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Layout from "./layout/Layout";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +34,10 @@ function App() {
         {
           path: "/shopping-cart",
           element: <ShoppingCart />,
+        },
+        {
+          path: "/product-detail",
+          element: <ProductDetail />,
         },
       ],
     },

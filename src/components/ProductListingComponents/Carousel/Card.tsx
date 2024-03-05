@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import styles from "./Card.module.css"
 interface Props {
   src: string;
-  title: string;
-  items: number;
+  title?: string;
+  items?: number;
 }
 const Card = (props: Props) => {
   return (

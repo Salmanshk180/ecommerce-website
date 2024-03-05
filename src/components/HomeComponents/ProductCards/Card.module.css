@@ -42,3 +42,7 @@
   gap: 10px;
 }
 
+
+.card:hover{
+  box-shadow: 1px 1px 10px 1px black;
+}

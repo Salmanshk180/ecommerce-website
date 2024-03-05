@@ -1,0 +1,31 @@
+.product-detail {
+  max-width: 1440px;
+  margin: auto;
+  padding: 20px 24px;
+}
+
+.first_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-block: 30px;
+}
+
+.carousel_component{
+    width:auto;
+    max-width: 35%;
+    margin-block: 20px;
+}
+.detail_component{
+    width: 50%;
+    text-align: left;
+    flex-grow: 1;
+    margin-block: 20px;
+}
+@media  (max-width: 768px) {
+    .carousel_component{
+        width: 100%;
+        max-width: fit-content;
+    }
+    
+}

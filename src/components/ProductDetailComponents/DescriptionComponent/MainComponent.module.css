@@ -1,0 +1,29 @@
+.main-component {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  gap: 20px;
+  margin-block: 50px;
+}
+.main-component img {
+  max-width: 30%;
+}
+.first_container,
+.second_container {
+  width: 33%;
+}
+
+@media (max-width: 768px) {
+  .main-component {
+    flex-wrap: wrap;
+  }
+  .first_container,
+  .second_container {
+    width: 100%;
+  }
+  .main-component img {
+    max-width: 100%;
+    margin: auto;
+  }
+}
