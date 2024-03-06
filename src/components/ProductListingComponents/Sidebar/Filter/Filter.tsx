@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import styles from "./Filter.module.css";
 import List from "./List";
 const Filter = () => {
+  const [selectedItem, setSelectedItem] = useState("");
   const FilterArray = [
     { text: "All Men's clothing" },
     { text: "Women's clothing" },
@@ -12,7 +13,9 @@ const Filter = () => {
     { text: "Handbags" },
     { text: "Jwellery" },
   ];
-
+  const handleItemClick = (text: string) => {
+    setSelectedItem(text); // Update selected item
+  };
   return (
     <Fragment>
       <div className={styles.filter}>
@@ -22,7 +25,11 @@ const Filter = () => {
               &lt; All Categories
             </li>
             {FilterArray.map((data) => (
-              <List text={data.text} />
+              <List
+                text={data.text}
+                selected={selectedItem === data.text}
+                onClick={() => handleItemClick(data.text)}
+              />
             ))}
           </ul>
         </div>

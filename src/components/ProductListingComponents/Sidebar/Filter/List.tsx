@@ -2,12 +2,20 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/Store/Store";
 import styles from "./List.module.css";
-import { filterByCategory } from "../../../../redux/Slices/filterProducts"; // Update import path
+import {
+  filterAll,
+  filterByCategory,
+} from "../../../../redux/Slices/filterProducts"; // Update import path
 interface Props {
   text: string;
+  selected: boolean;
+  onClick: () => void;
 }
 const List = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(filterByCategory({ category: "All Men's clothing" }));
+  }, []);
   const filterProducts = useSelector(
     (state: RootState) => state.filterProducts
   );
@@ -16,9 +24,12 @@ const List = (props: Props) => {
     <Fragment>
       <button
         className={styles["list-btn"]}
+        style={{ color: `${props.selected}?#FFF:black` }}
         onClick={() => {
+          props.onClick();
           console.log(props.text);
           dispatch(filterByCategory({ category: props.text }));
+          dispatch(filterAll());
         }}
       >
         {props.text}

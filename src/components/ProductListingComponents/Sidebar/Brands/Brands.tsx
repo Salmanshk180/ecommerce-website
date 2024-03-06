@@ -1,12 +1,14 @@
 // Brands.tsx
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "./Brands.module.css";
 import CheckBox from "./CheckBox";
 import useBreakpoint from "../../../../utils/BreakPoints/useBreakpoints";
 import { useDispatch, useSelector } from "react-redux";
-import { selectBrand } from "../../../../redux/Slices/selectBrands";
-import { filterByBrand } from "../../../../redux/Slices/filterProducts";
-import { RootState } from "../../../../redux/Store/Store";
+import {
+  filterAll,
+  filterByBrand,
+} from "../../../../redux/Slices/filterProducts";
+import { AppDispatch, RootState } from "../../../../redux/Store/Store";
 
 const Brands = () => {
   const breakpoint = useBreakpoint();
@@ -19,14 +21,36 @@ const Brands = () => {
     { text: "Allen Solly" },
     { text: "Fabindia" },
   ];
-  const dispatch = useDispatch();
-  const selectBrands = useSelector((state:RootState) => state.selectBrand.brands);
-  console.log(selectBrands);
+  const dispatch = useDispatch<AppDispatch>();
+  const [brands, setBrands] = useState<string[]>([]);
+  useEffect(() => {
+    dispatch(
+      filterByBrand({
+        brands: [
+          "All",
+          "Zara",
+          "Levi's",
+          "Adidas",
+          "Peter England",
+          "Allen Solly",
+          "Fabindia",
+        ],
+      })
+    );
+  }, []);
   const handleBrand = (text: string) => {
-    dispatch(selectBrand({ brand: text })); // Dispatch selectBrand action with the text
-    dispatch(filterByBrand({ brands: selectBrands }));
+    setBrands((prev) => {
+      if (prev.includes(text)) {
+        return prev.filter((brand) => brand !== text);
+      } else {
+        return [...prev, text];
+      }
+    });
+    dispatch(filterByBrand({ brands: brands }));
+    dispatch(filterAll());
   };
 
+  console.log(brands);
   return (
     <Fragment>
       <div className={styles.brands}>

@@ -9,14 +9,13 @@ interface Props {
 }
 
 const CheckBox = (props: Props) => {
-   
   return (
     <Fragment>
       <div className={styles.container}>
-        <input 
-          type="checkbox" 
-          className={styles.checkbox} 
-          value={props.text} 
+        <input
+          type="checkbox"
+          className={styles.checkbox}
+          value={props.text}
           onChange={() => props.handleBrand(props.text)} // Pass text to handleBrand function
         />
         <p>{props.text}</p>

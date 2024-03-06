@@ -7,3 +7,7 @@
 .list-btn:active {
   color: blue;
 }
+
+.selected{
+    background-color: aquamarine;
+}
