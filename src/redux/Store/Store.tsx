@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "../Slices/productData";
 import filterProducts from "../Slices/filterProducts";
+import  selectBrand from "../Slices/selectBrands";
 export const store = configureStore({
   reducer: {
     product: productReducer,
     filterProducts: filterProducts,
+    selectBrand: selectBrand,
   },
 });
 
