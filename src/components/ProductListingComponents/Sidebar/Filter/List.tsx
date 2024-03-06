@@ -13,9 +13,6 @@ interface Props {
 }
 const List = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(filterByCategory({ category: "All Men's clothing" }));
-  }, []);
   const filterProducts = useSelector(
     (state: RootState) => state.filterProducts
   );

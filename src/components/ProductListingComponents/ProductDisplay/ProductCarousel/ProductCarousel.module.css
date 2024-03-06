@@ -1,8 +1,10 @@
 .product_carousel {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: auto;
+  width: 100%;
 }
 
 @media (max-width: 768px) {

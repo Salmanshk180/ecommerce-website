@@ -22,35 +22,11 @@ const Brands = () => {
     { text: "Fabindia" },
   ];
   const dispatch = useDispatch<AppDispatch>();
-  const [brands, setBrands] = useState<string[]>([]);
-  useEffect(() => {
-    dispatch(
-      filterByBrand({
-        brands: [
-          "All",
-          "Zara",
-          "Levi's",
-          "Adidas",
-          "Peter England",
-          "Allen Solly",
-          "Fabindia",
-        ],
-      })
-    );
-  }, []);
+  // const [brands, setBrands] = useState<string[]>([]);
   const handleBrand = (text: string) => {
-    setBrands((prev) => {
-      if (prev.includes(text)) {
-        return prev.filter((brand) => brand !== text);
-      } else {
-        return [...prev, text];
-      }
-    });
-    dispatch(filterByBrand({ brands: brands }));
+    dispatch(filterByBrand({ brand: text }));
     dispatch(filterAll());
   };
-
-  console.log(brands);
   return (
     <Fragment>
       <div className={styles.brands}>

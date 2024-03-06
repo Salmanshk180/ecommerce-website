@@ -18,13 +18,12 @@ interface Props {
 }
 const ProductDisplay = (props: Props) => {
   const [sliceMin, setSliceMin] = useState<number>(0);
-  const [sliceMax, setSliceMax] = useState<number>(10);
+  const [sliceMax, setSliceMax] = useState<number>(12);
   const filterData = useSelector(
     (state: RootState) => state.filterProducts.filteredProducts
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    
     dispatch(filterAll());
   }, []);
 
