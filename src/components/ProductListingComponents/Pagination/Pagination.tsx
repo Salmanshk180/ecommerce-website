@@ -1,10 +1,11 @@
 import { Fragment } from "react";
 import styles from "./Pagination.module.css";
+import { useSelector } from "react-redux";
 
 interface Props {
   numberOfCarousel: number;
-  setSliceMin: (i: number) => void;
-  setSliceMax: (i: number) => void;
+  setSliceMin: (i: number) => void | number;
+  setSliceMax: (i: number) => void | number;
 }
 
 const Pagination = (props: Props) => {
@@ -15,15 +16,15 @@ const Pagination = (props: Props) => {
         key={i}
         className={styles.pagination_btn}
         onClick={() => {
-          props.setSliceMin(i);
-          props.setSliceMax(i + 1);
+          props.setSliceMin(i*10);
+          props.setSliceMax(i*10+10);
         }}
       >
         {i + 1}
       </button>
     );
   }
-  
+
   return (
     <Fragment>
       <div className={styles.pagination}>
@@ -32,7 +33,7 @@ const Pagination = (props: Props) => {
             className={styles.first_btn}
             onClick={() => {
               props.setSliceMin(0);
-              props.setSliceMax(1);
+              props.setSliceMax(10);
             }}
           >
             First
@@ -41,11 +42,11 @@ const Pagination = (props: Props) => {
           <button
             className={styles.next_btn}
             onClick={() => {
-              props.setSliceMin(props.numberOfCarousel - 1);
-              props.setSliceMax(props.numberOfCarousel);
+              props.setSliceMin(props.numberOfCarousel * 10 - 10);
+              props.setSliceMax(props.numberOfCarousel * 10);
             }}
           >
-            Last
+            Next
           </button>
         </div>
       </div>

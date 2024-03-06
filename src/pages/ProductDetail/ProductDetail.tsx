@@ -197,7 +197,6 @@ const ProductDetail = () => {
           </div>
         </div>
         <DescriptionComponent />
-        <ProductCarousel data={CarouselData} min={0} max={1} />
         <Clients />
       </div>
     </React.Fragment>

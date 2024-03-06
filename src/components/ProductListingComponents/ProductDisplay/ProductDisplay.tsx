@@ -9,176 +9,7 @@ import p3 from "../../../assets/product-3.svg";
 import p4 from "../../../assets/product-4.svg";
 import p5 from "../../../assets/product-5.svg";
 import { useSelector } from "react-redux";
-const CarouselData = [
-  {
-    initialState: [
-      {
-        src: p1,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p2,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p3,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p4,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p5,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p1,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p2,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p3,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p4,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p5,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-    ],
-  },
-  {
-    initialState: [
-      {
-        src: p5,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p4,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p3,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p2,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p1,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p5,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p4,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p3,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p2,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-      {
-        src: p1,
-        title: "Graphic Design",
-        description: "English Department",
-        price: 6.48,
-        original_price: 16.48,
-        showColors: true,
-      },
-    ],
-  },
-];
+import { RootState } from "../../../redux/Store/Store";
 
 interface Props {
   show: boolean;
@@ -186,8 +17,8 @@ interface Props {
 }
 const ProductDisplay = (props: Props) => {
   const [sliceMin, setSliceMin] = useState<number>(0);
-  const [sliceMax, setSliceMax] = useState<number>(1);
-  const productData = useSelector((state: { product: any }) => state.product);
+  const [sliceMax, setSliceMax] = useState<number>(10);
+  const filterData = useSelector((state: RootState) => state.filterProducts);
   return (
     <Fragment>
       <div className={styles.product_display}>
@@ -195,9 +26,9 @@ const ProductDisplay = (props: Props) => {
           <ProductDisplayNavbar show={props.show} setShow={props.setShow} />
         </div>
         <div className={styles.carousel}>
-          <ProductCarousel data={productData} min={sliceMin} max={sliceMax} />
+          <ProductCarousel data={filterData} min={sliceMin} max={sliceMax} />
           <Pagination
-            numberOfCarousel={productData.length}
+            numberOfCarousel={filterData.length / 10}
             setSliceMin={setSliceMin}
             setSliceMax={setSliceMax}
           />

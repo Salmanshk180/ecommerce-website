@@ -1,7 +1,8 @@
-import { Fragment } from "react";
+import { Fragment,useState } from "react";
 import styles from "./FilterList.module.css";
 import List from "./List";
 const FilterList = () => {
+  const [selected, setSelected] = useState(false);
   const FilterArray = [
     { text: "All Men's clothing" },
     { text: "Women's clothing" },
@@ -12,7 +13,6 @@ const FilterList = () => {
     { text: "Handbags" },
     { text: "Jwellery" },
   ];
-
   return (
     <Fragment>
       <div className={styles.filter}>

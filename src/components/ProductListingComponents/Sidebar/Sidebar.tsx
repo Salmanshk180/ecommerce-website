@@ -99,7 +99,8 @@ const Sidebar = (props: Props) => {
                 </button>
                 {showPrice ? <Price /> : ""}
                 <button
-                  onClick={() => {setShowBrands(!showBrands)
+                  onClick={() => {
+                    setShowBrands(!showBrands);
                     setShowCategory(false);
                     setShowPrice(false);
                   }}

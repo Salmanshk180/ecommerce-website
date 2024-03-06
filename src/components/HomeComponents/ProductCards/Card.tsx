@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import styles from "./Card.module.css";
 import Color from "../FeatureBlogs/Color/Color";
 interface Props {
+  id?:string;
   src: string;
   title: string;
   description: string;
