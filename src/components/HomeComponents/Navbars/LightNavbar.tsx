@@ -1,4 +1,4 @@
-import  { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 // import logo from "../../assets/logo.svg";
 import styles from "./LightNavbar.module.css";
 import login from "../../../assets/login.svg";
@@ -6,10 +6,10 @@ import search from "../../../assets/search.svg";
 import cart from "../../../assets/cart.svg";
 import likes from "../../../assets/likes.svg";
 import togglebtn from "../../../assets/togglebtn.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
-
+  const navigate = useNavigate();
   const toggleNavbar = () => {
     setNavbarVisible(!navbarVisible);
   };
@@ -31,11 +31,20 @@ const LightNavbar = () => {
             <div className={styles["nav-links-container"]}>
               <nav className={styles["nav-links"]}>
                 <NavLink to="/">Home</NavLink>
-                <a href="#">
-                  <select className={styles["select-button"]}>
-                    <option value="shop">Shop</option>
-                  </select>
-                </a>
+                <select
+                  className={styles["select-button"]}
+                  onChange={(event) => {
+                    if (event.target.value == "shop") {
+                      navigate("/products");
+                    }
+                    if (event.target.value == "") {
+                      navigate("/");
+                    }
+                  }}
+                >
+                  <option value="shop">Shop</option>
+                  <option value="shop" selected>Shop</option>
+                </select>
                 <NavLink to="/about-us">About</NavLink>
                 <NavLink to="/blog">Blog</NavLink>
                 <NavLink to="/contact-us">Contact</NavLink>

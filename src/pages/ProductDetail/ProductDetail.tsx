@@ -5,8 +5,12 @@ import Clients from "../../components/HomeComponents/clients/Clients";
 import Carousel from "../../components/ProductDetailComponents/Carousel/Carousel";
 import DetailComponent from "../../components/ProductDetailComponents/DetailComponent/DetailComponent";
 import DescriptionComponent from "../../components/ProductDetailComponents/DescriptionComponent/DescriptionComponent";
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
+  const {id} = useParams();
+  console.log(id);
+  
   return (
     <React.Fragment>
       <div className={styles["product-detail"]}>

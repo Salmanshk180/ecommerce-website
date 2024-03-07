@@ -22,8 +22,6 @@ const ProductDisplay = (props: Props) => {
   const filterData = useSelector(
     (state: RootState) => state.filterProducts.filteredProducts
   );
-
-  console.log(filterData);
   
   const dispatch = useDispatch();
   useEffect(() => {

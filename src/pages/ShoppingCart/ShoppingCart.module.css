@@ -15,5 +15,15 @@
 .first_container,
 .second_container {
   /* width: 100%; */
-  flex-grow: 1;
+  flex-grow: 0.4;
+}
+
+.second_container {
+  flex-grow: 0.4;
+  margin-inline: auto;
+}
+@media (max-width: 768px) {
+  .bar_container{
+    display: none;
+  }
 }

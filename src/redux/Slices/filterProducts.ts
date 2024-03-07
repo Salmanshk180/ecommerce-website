@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState as productData } from "./productData";
 
 interface Product {
+  id: string;
   src: string;
   title: string;
   description: string;
@@ -19,7 +20,7 @@ interface FilterProductState {
   filterPrice: { min: number; max: number };
 }
 
-const initialState: FilterProductState = {
+export const initialState: FilterProductState = {
   filteredProducts: [],
   filterCategory: null,
   filterBrands: [],
@@ -58,7 +59,7 @@ const filterProductSlice = createSlice({
       }
       if (
         state.filterBrands.length > 0 &&
-        !state.filterBrands.includes("All Men's clothing")
+        !state.filterBrands.includes("All")
       ) {
         filterData = filterData.filter((product) =>
           state.filterBrands.includes(product.brand)
@@ -74,9 +75,33 @@ const filterProductSlice = createSlice({
       }
       state.filteredProducts = filterData;
     },
+    priceLowToHigh(state) {
+      state.filteredProducts = state.filteredProducts
+        .slice()
+        .sort(
+          (product1, product2) =>
+            product1.original_price - product2.original_price
+        );
+    },
+    priceHighToLow(state) {
+      state.filteredProducts = state.filteredProducts
+        .slice()
+        .sort(
+          (product1, product2) =>
+            product2.original_price - product1.original_price
+        );
+    },
   },
 });
 
-export const { filterByCategory, filterByBrand, filterAll, filterPrice } =
-  filterProductSlice.actions;
+export const {
+  filterByCategory,
+  filterByBrand,
+  filterAll,
+  filterPrice,
+  priceLowToHigh,
+  priceHighToLow,
+} = filterProductSlice.actions;
 export default filterProductSlice.reducer;
+
+export const filterData = initialState.filteredProducts;

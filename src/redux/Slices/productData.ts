@@ -6,6 +6,7 @@ import p4 from "../../assets/product-4.svg";
 import p5 from "../../assets/product-5.svg";
 export const initialState = [
   {
+    id: "p1",
     src: p1,
     title: "Graphic Design",
     description: "English Department",
@@ -16,16 +17,18 @@ export const initialState = [
     brand: "Zara",
   },
   {
+    id: "p2",
     src: p2,
     title: "Graphic Design",
     description: "English Department",
-    original_price: 12.48,
+    original_price: 19.48,
     price: 16.48,
     showColors: true,
     category: "Women's clothing",
     brand: "Zara",
   },
   {
+    id: "p3",
     src: p3,
     title: "Graphic Design",
     description: "English Department",
@@ -36,6 +39,7 @@ export const initialState = [
     brand: "Levi's",
   },
   {
+    id: "p4",
     src: p4,
     title: "Graphic Design",
     description: "English Department",
@@ -46,6 +50,7 @@ export const initialState = [
     brand: "Levi's",
   },
   {
+    id: "p5",
     src: p5,
     title: "Graphic Design",
     description: "English Department",
@@ -56,6 +61,7 @@ export const initialState = [
     brand: "Adidas",
   },
   {
+    id: "p6",
     src: p1,
     title: "Graphic Design",
     description: "English Department",
@@ -66,6 +72,7 @@ export const initialState = [
     brand: "Adidas",
   },
   {
+    id: "p7",
     src: p2,
     title: "Graphic Design",
     description: "English Department",
@@ -76,6 +83,7 @@ export const initialState = [
     brand: "Adidas",
   },
   {
+    id: "p8",
     src: p3,
     title: "Graphic Design",
     description: "English Department",
@@ -86,6 +94,7 @@ export const initialState = [
     brand: "Peter England",
   },
   {
+    id: "p9",
     src: p4,
     title: "Graphic Design",
     description: "English Department",
@@ -96,6 +105,7 @@ export const initialState = [
     brand: "Peter England",
   },
   {
+    id: "p10",
     src: p5,
     title: "Graphic Design",
     description: "English Department",
@@ -107,6 +117,7 @@ export const initialState = [
   },
 
   {
+    id: "p11",
     src: p5,
     title: "Graphic Design",
     description: "English Department",
@@ -117,6 +128,7 @@ export const initialState = [
     brand: "Allen Solly",
   },
   {
+    id: "p12",
     src: p4,
     title: "Graphic Design",
     description: "English Department",
@@ -127,6 +139,7 @@ export const initialState = [
     brand: "Fab India",
   },
   {
+    id: "p13",
     src: p3,
     title: "Graphic Design",
     description: "English Department",
@@ -137,6 +150,7 @@ export const initialState = [
     brand: "Fab India",
   },
   {
+    id: "p14",
     src: p2,
     title: "Graphic Design",
     description: "English Department",
@@ -147,6 +161,7 @@ export const initialState = [
     brand: "Peter England",
   },
   {
+    id: "p15",
     src: p1,
     title: "Graphic Design",
     description: "English Department",
@@ -157,6 +172,7 @@ export const initialState = [
     brand: "Peter England",
   },
   {
+    id: "p16",
     src: p5,
     title: "Graphic Design",
     description: "English Department",
@@ -167,6 +183,7 @@ export const initialState = [
     brand: "Levi's",
   },
   {
+    id: "p17",
     src: p4,
     title: "Graphic Design",
     description: "English Department",
@@ -177,6 +194,7 @@ export const initialState = [
     brand: "Levi's",
   },
   {
+    id: "p18",
     src: p3,
     title: "Graphic Design",
     description: "English Department",
@@ -187,16 +205,18 @@ export const initialState = [
     brand: "Adidas",
   },
   {
+    id: "p19",
     src: p2,
     title: "Graphic Design",
     description: "English Department",
     original_price: 190.48,
     price: 16.48,
-    showColors: true,
+    showColors: true, 
     category: "Jwellery",
     brand: "Adidas",
   },
   {
+    id: "p20",
     src: p1,
     title: "Graphic Design",
     description: "English Department",

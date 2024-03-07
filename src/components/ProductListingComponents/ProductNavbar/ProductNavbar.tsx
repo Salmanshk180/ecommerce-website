@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 import styles from "./ProductNavbar.module.css";
 import GraterThan from "../../../assets/GreaterThan.svg";
+import { NavLink } from "react-router-dom";
+import Path from "../../ShoppingCartComponents/Path";
 const ProductNavbar = () => {
   return (
     <Fragment>
@@ -10,9 +12,10 @@ const ProductNavbar = () => {
             <p>Shop</p>
           </div>
           <div className={styles.path}>
-            <p className={styles.previous_path}>Home</p>
+            {/* <p className={styles.previous_path}><NavLink to={"/"}>Home</NavLink></p>
             <img src={GraterThan} alt="" />
-            <p className={styles.current_path}>Shop</p>
+            <p className={styles.current_path}>Shop</p> */}
+            <Path currentPath={"Shop"}/>
           </div>
         </div>
       </div>

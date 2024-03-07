@@ -20,43 +20,27 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/about-us",
+          path: "about-us",
           element: <AboutUs />,
         },
         {
-          path: "/contact-us",
+          path: "contact-us",
           element: <ContactUs />,
         },
         {
-          path: "/products",
+          path: "products",
           element: <ProductListing />,
         },
         {
-          path: "/shopping-cart",
-          element: <ShoppingCart />,
+          path: "products/:id",
+          element: <ProductDetail />,
         },
         {
-          path: "/product-detail",
-          element: <ProductDetail />,
+          path: "shopping-cart",
+          element: <ShoppingCart />,
         },
       ],
     },
-    // {
-    //   path: "/products",
-    //   element: <ProductListing />,
-    // },
-    // {
-    //   path: "/about-us",
-    //   element: <AboutUs />,
-    // },
-    // {
-    //   path: "/contact-us",
-    //   element: <ContactUs />,
-    // },
-    // {
-    //   path: "/shopping-cart",
-    //   element: <ShoppingCart />,
-    // },
   ]);
   return (
     <Fragment>

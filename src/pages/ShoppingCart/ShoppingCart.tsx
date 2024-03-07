@@ -15,7 +15,9 @@ const ShoppingCart = () => {
         </div>
         <div className={styles["main_container"]}>
           <div className={styles["first_container"]}>
+            <div className={styles['bar_container']}>
             <Bar />
+            </div>
             <Card />
             <Card />
           </div>
