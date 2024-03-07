@@ -17,8 +17,6 @@ interface FilterProductState {
   filterCategory: string | null;
   filterBrands: string[];
   filterPrice: { min: number; max: number };
-  //   filteredProductsByCategory: Product[];
-  //   filteredProductsByBrand: Product[];
 }
 
 const initialState: FilterProductState = {
@@ -26,8 +24,6 @@ const initialState: FilterProductState = {
   filterCategory: null,
   filterBrands: [],
   filterPrice: { min: 0, max: 0 },
-  //   filteredProductsByCategory: [],
-  //   filteredProductsByBrand: [],
 };
 
 const filterProductSlice = createSlice({
@@ -37,13 +33,6 @@ const filterProductSlice = createSlice({
     filterByCategory(state, action) {
       const { category } = action.payload;
       state.filterCategory = category;
-      //   if (category === "All Men's clothing" || category === "") {
-      //     return { ...state, filteredProductsByCategory: productData };
-      //   }
-      //   const filteredProduct = productData.filter(
-      //     (item) => item.category === category
-      //   );
-      //   return { ...state, filteredProductsByCategory: filteredProduct };
     },
     filterByBrand(state, action) {
       const { brand } = action.payload;
@@ -53,67 +42,41 @@ const filterProductSlice = createSlice({
         const index = state.filterBrands.indexOf(brand);
         state.filterBrands.splice(index, 1);
       }
-      //   if (brands.length === 0) {
-      //     return { ...state, filteredProductsByBrand: productData };
-      //   }
-      //   const filteredProduct = productData.filter((item) =>
-      //     brands.includes(item.brand)
-      //   );
-      //   return { ...state, filteredProductsByBrand: filteredProduct };
     },
     filterPrice: (state, action) => {
       state.filterPrice = action.payload;
     },
     filterAll(state) {
-      //   const commonProducts: Product[] = [];
-      //   if (
-      //     state.filteredProductsByCategory.length === 0 ||
-      //     state.filteredProductsByBrand.length === 0
-      //   ) {
-      //     return { ...state, filteredProducts: productData };
-      //   }
-
-      //   state.filteredProductsByCategory.forEach((categoryProduct) => {
-      //     const matchingBrandProduct = state.filteredProductsByBrand.find(
-      //       (brandProduct) =>
-      //         categoryProduct.category === brandProduct.category &&
-      //         categoryProduct.brand === brandProduct.brand
-      //     );
-
-      //     if (matchingBrandProduct) {
-      //       commonProducts.push(matchingBrandProduct);
-      //     }
-      //   });
-
-      //   return { ...state, filteredProducts: commonProducts };
-
       let filterData = productData;
-      if (state.filterCategory !== null) {
-        if (state.filterCategory !== "All Men's clothing") {
-          filterData = filterData.filter(
-            (product) => product.category === state.filterCategory
-          );
-        }
+      if (
+        state.filterCategory !== null &&
+        state.filterCategory !== "All Men's clothing"
+      ) {
+        filterData = filterData.filter(
+          (product) => product.category === state.filterCategory
+        );
       }
-      if (state.filterBrands.length > 0) {
-        if (!state.filterBrands.includes("All Men's clothing")) {
-          filterData = filterData.filter((product) =>
-            state.filterBrands.includes(product.brand)
-          );
-        }
+      if (
+        state.filterBrands.length > 0 &&
+        !state.filterBrands.includes("All Men's clothing")
+      ) {
+        filterData = filterData.filter((product) =>
+          state.filterBrands.includes(product.brand)
+        );
       }
-    //   if (state.filterPrice.min !== 0 || state.filterPrice.max !== 1000) {
-    //     filterData = filterData.filter(
-    //       (product) =>
-    //         product.original_price >= state.filterPrice.min &&
-    //         product.original_price <= state.filterPrice.max
-    //     );
-    //   }
+      if (state.filterPrice.min > 0 || state.filterPrice.max > 0) {
+        const filterDatas = filterData.filter(
+          (product) =>
+            product.original_price >= state.filterPrice.min &&
+            product.original_price <= state.filterPrice.max
+        );
+        filterData = filterDatas;
+      }
       state.filteredProducts = filterData;
     },
   },
 });
 
-export const { filterByCategory, filterByBrand, filterAll,filterPrice } =
+export const { filterByCategory, filterByBrand, filterAll, filterPrice } =
   filterProductSlice.actions;
 export default filterProductSlice.reducer;

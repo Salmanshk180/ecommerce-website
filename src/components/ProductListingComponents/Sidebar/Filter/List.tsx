@@ -13,10 +13,6 @@ interface Props {
 }
 const List = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const filterProducts = useSelector(
-    (state: RootState) => state.filterProducts
-  );
-
   return (
     <Fragment>
       <button
@@ -24,7 +20,6 @@ const List = (props: Props) => {
         style={{ color: `${props.selected}?#FFF:black` }}
         onClick={() => {
           props.onClick();
-          console.log(props.text);
           dispatch(filterByCategory({ category: props.text }));
           dispatch(filterAll());
         }}
