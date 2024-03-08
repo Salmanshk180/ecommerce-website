@@ -8,6 +8,8 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Layout from "./layout/Layout";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +20,14 @@ function App() {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/sign-in",
+          element: <Login />,
+        },
+        {
+          path: "/sign-up",
+          element: <Register />,
         },
         {
           path: "/about-us",

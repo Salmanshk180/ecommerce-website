@@ -11,8 +11,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {" "}
-        {/* Wrap your App with PersistGate */}
         <App />
       </PersistGate>
     </Provider>

@@ -20,7 +20,18 @@ const LightNavbar = () => {
         <div className={styles["container"]}>
           <div className={styles["logo"]}>
             {/* <img src={logo} alt="logo" className={styles["logo-img"]} /> */}
-            <p className={styles["logo-text"]}>Bandage</p>
+            <p className={styles["logo-text"]}>
+              <NavLink
+                to={"/"}
+                style={{
+                  fontSize: "32px",
+                  fontWeight: "700",
+                  color: "#242B52",
+                }}
+              >
+                Bandage
+              </NavLink>
+            </p>
           </div>
           <div
             className={`${styles["nav-container"]} ${
@@ -43,7 +54,9 @@ const LightNavbar = () => {
                   }}
                 >
                   <option value="shop">Shop</option>
-                  <option value="shop" selected>Shop</option>
+                  <option value="shop" selected>
+                    Shop
+                  </option>
                 </select>
                 <NavLink to="/about-us">About</NavLink>
                 <NavLink to="/blog">Blog</NavLink>
@@ -55,7 +68,10 @@ const LightNavbar = () => {
               <div className={styles["nav-buttons"]}>
                 <button className={styles["button"]}>
                   <img src={login} alt="" />
-                  <p>Login / Register</p>
+                  <p>
+                    <NavLink to={"/sign-in"}>Login</NavLink>/
+                    <NavLink to={"/sign-up"}>Register</NavLink>
+                  </p>
                 </button>
                 <button className={styles["button"]}>
                   <img src={search} alt="" />

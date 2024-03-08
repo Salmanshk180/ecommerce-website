@@ -53,5 +53,9 @@
     .text_container{
       margin: 20px 0px;
     }
+    .text_container > div{
+      align-items: center;
+      text-align: center;
+    }
   }
   

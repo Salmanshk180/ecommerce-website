@@ -44,3 +44,9 @@
     font-size: 14px;
   }
   
+  @media (max-width: 768px) {
+    .container img{
+      min-height: 600px;
+      object-fit:cover;
+    }
+  }
