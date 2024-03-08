@@ -5,11 +5,37 @@ import Color from "../../HomeComponents/FeatureBlogs/Color/Color";
 import like from "../../../assets/Vector (16).svg";
 import cart from "../../../assets/Vector (17).svg";
 import eye from "../../../assets/Vector (15).svg";
-const DetailComponent = () => {
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/Slices/cartProducts";
+import { FaHeart } from "react-icons/fa6";
+import { FaShoppingCart,FaEye } from "react-icons/fa";
+interface ObjectProps {
+  id: string;
+  src: string;
+  title: string;
+  description: string;
+  original_price: number;
+  price: number;
+  showColors: boolean;
+  category: string;
+  brand: string;
+}
+interface Props {
+  data?: ObjectProps;
+}
+
+const DetailComponent = (props: Props) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleNavigate = () => {
+    dispatch(addToCart(props.data));
+    navigate("/shopping-cart");
+  };
   return (
     <React.Fragment>
       <div className={styles["detail-component"]}>
-        <p className={styles['floating_para']}>Floating Phone</p>
+        <p className={styles["floating_para"]}>{props.data?.title}</p>
         <div className={styles["review_container"]}>
           <img src={fullStar} alt="" />
           <img src={fullStar} alt="" />
@@ -18,27 +44,36 @@ const DetailComponent = () => {
           <img src={fullStar} alt="" />
           <span>10 Reviews</span>
         </div>
-        <div className={styles['price_container']}>$1,139.33</div>
-        <div className={styles['availability_container']}>Availability: <span>In Stock</span></div>
-        <div className={styles['description_container']}>
-          <p>
-            Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
-            RELIT official consequent door ENIM RELIT Mollie. Excitation venial
-            consequent sent nostrum met.
-          </p>
+        <div className={styles["price_container"]}>
+          ${props.data?.original_price}
+        </div>
+        <div className={styles["availability_container"]}>
+          Availability: <span>In Stock</span>
+        </div>
+        <div className={styles["description_container"]}>
+          <p>{props.data?.description}</p>
           <hr />
         </div>
         <div className={styles["color_container"]}>
-          <Color classname="first_color" />
-          <Color classname="second_color" />
-          <Color classname="third_color" />
-          <Color classname="fourth_color" />
+          {props.data?.showColors ? (
+            <>
+              <Color classname="first_color" />
+              <Color classname="second_color" />
+              <Color classname="third_color" />
+              <Color classname="fourth_color" />
+            </>
+          ) : (
+            ""
+          )}
         </div>
-        <div className={styles['button_container']}>
+        <div className={styles["button_container"]}>
           <button>Select Option</button>
-          <img src={like} alt="" />
-          <img src={cart} alt="" />
-          <img src={eye} alt="" />
+            <FaHeart fontSize="25px" color="red"/>
+            <FaShoppingCart fontSize="25px" color="#00A0FF" onClick={handleNavigate} />
+            <FaEye fontSize="25px"/>
+          {/* <img src={like} alt="" />
+          <img src={cart} alt="" onClick={handleNavigate} />
+          <img src={eye} alt="" /> */}
         </div>
       </div>
     </React.Fragment>

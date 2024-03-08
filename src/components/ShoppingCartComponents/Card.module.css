@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .card_desc {
@@ -53,6 +54,12 @@
   padding: 5px 0px;
   text-align: center;
   margin-inline-end: 100px;
+}
+
+.delete-btn{
+  position: absolute;
+  top: 0;
+  padding: 5px;
 }
 
 @media (max-width: 768px) {

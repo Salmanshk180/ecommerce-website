@@ -14,32 +14,32 @@ function App() {
     {
       path: "/",
       element: <Layout />,
-      children: [
+      children:[
         {
-          path: "",
+          path: "/",
           element: <Home />,
         },
         {
-          path: "about-us",
+          path: "/about-us",
           element: <AboutUs />,
         },
         {
-          path: "contact-us",
+          path: "/contact-us",
           element: <ContactUs />,
         },
         {
-          path: "products",
+          path: "/products",
           element: <ProductListing />,
         },
         {
-          path: "products/:id",
+          path: "/products/:id",
           element: <ProductDetail />,
         },
         {
-          path: "shopping-cart",
+          path: "/shopping-cart",
           element: <ShoppingCart />,
         },
-      ],
+      ]
     },
   ]);
   return (
