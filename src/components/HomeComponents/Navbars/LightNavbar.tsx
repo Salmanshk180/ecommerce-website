@@ -7,8 +7,13 @@ import cart from "../../../assets/cart.svg";
 import likes from "../../../assets/likes.svg";
 import togglebtn from "../../../assets/togglebtn.svg";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store/Store";
+import { logout } from "../../../redux/Slices/users";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
+  const isLoggedin = useSelector((state: RootState) => state.users.isLoggedin);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const toggleNavbar = () => {
     setNavbarVisible(!navbarVisible);
@@ -66,13 +71,28 @@ const LightNavbar = () => {
             </div>
             <div className={styles["nav-buttons-container"]}>
               <div className={styles["nav-buttons"]}>
-                <button className={styles["button"]}>
-                  <img src={login} alt="" />
-                  <p>
-                    <NavLink to={"/sign-in"}>Login</NavLink>/
-                    <NavLink to={"/sign-up"}>Register</NavLink>
-                  </p>
-                </button>
+                {isLoggedin ? (
+                  <button
+                    className={styles["button"]}
+                    onClick={() => {
+                      dispatch(logout());
+
+                      navigate("/");
+                    }}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <>
+                    <p>
+                      <button className={styles["button"]}>
+                        <img src={login} alt="" />
+                        <NavLink to={"/sign-in"}>Login</NavLink>/
+                        <NavLink to={"/sign-up"}>Register</NavLink>
+                      </button>
+                    </p>
+                  </>
+                )}
                 <button className={styles["button"]}>
                   <img src={search} alt="" />
                 </button>

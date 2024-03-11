@@ -1,9 +1,9 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/Store/Store";
-import { login, logout } from "../../redux/Slices/users";
+import { login } from "../../redux/Slices/users";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,9 +11,8 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const message = useSelector((state: RootState) => state.users.isLoggedin);
-  console.log(message);
-
   const dispatch = useDispatch();
+
   const handleSignIn = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -27,19 +26,15 @@ const Login = () => {
       return;
     }
     dispatch(login({ email: email, password: password }));
-    if (message == true) {
-      setTimeout(() => {
-        navigate("/products");
-      }, 3000);
-    }
-    if (message == false) {
-      setError("Check your credentials");
-      console.log("User not found");
-      return;
-    }
-    setError("");
-    dispatch(logout());
+    // if (message === true) {
+    //   navigate("/products");
+    // } else if (message === false) {
+    //   setError("Check your credentials");
+    // }
+    navigate("/products");
   };
+
+
 
   return (
     <React.Fragment>
@@ -82,5 +77,6 @@ const Login = () => {
     </React.Fragment>
   );
 };
+
 
 export default Login;

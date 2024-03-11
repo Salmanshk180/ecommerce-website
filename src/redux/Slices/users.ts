@@ -24,15 +24,10 @@ const userSlice = createSlice({
       state.Users = [...state.Users, { email, password }];
     },
     login(state, action) {
-      const { email,password } = action.payload;
-      state.Users.forEach(user => {
-        if (user.email === email){
-          if(user.password === password){
-            state.isLoggedin=true;
-          }
-        }
-      })
-    },
+      const { email, password } = action.payload;
+      const user = state.Users.find(user => user.email === email && user.password === password);
+      state.isLoggedin = !!user; // If user is found, set isLoggedin to true, otherwise false
+    },    
     logout(state) {
       state.isLoggedin=false;
     }

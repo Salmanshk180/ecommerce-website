@@ -10,13 +10,14 @@ import Layout from "./layout/Layout";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import ProtectedRoute from "./utils/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
-      children:[
+      children: [
         {
           path: "/",
           element: <Home />,
@@ -39,17 +40,17 @@ function App() {
         },
         {
           path: "/products",
-          element: <ProductListing />,
+          element: <ProtectedRoute element={ProductListing} />,
         },
         {
           path: "/products/:id",
-          element: <ProductDetail />,
+          element: <ProtectedRoute element={ProductDetail} />,
         },
         {
           path: "/shopping-cart",
-          element: <ShoppingCart />,
+          element: <ProtectedRoute element={ShoppingCart} />,
         },
-      ]
+      ],
     },
   ]);
   return (

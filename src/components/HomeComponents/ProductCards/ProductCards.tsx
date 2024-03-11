@@ -18,7 +18,6 @@ const ProductCards = () => {
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(10);
   const productData = useSelector((state: any) => state.product);
-  console.log(productData);
 
   let numberOfCards = 10;
   if (breakpoint === "xs") {
