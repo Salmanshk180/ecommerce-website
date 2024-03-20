@@ -42,7 +42,9 @@
   gap: 10px;
 }
 
-
+.card img{
+  width: 240px;
+}
 .card:hover{
-  box-shadow: 1px 1px 10px 1px black;
+  cursor: pointer;
 }

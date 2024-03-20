@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import styles from "./ProductCarousel.module.css";
-import CardRow from "../../../HomeComponents/ProductCards/CardRow";
 import Card from "../../../HomeComponents/ProductCards/Card";
 import { nanoid } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";

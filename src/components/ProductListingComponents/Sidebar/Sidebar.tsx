@@ -5,7 +5,7 @@ import Price from "./Price/Price";
 import Brands from "./Brands/Brands";
 import useBreakpoint from "../../../utils/BreakPoints/useBreakpoints";
 import FilterList from "./Filter/FilterList";
-import greaterThan from "../../../assets/GreaterThan.svg";
+import { grater_than_img } from "../../../assets/images";
 interface Props {
   show: boolean;
   setShow: (show: boolean) => void;
@@ -71,7 +71,7 @@ const Sidebar = (props: Props) => {
                 >
                   Category
                   <img
-                    src={greaterThan}
+                    src={grater_than_img}
                     alt=""
                     style={
                       showCategory ? { transform: "rotate(90deg)" } : undefined
@@ -90,7 +90,7 @@ const Sidebar = (props: Props) => {
                 >
                   Price
                   <img
-                    src={greaterThan}
+                    src={grater_than_img}
                     alt=""
                     style={
                       showPrice ? { transform: "rotate(90deg)" } : undefined
@@ -108,7 +108,7 @@ const Sidebar = (props: Props) => {
                 >
                   Brands
                   <img
-                    src={greaterThan}
+                    src={grater_than_img}
                     alt=""
                     style={
                       showBrands ? { transform: "rotate(90deg)" } : undefined

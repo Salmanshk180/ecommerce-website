@@ -1,16 +1,15 @@
 import React from "react";
 import styles from "./AboutVideo.module.css";
-import image from "../../../assets/unsplash_T_Qe4QlMIvQ.svg";
-import play from "../../../assets/Vector (13).svg";
+import { play_img, video_img } from "../../../assets/images";
 const AboutVideo = () => {
   return (
     <React.Fragment>
       <div className={styles["about-video"]}>
         <div className={styles["container"]}>
-          <img src={image} className={styles['main_img']} alt="" />
+          <img src={video_img} className={styles["main_img"]} alt="" />
           <div className={styles["play-btn-container"]}>
             <button className={styles["play-btn"]}>
-              <img src={play} alt="" />
+              <img src={play_img} alt="" />
             </button>
           </div>
         </div>

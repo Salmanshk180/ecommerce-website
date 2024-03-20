@@ -1,15 +1,13 @@
 import React from "react";
 import styles from "./ContactUs.module.css";
-import Header from "../../components/HomeComponents/Header/Header";
-import Footer from "../../components/HomeComponents/Footer/Footer";
-import background from "../../assets/background.svg";
 import ContactTestimonial from "./ContactTestimonial";
+import { background_img } from "../../assets/images";
 const ContactUs = () => {
   return (
     <React.Fragment>
       <div className={styles["contact_us"]}>
         <div className={styles["container"]}>
-          <img src={background} alt="" />
+          <img src={background_img} alt="" />
           <div className={styles["text_container"]}>
             <p className={styles["para-1"]}>Questions & Answers</p>
             <p className={styles["para-2"]}>

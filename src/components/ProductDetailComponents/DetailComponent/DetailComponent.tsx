@@ -1,15 +1,12 @@
 import React from "react";
 import styles from "./DetailComponent.module.css";
-import fullStar from "../../../assets/Vector (14).svg";
 import Color from "../../HomeComponents/FeatureBlogs/Color/Color";
-import like from "../../../assets/Vector (16).svg";
-import cart from "../../../assets/Vector (17).svg";
-import eye from "../../../assets/Vector (15).svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/Slices/cartProducts";
 import { FaHeart } from "react-icons/fa6";
-import { FaShoppingCart,FaEye } from "react-icons/fa";
+import { FaShoppingCart, FaEye } from "react-icons/fa";
+import { star_img } from "../../../assets/images";
 interface ObjectProps {
   id: string;
   src: string;
@@ -37,11 +34,11 @@ const DetailComponent = (props: Props) => {
       <div className={styles["detail-component"]}>
         <p className={styles["floating_para"]}>{props.data?.title}</p>
         <div className={styles["review_container"]}>
-          <img src={fullStar} alt="" />
-          <img src={fullStar} alt="" />
-          <img src={fullStar} alt="" />
-          <img src={fullStar} alt="" />
-          <img src={fullStar} alt="" />
+          <img src={star_img} alt="" />
+          <img src={star_img} alt="" />
+          <img src={star_img} alt="" />
+          <img src={star_img} alt="" />
+          <img src={star_img} alt="" />
           <span>10 Reviews</span>
         </div>
         <div className={styles["price_container"]}>
@@ -68,9 +65,13 @@ const DetailComponent = (props: Props) => {
         </div>
         <div className={styles["button_container"]}>
           <button>Select Option</button>
-            <FaHeart fontSize="25px" color="red"/>
-            <FaShoppingCart fontSize="25px" color="#00A0FF" onClick={handleNavigate} />
-            <FaEye fontSize="25px"/>
+          <FaHeart fontSize="25px" color="red" />
+          <FaShoppingCart
+            fontSize="25px"
+            color="#00A0FF"
+            onClick={handleNavigate}
+          />
+          <FaEye fontSize="25px" />
           {/* <img src={like} alt="" />
           <img src={cart} alt="" onClick={handleNavigate} />
           <img src={eye} alt="" /> */}

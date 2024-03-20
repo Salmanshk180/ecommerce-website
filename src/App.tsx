@@ -40,11 +40,11 @@ function App() {
         },
         {
           path: "/products",
-          element: <ProtectedRoute element={ProductListing} />,
+          element: <ProductListing/>,
         },
         {
           path: "/products/:id",
-          element: <ProtectedRoute element={ProductDetail} />,
+          element: <ProductDetail/>,
         },
         {
           path: "/shopping-cart",

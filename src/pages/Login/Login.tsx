@@ -26,11 +26,11 @@ const Login = () => {
       return;
     }
     dispatch(login({ email: email, password: password }));
-    // if (message === true) {
-    //   navigate("/products");
-    // } else if (message === false) {
-    //   setError("Check your credentials");
-    // }
+    if (message === true) {
+      navigate("/products");
+    } else if (message === false) {
+      setError("Check your credentials");
+    }
     navigate("/products");
   };
 

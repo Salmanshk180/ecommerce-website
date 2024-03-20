@@ -1,15 +1,10 @@
 import { Fragment, useState } from "react";
-// import logo from "../../assets/logo.svg";
 import styles from "./LightNavbar.module.css";
-import login from "../../../assets/login.svg";
-import search from "../../../assets/search.svg";
-import cart from "../../../assets/cart.svg";
-import likes from "../../../assets/likes.svg";
-import togglebtn from "../../../assets/togglebtn.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store/Store";
 import { logout } from "../../../redux/Slices/users";
+import { login_img,search_img,cart_img,likes_img,toggle_btn_img } from "../../../assets/images";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const isLoggedin = useSelector((state: RootState) => state.users.isLoggedin);
@@ -86,7 +81,7 @@ const LightNavbar = () => {
                   <>
                     <p>
                       <button className={styles["button"]}>
-                        <img src={login} alt="" />
+                        <img src={login_img} alt="" />
                         <NavLink to={"/sign-in"}>Login</NavLink>/
                         <NavLink to={"/sign-up"}>Register</NavLink>
                       </button>
@@ -94,14 +89,14 @@ const LightNavbar = () => {
                   </>
                 )}
                 <button className={styles["button"]}>
-                  <img src={search} alt="" />
+                  <img src={search_img} alt="" />
                 </button>
                 <button className={styles["button"]}>
-                  <img src={cart} alt="" />
+                  <img src={cart_img} alt="" />
                   <p>1</p>
                 </button>
                 <button className={styles["button"]}>
-                  <img src={likes} alt="" />
+                  <img src={likes_img} alt="" />
                   <p>1</p>
                 </button>
               </div>
@@ -109,7 +104,7 @@ const LightNavbar = () => {
           </div>
           <div className={styles["toggle-btn-container"]}>
             <button onClick={toggleNavbar}>
-              <img src={togglebtn} alt="" />
+              <img src={toggle_btn_img} alt="" />
             </button>
           </div>
         </div>

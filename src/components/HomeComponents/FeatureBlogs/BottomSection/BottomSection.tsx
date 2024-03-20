@@ -1,14 +1,16 @@
 import { Fragment } from "react";
 import styles from "./BottomSection.module.css";
 import BottomContainer from "../BottomContainer/BottomContainer";
-import img1 from "../../../../assets/unsplash_75EFpyXu3Wg.svg";
-import img2 from "../../../../assets/unsplash_ruJm3dBXCqw.svg";
+import {
+  feature_blogs_image_1,
+  feature_blogs_image_2,
+} from "../../../../assets/images";
 const BottomSection = () => {
   return (
     <Fragment>
       <div className={styles.bottom_section}>
-        <BottomContainer src={img1} identify={"first"} />
-        <BottomContainer src={img2} identify={"second"}/>
+        <BottomContainer src={feature_blogs_image_1} identify={"first"} />
+        <BottomContainer src={feature_blogs_image_2} identify={"second"} />
       </div>
     </Fragment>
   );

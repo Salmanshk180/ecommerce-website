@@ -1,24 +1,26 @@
 import { Fragment, useState } from "react";
 import styles from "./Carousel.module.css";
-import GreaterThan from "../../../assets/GreaterThan.svg";
 import Cards from "./Card";
-import Carousel1 from "../../../assets/Carousel_1.svg";
-import Carousel2 from "../../../assets/Carousel2.svg";
-import Carousel3 from "../../../assets/Carousel3.svg";
-import Carousel4 from "../../../assets/Carousel4.svg";
-import Carousel5 from "../../../assets/Carousel5.svg";
 import useBreakpoint from "../../../utils/BreakPoints/useBreakpoints";
+import {
+  Carousel_1,
+  Carousel_2,
+  Carousel_3,
+  Carousel_4,
+  Carousel_5,
+  grater_than_img
+} from "../../../assets/images";
 const data = [
-  { src: Carousel1, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel2, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel3, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel4, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel5, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel1, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel2, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel3, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel4, title: "MEN'S CLOTHING", items: 5 },
-  { src: Carousel5, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_1, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_2, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_3, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_4, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_5, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_1, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_2, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_3, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_4, title: "MEN'S CLOTHING", items: 5 },
+  { src: Carousel_5, title: "MEN'S CLOTHING", items: 5 },
 ];
 
 const Carousel = () => {
@@ -60,7 +62,7 @@ const Carousel = () => {
     <Fragment>
       <div className={styles.carousel}>
         <button className={styles.left_btn} onClick={SlideRight}>
-          <img src={GreaterThan} className={styles.greater_than} alt="" />
+          <img src={grater_than_img} className={styles.greater_than} alt="" />
         </button>
         <div className={styles.container}>
           {data.map((card) => (
@@ -75,7 +77,7 @@ const Carousel = () => {
           ))}
         </div>
         <button className={styles.right_btn} onClick={SlideLeft}>
-          <img src={GreaterThan} className={styles.less_than} alt="" />
+          <img src={grater_than_img} className={styles.less_than} alt="" />
         </button>
       </div>
     </Fragment>

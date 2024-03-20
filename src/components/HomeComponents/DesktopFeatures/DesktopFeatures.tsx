@@ -1,23 +1,25 @@
 import { Fragment } from "react";
 import styles from "./DesktopFeatures.module.css";
 import DesktopCard from "./DesktopCard";
-import img1 from "../../../assets/bx_bxs-book-reader.svg";
-import img2 from "../../../assets/carbon_book.svg";
-import img3 from "../../../assets/uil_arrow-growth.svg";
+import {
+  desktop_features_image_1,
+  desktop_features_image_2,
+  desktop_features_image_3,
+} from "../../../assets/images";
 const initialState = [
   {
-    src: img1,
+    src: desktop_features_image_1,
     title: "Easy Wins",
     description: "Get your best looking smile now!",
   },
   {
-    src: img2,
+    src: desktop_features_image_2,
     title: "Concrete",
     description:
       "Defalcate is most focused in helping you discover your most beautiful smile",
   },
   {
-    src: img3,
+    src: desktop_features_image_3,
     title: "Hack Growth",
     description: "Overcame any hurdle or any other problem.",
   },

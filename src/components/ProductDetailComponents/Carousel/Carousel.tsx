@@ -1,11 +1,9 @@
 import { Fragment, useState } from "react";
 import styles from "./Carousel.module.css";
-import GreaterThan from "../../../assets/GreaterThan.svg";
 import Cards from "../../ProductListingComponents/Carousel/Card";
-import Carousel1 from "../../../assets/single-product-1-cover-2.svg";
-
 import useBreakpoint from "../../../utils/BreakPoints/useBreakpoints";
-const data = [{ src: Carousel1 }, { src: Carousel1 }];
+import { Carousel_1, grater_than_img } from "../../../assets/images";
+const data = [{ src: Carousel_1 }, { src: Carousel_1 }];
 
 interface ObjectProps {
   id: string;
@@ -40,7 +38,7 @@ const Carousel = (props: Props) => {
     <Fragment>
       <div className={styles.carousel}>
         <button className={styles.left_btn} onClick={SlideRight}>
-          <img src={GreaterThan} className={styles.greater_than} alt="" />
+          <img src={grater_than_img} className={styles.greater_than} alt="" />
         </button>
         <div className={styles.container}>
           {/* {data.map((card) => (
@@ -55,11 +53,11 @@ const Carousel = (props: Props) => {
           <Cards src={props.data?.src} />
         </div>
         <button className={styles.right_btn} onClick={SlideLeft}>
-          <img src={GreaterThan} className={styles.less_than} alt="" />
+          <img src={grater_than_img} className={styles.less_than} alt="" />
         </button>
       </div>
       <div className={styles["img_container"]}>
-        <img src={props.data?.src} alt="" width={"20%"}/>
+        <img src={props.data?.src} alt="" width={"20%"} />
       </div>
     </Fragment>
   );

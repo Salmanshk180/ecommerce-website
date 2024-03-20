@@ -1,8 +1,10 @@
 import { Fragment } from "react";
 import styles from "./Footer.module.css";
-import footer_1 from "../../../assets/footer_1.svg";
-import footer_2 from "../../../assets/footer_2.svg";
-import footer_3 from "../../../assets/footer_3.svg";
+import {
+  footer_img_1,
+  footer_img_2,
+  footer_img_3,
+} from "../../../assets/images";
 const Footer = () => {
   return (
     <Fragment>
@@ -13,9 +15,9 @@ const Footer = () => {
               <h4>Bandage</h4>
             </div>
             <div className={styles.footer_links}>
-              <img src={footer_1} alt="" />
-              <img src={footer_2} alt="" />
-              <img src={footer_3} alt="" />
+              <img src={footer_img_1} alt="" />
+              <img src={footer_img_2} alt="" />
+              <img src={footer_img_3} alt="" />
             </div>
           </div>
         </div>
@@ -66,7 +68,9 @@ const Footer = () => {
         <div className={styles.bottom_bar}>
           <div className={styles.footer_container} id={styles.first_container}>
             <div className={styles.bottom_bar_container}>
-              <p className={styles.footer_greetings}>Made With Love By Finland All Rights</p>
+              <p className={styles.footer_greetings}>
+                Made With Love By Finland All Rights
+              </p>
             </div>
           </div>
         </div>

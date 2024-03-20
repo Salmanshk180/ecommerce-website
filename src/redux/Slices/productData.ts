@@ -4,10 +4,11 @@ import p2 from "../../assets/product-2.svg";
 import p3 from "../../assets/product-3.svg";
 import p4 from "../../assets/product-4.svg";
 import p5 from "../../assets/product-5.svg";
+import { product_1_img,product_2_img,product_3_img,product_4_img,product_5_img, product_6_img, product_7_img, product_8_img, product_9_img } from "../../assets/images";
 export const initialState = [
   {
     id: "p1",
-    src: p1,
+    src: product_1_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 6.48,
@@ -18,7 +19,7 @@ export const initialState = [
   },
   {
     id: "p2",
-    src: p2,
+    src: product_2_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 19.48,
@@ -29,7 +30,7 @@ export const initialState = [
   },
   {
     id: "p3",
-    src: p3,
+    src: product_3_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 18.48,
@@ -40,7 +41,7 @@ export const initialState = [
   },
   {
     id: "p4",
-    src: p4,
+    src: product_4_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 24.48,
@@ -51,7 +52,7 @@ export const initialState = [
   },
   {
     id: "p5",
-    src: p5,
+    src: product_5_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 39.48,
@@ -62,7 +63,7 @@ export const initialState = [
   },
   {
     id: "p6",
-    src: p1,
+    src: product_6_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 41.48,
@@ -73,7 +74,7 @@ export const initialState = [
   },
   {
     id: "p7",
-    src: p2,
+    src: product_7_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 12.48,
@@ -84,7 +85,7 @@ export const initialState = [
   },
   {
     id: "p8",
-    src: p3,
+    src: product_8_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 19.48,
@@ -95,7 +96,7 @@ export const initialState = [
   },
   {
     id: "p9",
-    src: p4,
+    src: product_9_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 59.48,
@@ -106,7 +107,7 @@ export const initialState = [
   },
   {
     id: "p10",
-    src: p5,
+    src: product_1_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 62.48,
@@ -118,7 +119,7 @@ export const initialState = [
 
   {
     id: "p11",
-    src: p5,
+    src: product_2_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 78.48,
@@ -129,7 +130,7 @@ export const initialState = [
   },
   {
     id: "p12",
-    src: p4,
+    src: product_3_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 61.48,
@@ -140,7 +141,7 @@ export const initialState = [
   },
   {
     id: "p13",
-    src: p3,
+    src: product_4_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 91.48,
@@ -151,7 +152,7 @@ export const initialState = [
   },
   {
     id: "p14",
-    src: p2,
+    src: product_4_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 106.48,
@@ -162,7 +163,7 @@ export const initialState = [
   },
   {
     id: "p15",
-    src: p1,
+    src: product_5_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 99.48,
@@ -173,7 +174,7 @@ export const initialState = [
   },
   {
     id: "p16",
-    src: p5,
+    src: product_6_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 102.48,
@@ -184,7 +185,7 @@ export const initialState = [
   },
   {
     id: "p17",
-    src: p4,
+    src: product_7_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 115.48,
@@ -195,7 +196,7 @@ export const initialState = [
   },
   {
     id: "p18",
-    src: p3,
+    src: product_7_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 130.48,
@@ -206,7 +207,7 @@ export const initialState = [
   },
   {
     id: "p19",
-    src: p2,
+    src: product_7_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 190.48,
@@ -217,7 +218,7 @@ export const initialState = [
   },
   {
     id: "p20",
-    src: p1,
+    src: product_8_img,
     title: "Graphic Design",
     description: "English Department",
     original_price: 159.48,

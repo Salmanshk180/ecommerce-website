@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import styles from "./Pagination.module.css";
-import { useSelector } from "react-redux";
 
 interface Props {
   numberOfCarousel: number;

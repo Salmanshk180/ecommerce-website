@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import styles from "./ProductDisplayNavbar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../redux/Store/Store";
-import { filterAll, priceHighToLow, priceLowToHigh } from "../../../../redux/Slices/filterProducts";
+import {  priceHighToLow, priceLowToHigh } from "../../../../redux/Slices/filterProducts";
 
 interface Props {
   show: boolean;

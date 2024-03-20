@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import styles from "./ShopHeader.module.css";
-import technology from "../../../assets/technology 1.svg";
-
+import { technology_img } from "../../../assets/images";
 const ShopHeader = () => {
   return (
     <Fragment>
@@ -16,7 +15,7 @@ const ShopHeader = () => {
             <button>SHOP NOW</button>
           </div>
           <div className={styles.img_container}>
-            <img src={technology} alt="girl" id={styles.technology}/>
+            <img src={technology_img} alt="girl" id={styles.technology}/>
             <div className={styles.circle_1}></div>
             <div className={styles.circle_2}></div>
             <div className={styles.circle_3}></div>

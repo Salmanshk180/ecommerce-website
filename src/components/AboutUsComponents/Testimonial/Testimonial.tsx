@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Testimonial.module.css";
-import image from "../../../assets/unsplash_vjMgqUkS8q8.svg";
+import { contact_testimonial_img } from "../../../assets/images";
 const Testimonial = () => {
   return (
     <React.Fragment>
@@ -18,7 +18,7 @@ const Testimonial = () => {
             </div>
           </div>
           <div className={styles["img_container"]}>
-            <img src={image} alt="" />
+            <img src={contact_testimonial_img} alt="" />
           </div>
         </div>
       </div>

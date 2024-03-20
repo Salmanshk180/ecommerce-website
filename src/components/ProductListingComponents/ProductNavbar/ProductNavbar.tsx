@@ -1,7 +1,5 @@
 import { Fragment } from "react";
 import styles from "./ProductNavbar.module.css";
-import GraterThan from "../../../assets/GreaterThan.svg";
-import { NavLink } from "react-router-dom";
 import Path from "../../ShoppingCartComponents/Path";
 const ProductNavbar = () => {
   return (

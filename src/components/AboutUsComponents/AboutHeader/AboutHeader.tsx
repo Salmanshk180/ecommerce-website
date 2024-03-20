@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./AboutHeader.module.css";
-import header_img from "../../../assets/none (1).svg";
+import { none_img } from "../../../assets/images/index";
 const AboutHeader = () => {
   return (
     <React.Fragment>
@@ -15,7 +15,7 @@ const AboutHeader = () => {
             <button className={styles["quote-btn"]}>Get Quote Now</button>
           </div>
           <div className={styles["img-container"]}>
-            <img src={header_img} className={styles['header_img']} alt="" />
+            <img src={none_img} className={styles['header_img']} alt="" />
           </div>
         </div>
       </div>

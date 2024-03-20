@@ -1,17 +1,15 @@
 import { Fragment } from "react";
 import styles from "./DesktopContent.module.css";
-import image1 from "../../../assets/unsplash_Lks7vei-eAg.svg";
-import image2 from "../../../assets/unsplash_Lks7vei-eAg (1).svg";
 import Image from "./Image";
-
+import { desktop_content_image_1,desktop_content_image_2 } from "../../../assets/images";
 const DesktopContent = () => {
   return (
     <Fragment>
       <div className={styles.desktop_content}>
         <div className={styles.container}>
           <div className={styles.img_container}>
-            <Image src={image1} />
-            <Image src={image2} />
+            <Image src={desktop_content_image_1} />
+            <Image src={desktop_content_image_2} />
           </div>
           <div className={styles.description}>
             <h6 className={styles.title_1}>Featured Products</h6>

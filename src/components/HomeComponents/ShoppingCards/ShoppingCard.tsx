@@ -1,8 +1,10 @@
 import { Fragment } from "react";
 import styles from "./ShoppingCard.module.css";
-import p1 from "../../../assets/p1.svg";
-import p2 from "../../../assets/unsplash_Bd7gNnWJBkU (1).svg";
-import p3 from "../../../assets/p31.svg";
+import {
+  shopping_card_1,
+  shopping_card_2,
+  shopping_card_3,
+} from "../../../assets/images";
 const ShoppingCard = () => {
   return (
     <Fragment>
@@ -10,7 +12,7 @@ const ShoppingCard = () => {
         <div className={styles.container}>
           <div className={styles.product_container_1}>
             <div className={styles.product_1}>
-              <img src={p1} alt="" />
+              <img src={shopping_card_1} alt="" />
               <div className={styles.product_description}>
                 <div>
                   <h6 className={styles.title}>The Product Of The Week</h6>
@@ -21,7 +23,7 @@ const ShoppingCard = () => {
           </div>
           <div className={styles.product_container_2}>
             <div className={styles.product_2}>
-              <img src={p2} alt="" />
+              <img src={shopping_card_2} alt="" />
               <div className={styles.product_description}>
                 <div>
                   <h6 className={styles.title}>The Product Of The Week</h6>
@@ -30,7 +32,7 @@ const ShoppingCard = () => {
               </div>
             </div>
             <div className={styles.product_3}>
-              <img src={p3} alt="" />
+              <img src={shopping_card_3} alt="" />
               <div className={styles.product_description}>
                 <div>
                   <h6 className={styles.title}>The Product Of The Week</h6>

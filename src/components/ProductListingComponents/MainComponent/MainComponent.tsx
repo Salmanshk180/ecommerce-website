@@ -2,7 +2,6 @@ import { Fragment, useState } from "react";
 import styles from "./MainComponent.module.css";
 import Sidebar from "../Sidebar/Sidebar";
 import ProductDisplay from "../ProductDisplay/ProductDisplay";
-import Pagination from "../Pagination/Pagination";
 
 const MainComponent = () => {
   const [show, setShow] =useState<boolean>(false);

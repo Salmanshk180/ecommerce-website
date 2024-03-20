@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./Card.module.css";
-import facebook from "../../../assets/footer_1.svg";
-import instagram from "../../../assets/footer_2.svg";
-import twitter from "../../../assets/footer_3.svg";
+import {
+  facebook_img,
+  instagram_img,
+  twitter_img,
+} from "../../../assets/images";
 interface Props {
   image: string;
   name: string;
@@ -15,12 +17,12 @@ const Card = (props: Props) => {
       <div className={styles["card"]}>
         <img src={props.image} alt="" />
         <div className={styles["card-body"]}>
-          <p className={styles['name']}>{props.name}</p>
-          <p className={styles['profession']}>{props.profession}</p>
+          <p className={styles["name"]}>{props.name}</p>
+          <p className={styles["profession"]}>{props.profession}</p>
           <div className={styles["social-media"]}>
-            <img src={facebook} alt="" />
-            <img src={instagram} alt="" />
-            <img src={twitter} alt="" />
+            <img src={facebook_img} alt="" />
+            <img src={instagram_img} alt="" />
+            <img src={twitter_img} alt="" />
           </div>
         </div>
       </div>
