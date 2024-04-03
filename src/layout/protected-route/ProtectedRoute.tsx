@@ -8,11 +8,11 @@ interface Props {
 }
 
 const ProtectedRoute = (props: Props) => {
-  const isLoggedin = useSelector((state: RootState) => state.users.isLoggedin);
+  const LoggedInUser = useSelector((state: RootState) => state.users.LoggedInUser);
 
   return (
     <React.Fragment>
-      {isLoggedin ? <props.element /> : <Navigate to="/sign-in" />}
+      {LoggedInUser ? <props.element /> : <Navigate to="/sign-in" />}
     </React.Fragment>
   );
 };

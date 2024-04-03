@@ -17,7 +17,7 @@ interface PortalProps {
   children: React.ReactNode;
 }
 const Portal: React.FC<PortalProps> = ({ children }) => {
-  const loading = useSelector((state: RootState) => state.loadings.isLoading);
+  const loading = useSelector((state: RootState) => state.users.isLoading);
   return ReactDOM.createPortal(
     <>
       {loading && (

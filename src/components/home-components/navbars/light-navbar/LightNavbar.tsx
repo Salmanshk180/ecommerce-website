@@ -8,13 +8,17 @@ import {
   likes_img,
   toggle_btn_img,
 } from "../../../../assets/images";
-import { RootState } from "../../../../redux/store/Store";
+import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../redux/slices/users/users";
+import { toast } from "react-toastify";
+import { setLoading } from "../../../../redux/slices/loading/loading";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
-  const isLoggedin = useSelector((state: RootState) => state.users.isLoggedin);
-  const dispatch = useDispatch();
+  const isLoggedin = useSelector(
+    (state: RootState) => state.users.LoggedInUser
+  );
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const toggleNavbar = () => {
     setNavbarVisible(!navbarVisible);
@@ -39,7 +43,7 @@ const LightNavbar = () => {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="#">
                   <select
-                  defaultValue={"shop"}
+                    defaultValue={"shop"}
                     className={styles["select-button"]}
                     onChange={(event) => {
                       if (event.target.value === "shop") {
@@ -51,9 +55,7 @@ const LightNavbar = () => {
                     }}
                   >
                     <option value="shop">Shop</option>
-                    <option value="shop">
-                      Shop
-                    </option>
+                    <option value="shop">Shop</option>
                   </select>
                 </NavLink>
                 <NavLink to="/about-us">About</NavLink>
@@ -69,8 +71,8 @@ const LightNavbar = () => {
                     className={styles["button"]}
                     onClick={() => {
                       dispatch(logout());
-
                       navigate("/");
+                      toast.success("Logout Successfull");
                     }}
                   >
                     Logout

@@ -56,10 +56,7 @@ const Register = () => {
       if (response.payload.id) {
         dispatch(setLoading());
         toast.success(response.payload.message);
-        setTimeout(() => {
-          navigate("/sign-in");
-          dispatch(setLoading());
-        }, 2000);
+        navigate("/sign-in");
       }
       if (!response.payload.id) {
         throw new Error(response.payload.message);
