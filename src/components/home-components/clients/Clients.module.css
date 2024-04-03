@@ -1,0 +1,19 @@
+.Clients {
+    padding: 20px 24px;
+    max-width: 1440px;
+    margin: auto;
+  }
+  
+  .Clients_container {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0px;
+    
+  }
+  
+  .client{
+    margin-block: auto;
+  }

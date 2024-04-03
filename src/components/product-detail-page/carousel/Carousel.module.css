@@ -1,0 +1,53 @@
+.greater_than {
+    transform: rotate(180deg);
+  }
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    margin-block: 20px;
+    position: relative;
+  }
+  
+  .container {
+    display: flex;
+    overflow-x: hidden;
+    justify-content: flex-start;
+    width: fit-content;
+  }
+  .carousel button {
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+  }
+  .left_btn {
+    left: 5%;
+  }
+  .right_btn {
+    right: 5%;
+  }
+  .left_btn,
+  .right_btn {
+    background: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  .img_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+  .img_container img {
+    max-width: 30%;
+  }
+  @media screen and (max-width: 768px) {
+    .container {
+      gap: 0;
+      width: 100%;
+      margin: auto;
+    }
+  }
+  

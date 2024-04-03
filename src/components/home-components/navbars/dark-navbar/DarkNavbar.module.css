@@ -1,0 +1,57 @@
+.dark-nav-container {
+    /* background-color: rgb(5, 26, 71); */
+    color: #ffffff;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px 24px;
+    word-break: break-all;
+    max-width: 1440px;
+    margin: auto;
+    font-size: 18px;
+  }
+  
+  .contact-details,
+  .phone-details,
+  .email-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* margin:auto; */
+  }
+  .contact-details {
+    gap: 10px;
+  }
+  .phone-details,
+  .email-details {
+    gap: 5px;
+  }
+  .dark-nav-desc,
+  .social-media-links {
+    /* margin: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .social-media-links-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .contact-details,
+    .dark-nav-desc,
+    .social-media-links {
+      margin: auto;
+    }
+  }
+  

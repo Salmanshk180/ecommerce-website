@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import "./App.css";
-import Home from "./pages/Home/Home";
-import ProductListing from "./pages/ProductListing/ProductListing";
+import Home from "./pages/home/Home";
+import ProductListing from "./pages/product-listing/ProductListing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import ContactUs from "./pages/ContactUs/ContactUs";
@@ -10,8 +10,7 @@ import Layout from "./layout/Layout";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import ProtectedRoute from "./utils/ProtectedRoute/ProtectedRoute";
-
+import ProtectedRoute from "./layout/protected-route/ProtectedRoute";
 function App() {
   const router = createBrowserRouter([
     {
@@ -40,11 +39,11 @@ function App() {
         },
         {
           path: "/products",
-          element: <ProductListing/>,
+          element: <ProductListing />,
         },
         {
           path: "/products/:id",
-          element: <ProductDetail/>,
+          element: <ProductDetail />,
         },
         {
           path: "/shopping-cart",
@@ -53,6 +52,7 @@ function App() {
       ],
     },
   ]);
+
   return (
     <Fragment>
       <div className="App">

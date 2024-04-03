@@ -1,0 +1,113 @@
+.light-navbar {
+    background-color: #fff;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 24px;
+    max-width: 1440px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+  }
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-grow: 1;
+  }
+  .nav-links-container,
+  .nav-buttons-container {
+    flex-grow: 0.2;
+  }
+  .nav-links,
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .nav-links a {
+    color: black;
+  }
+  .select-button {
+    border: none;
+    font-size: 14px;
+  }
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background: transparent;
+    border: 0;
+    color: #23a6f0;
+    gap: 5px;
+  }
+  .toggle-btn-container {
+    display: none;
+  }
+  
+  .logo-text {
+    font-size: 32px;
+    font-weight: 700;
+    padding-right: 50px;
+    color: #252b42;
+  }
+  
+  @media (max-width: 850px) {
+    .container{
+      box-shadow: 0 0 20px rgba(0, 0, 0);
+  
+    }
+    .nav-container {
+      display: none;
+    }
+    .toggle-btn-container {
+      display: block;
+      z-index: 2;
+    }
+    .toggle-btn-container > button {
+      background: transparent;
+      border: none;
+    }
+    .active {
+      background-color: #ffffff;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      top: 63px;
+      padding-block: 20px;
+      left: 0;
+      width: 100%;
+      gap: 20px;
+      z-index: -1;
+      
+    }
+    .nav-links,
+    .nav-buttons {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-text {
+      font-size: 32px;
+      font-weight: 700;
+      padding-right: 0px;
+    }
+  }
+  
+  
+  @media screen and (max-width: 241px) {
+    .logo-text{
+      font-size: large;
+    }
+    .active{
+      top: 30px;
+    }
+  }

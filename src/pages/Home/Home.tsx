@@ -1,25 +1,24 @@
-import React, { Fragment } from "react";
-import Header from "../../components/HomeComponents/Header/Header";
-import ShopHeader from "../../components/HomeComponents/ShopHeader/ShopHeader";
-import Clients from "../../components/HomeComponents/clients/Clients";
-import ShoppingCard from "../../components/HomeComponents/ShoppingCards/ShoppingCard";
-import Footer from "../../components/HomeComponents/Footer/Footer";
-import ProductCards from "../../components/HomeComponents/ProductCards/ProductCards";
-import DesktopContent from "../../components/HomeComponents/DesktopContent/DesktopContent";
-import DesktopFeatures from "../../components/HomeComponents/DesktopFeatures/DesktopFeatures";
-import FeatureBlogs from "../../components/HomeComponents/FeatureBlogs/FeatureBlogs";
+import React from 'react'
+import ShopHeader from '../../components/home-components/shop-header/ShopHeader'
+import Clients from '../../components/home-components/clients/Clients'
+import ShoppingCard from '../../components/home-components/shopping-cards/ShoppingCard'
+import DesktopContent from '../../components/home-components/desktop-content/DesktopContent'
+import DesktopFeatures from '../../components/home-components/desktop-features/DesktopFeatures'
+import FeatureBlogs from '../../components/home-components/feature-blogs/FeatureBlogs'
+import ProductCards from '../../components/home-components/product-cards/ProductCards'
+
 const Home = () => {
   return (
-    <Fragment>
-      <ShopHeader />
-      <Clients />
-      <ShoppingCard />
-      <ProductCards />
-      <DesktopContent />
-      <DesktopFeatures />
-      <FeatureBlogs />
-    </Fragment>
-  );
-};
+    <React.Fragment>
+       <ShopHeader/>
+       <Clients/>
+       <ShoppingCard/>
+       <ProductCards/>
+       <DesktopContent/>
+       <DesktopFeatures/>
+       <FeatureBlogs/>
+    </React.Fragment>
+  )
+}
 
-export default Home;
+export default Home

@@ -1,0 +1,19 @@
+.footer_content {
+  max-width: 1440px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  text-align: left;
+  gap: 50px;
+  margin: auto;
+  padding: 20px 0px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer_content {
+    justify-content: space-between;
+    text-align: left;
+  }
+}

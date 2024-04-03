@@ -1,9 +1,10 @@
-import React, { FormEvent, useState, useEffect } from "react";
+import React, { FormEvent, useState } from "react";
 import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/Store/Store";
-import { login } from "../../redux/Slices/users";
+import { RootState } from "../../redux/store/Store";
+import { login } from "../../redux/slices/users/users";
+import { login_img_cover } from "../../assets/images";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -62,14 +63,7 @@ const Login = () => {
               </form>
             </div>
             <div className={styles["greeting-container"]}>
-              <div>
-                <h1>Welcome Back !!!</h1>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias reiciendis ad soluta sequi pariatur perspiciatis
-                  vero excepturi incidunt obcaecati harum.
-                </p>
-              </div>
+             <img src={login_img_cover} alt="" className={styles["login-img"]} />
             </div>
           </div>
         </div>

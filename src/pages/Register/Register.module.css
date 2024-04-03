@@ -5,8 +5,8 @@
 }
 
 .register-container {
-  background-color: rgb(255, 0, 123);
-  width: 60%;
+  /* background-color: rgb(255, 0, 123); */
+  width: 80%;
   margin: auto;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 20px;
@@ -14,7 +14,7 @@
 .form-container {
   display: flex;
   justify-content: space-around;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap-reverse;
   text-align: left;
 }
@@ -50,16 +50,29 @@
   font-size: 1rem;
   border-radius: 10px;
   font-weight: bold;
+  border: 1px solid #969696;
 }
 
 .input-container form button {
   padding: 10px;
   border-radius: 10px;
-  background-color: rgb(255, 0, 123);
+  background-color:rgb(5, 26, 71);
   font-size: 1rem;
   font-weight: bold;
   color: #fff;
 }
+
+.input-container form button:active{
+  background-color:#fff;
+  color:rgb(5, 26, 71);
+}
+
+.signup-img{
+  width: 100%;
+  border-radius: 20px;
+  margin: auto;
+}
+
 .error{
     font-weight: 600;
     color: red;
@@ -94,8 +107,8 @@
   }
   .input-container form input {
     margin: 0 10px;
-    font-size: 14px;
-    padding: 10px 1px;
+    font-size: 12px;
+    padding: 10px 9px;
   }
   .input-container form button {
     margin: 0 10px;

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./ShoppingCart.module.css";
-import Path from "../../components/ShoppingCartComponents/Path";
-import Bar from "../../components/ShoppingCartComponents/Bar";
-import Card from "../../components/ShoppingCartComponents/Card";
-import TotalCart from "../../components/ShoppingCartComponents/TotalCart";
+import Path from "../../components/shopping-cart-components/Path";
+import Bar from "../../components/shopping-cart-components/Bar";
+import Card from "../../components/shopping-cart-components/Card";
+import TotalCart from "../../components/shopping-cart-components/TotalCart";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/Store/Store";
+import { RootState } from "../../redux/store/Store";
 const ShoppingCart = () => {
   const cartData = useSelector(
     (state: RootState) => state.cartProducts.cartProducts

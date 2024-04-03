@@ -1,0 +1,21 @@
+.upper_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-block: 20px;
+    text-align: center;
+}
+
+.subheading{
+    font-weight: 700;
+    font-size: 14px;
+    color: #23A6F0;
+}
+
+.heading{
+    font-weight: 700;
+    font-size: 40px;
+    color: #252B42;
+}

@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import productReducer from "../Slices/productData";
-import filterProducts from "../Slices/filterProducts";
-import cartProductsSlice from "../Slices/cartProducts";
-import { persistStore, persistReducer, REHYDRATE } from "redux-persist";
+import productReducer from "../slices/product-data/productData";
+import filterProducts from "../slices/filter-products/filterProducts";
+import cartProductsSlice from "../slices/cart-products/cartProducts";
+import { persistStore, persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import users from "../Slices/users";
+import users from "../slices/users/users";
+import  loadingSlice  from "../slices/loading/loading";
 
 const persistConfig = {
   key: "root",
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   filterProducts: filterProducts,
   cartProducts: cartProductsSlice,
   users:users,
+  loadings:loadingSlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

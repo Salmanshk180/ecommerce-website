@@ -1,0 +1,34 @@
+.bottom_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  #first .img_container ,#second .img_container{
+    position: relative;
+  }
+  
+  
+   .img_container > .sale{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFF;
+    background: #E74040;
+    border: 0;
+    border-radius: 5px;
+  }
+  
+  @media screen and (min-width: 820px) {
+    #first {
+      justify-content: flex-end;
+    }
+    #second {
+      justify-content: flex-start;
+    }
+  }
+  

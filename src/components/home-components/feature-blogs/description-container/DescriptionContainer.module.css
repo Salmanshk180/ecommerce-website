@@ -1,0 +1,35 @@
+.des_container {
+    padding: 10px 20px;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    gap: 10px;
+  }
+  
+  .color_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .static_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .des_container {
+      width: auto;
+      margin-block: 20px;
+    }
+  }
+  @media screen and (max-width: 820px)  and (min-width: 768px) {
+    .des_container{
+      width: 100%;
+    }
+  }

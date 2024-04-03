@@ -1,13 +1,13 @@
 import React,{useEffect, useState} from "react";
 import styles from "./ProductDetail.module.css";
-import Path from "../../components/ShoppingCartComponents/Path";
-import Clients from "../../components/HomeComponents/clients/Clients";
-import Carousel from "../../components/ProductDetailComponents/Carousel/Carousel";
-import DetailComponent from "../../components/ProductDetailComponents/DetailComponent/DetailComponent";
-import DescriptionComponent from "../../components/ProductDetailComponents/DescriptionComponent/DescriptionComponent";
+import Path from "../../components/shopping-cart-components/Path";
+import Clients from "../../components/home-components/clients/Clients";
+import Carousel from "../../components/product-detail-page/carousel/Carousel";
+import DetailComponent from "../../components/product-detail-page/detail-component/DetailComponent";
+import DescriptionComponent from "../../components/product-detail-page/description-component/DescriptionComponent";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/Store/Store";
+import { RootState } from "../../redux/store/Store";
 
 
 interface ObjectProps{

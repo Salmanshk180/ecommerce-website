@@ -69,6 +69,8 @@ import team_member_1 from "./svgs/team-1-user-1.svg";
 import team_member_2 from "./svgs/team-1-user-2.svg";
 import team_member_3 from "./svgs/team-1-user-3.svg";
 import none from "./svgs/none (1).svg"
+import login_img_1 from "./png/login-img.jpg"
+import signup_img from "./png/signup-img.jpg"
 export const Carousel_1 = Carousel1;
 export const Carousel_2 = Carousel2;
 export const Carousel_3 = Carousel3;
@@ -150,3 +152,6 @@ export const team_member_2_img = team_member_2;
 export const team_member_3_img = team_member_3;
 
 export const none_img = none;
+
+export const login_img_cover = login_img_1;
+export const signup_img_cover = signup_img;

@@ -1,38 +1,72 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import styles from "./Register.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/Store/Store";
-import { addUser } from "../../redux/Slices/users";
+import { toast } from "react-toastify";
+import { signup_img_cover } from "../../assets/images";
+import { signUpUser } from "../../redux/slices/users/signup.slices";
+import { AppDispatch } from "../../redux/store/Store";
+import { setLoading } from "../../redux/slices/loading/loading";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const dispatch = useDispatch();
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const handleSignUp = (e: FormEvent<HTMLFormElement>) => {
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+{};:,<.>]).{8,16}$/;
+  const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!firstname || !firstname.trim()) {
+      toast.error("Please enter your firstname");
+      return;
+    }
+    if (!lastname || !lastname.trim()) {
+      toast.error("Please enter your lastname.");
+      return;
+    }
+
     if (!email || !email.trim()) {
-      setError("Please enter your email.");
+      toast.error("Please enter your email");
       return;
     }
 
     if (!password || !password.trim()) {
-      setError("Please enter your password.");
+      toast.error("Please enter your password");
       return;
     }
-
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+    if (!password.match(passwordRegex)) {
+      toast.error(
+        "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be 8-16 characters long."
+      );
       return;
     }
-    setError("");
-    dispatch(addUser({ email:email, password:password}))
-    setTimeout(() => {
-      navigate("/sign-in");
-    }, 3000);
+    try {
+      const response = await dispatch(
+        signUpUser({
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: password,
+          role: "user",
+        })
+      );
+      if (response.payload.id) {
+        dispatch(setLoading());
+        toast.success(response.payload.message);
+        setTimeout(() => {
+          navigate("/sign-in");
+          dispatch(setLoading());
+        }, 2000);
+      }
+      if (!response.payload.id) {
+        throw new Error(response.payload.message);
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -41,18 +75,27 @@ const Register = () => {
         <div className={styles["register-container"]}>
           <div className={styles["form-container"]}>
             <div className={styles["greeting-container"]}>
-              <div>
-                <h1>Register !!!</h1>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias reiciendis ad soluta sequi pariatur perspiciatis
-                  vero excepturi incidunt obcaecati harum.
-                </p>
-              </div>
+              <img
+                src={signup_img_cover}
+                alt=""
+                className={styles["signup-img"]}
+              />
             </div>
             <div className={styles["input-container"]}>
               <form onSubmit={handleSignUp}>
                 <h1>Sign Up</h1>
+                <input
+                  type="text"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  placeholder="Enter Your First Name"
+                />
+                <input
+                  type="text"
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
+                  placeholder="Enter Your Last Name"
+                />
                 <input
                   type="email"
                   value={email}
@@ -65,14 +108,8 @@ const Register = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter Your Password"
                 />
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm Password"
-                />
+
                 <button type="submit">Sign Up</button>
-                {error && <p className={styles["error"]}>{error}</p>}
                 <NavLink to="/sign-in">Already have an Account? SignIn</NavLink>
               </form>
             </div>
