@@ -4,7 +4,7 @@ import List from "./List";
 const Filter = () => {
   const [selectedItem, setSelectedItem] = useState("");
   const FilterArray = [
-    { text: "All Men's clothing" },
+    { text: "Men's clothing" },
     { text: "Women's clothing" },
     { text: "Footwear" },
     { text: "Watches" },
@@ -24,8 +24,9 @@ const Filter = () => {
             <li style={{ listStyle: "none", fontWeight: "bold" }}>
               &lt; All Categories
             </li>
-            {FilterArray.map((data) => (
+            {FilterArray.map((data, index) => (
               <List
+                key={index}
                 text={data.text}
                 selected={selectedItem === data.text}
                 onClick={() => handleItemClick(data.text)}

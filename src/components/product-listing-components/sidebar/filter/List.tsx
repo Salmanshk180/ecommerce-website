@@ -1,11 +1,13 @@
 import { Fragment } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch  } from "../../../../redux/store/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import styles from "./List.module.css";
 import {
   filterAll,
   filterByCategory,
 } from "../../../../redux/slices/filter-products/filterProducts"; // Update import path
+import { fetchProducts } from "../../../../redux/slices/product-data/productData";
+import { addCategory } from "../../../../redux/slices/filters/filters.slices";
 interface Props {
   text: string;
   selected: boolean;
@@ -13,17 +15,18 @@ interface Props {
 }
 const List = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const color = props.selected?"#2352B6":"black";
-  const fontWeigth = props.selected?"bold":"normal";
+  const color = props.selected ? "#2352B6" : "black";
+  const fontWeigth = props.selected ? "bold" : "normal";
+  const filters = useSelector((state: RootState) => state.filters.filter);
   return (
     <Fragment>
       <button
         className={styles["list-btn"]}
-        style={{color:color,fontWeight:fontWeigth}}
+        style={{ color: color, fontWeight: fontWeigth }}
         onClick={() => {
           props.onClick();
-          dispatch(filterByCategory({ category: props.text }));
-          dispatch(filterAll());
+          dispatch(addCategory({ category: props.text.toLowerCase() }));
+          dispatch(fetchProducts(filters));
         }}
       >
         {props.text}

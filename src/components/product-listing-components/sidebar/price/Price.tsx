@@ -9,7 +9,7 @@ import {
   filterPrice,
 } from "../../../../redux/slices/filter-products/filterProducts";
 import { AppDispatch } from "../../../../redux/store/Store";
-import { initialState } from "../../../../redux/slices/product-data/productData";
+import { fetchProducts, initialState } from "../../../../redux/slices/product-data/productData";
 
 const Price = () => {
   const breakpoint = useBreakpoint();
@@ -41,8 +41,8 @@ const Price = () => {
           max={maxOriginalPrice}
           value={value}
           onInput={async (val: any) => {
-            await dispatch(filterPrice({ min: val[0], max: val[1] }));
-            await dispatch(filterAll());
+             dispatch(filterPrice({ min: val[0], max: val[1] }));
+             dispatch(filterAll());
             setValue(val);
           }}
         />

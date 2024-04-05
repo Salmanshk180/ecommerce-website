@@ -24,8 +24,8 @@ interface ObjectProps{
 
 const ProductDetail = () => {
   const {id} = useParams();
-  const [product,setProduct] = useState<ObjectProps>();
-  const productData = useSelector((state:RootState)=>state.product);
+  const [product,setProduct] = useState<any>();
+  const productData = useSelector((state:RootState)=>state.product.products);  
   useEffect(()=>{
     productData.forEach((productData)=>{
       if(productData.id===id){

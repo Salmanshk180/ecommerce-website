@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { initialState as productData } from "../product-data/productData";
+import { createSlice, current } from "@reduxjs/toolkit";
+import { fetchProducts, initialState as productData } from "../product-data/productData";
 
 interface Product {
   id: string;
@@ -14,17 +14,21 @@ interface Product {
 }
 
 interface FilterProductState {
+  isLoading: boolean;
   filteredProducts: Product[];
   filterCategory: string | null;
   filterBrands: string[];
   filterPrice: { min: number; max: number };
+  error: string | null;
 }
 
 export const initialState: FilterProductState = {
+  isLoading: false,
   filteredProducts: [],
   filterCategory: null,
   filterBrands: [],
   filterPrice: { min: 0, max: 0 },
+  error: null
 };
 
 const filterProductSlice = createSlice({
@@ -48,26 +52,27 @@ const filterProductSlice = createSlice({
       state.filterPrice = action.payload;
     },
     filterAll(state) {
-      let filterData = productData;
+      let filterData = state.filteredProducts;
       if (
         state.filterCategory !== null &&
         state.filterCategory !== "All Men's clothing"
       ) {
         filterData = filterData.filter(
-          (product) => product.category === state.filterCategory
+          (product: any) =>
+            product.product.category.name === state.filterCategory
         );
       }
       if (
         state.filterBrands.length > 0 &&
         !state.filterBrands.includes("All")
       ) {
-        filterData = filterData.filter((product) =>
-          state.filterBrands.includes(product.brand)
+        filterData = filterData.filter((product: any) =>
+          state.filterBrands.includes(product.product.brand.name)
         );
       }
       if (state.filterPrice.min > 0 || state.filterPrice.max > 0) {
         const filterDatas = filterData.filter(
-          (product) =>
+          (product: any) =>
             product.original_price >= state.filterPrice.min &&
             product.original_price <= state.filterPrice.max
         );
@@ -92,6 +97,17 @@ const filterProductSlice = createSlice({
         );
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchProducts.pending, (state) => {
+      state.isLoading = true;
+    }).addCase(fetchProducts.fulfilled, (state, acion) => {
+      state.isLoading = false;
+      state.filteredProducts = acion.payload.data;
+    }).addCase(fetchProducts.rejected, (state, action) => {
+      state.error = action.error.message as string;
+      state.isLoading = false;
+    })
+  }
 });
 
 export const {

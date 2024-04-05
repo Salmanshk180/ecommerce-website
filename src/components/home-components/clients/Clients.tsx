@@ -22,8 +22,8 @@ const Clients = () => {
     <React.Fragment>
       <div className={styles["Clients"]}>
         <div className={styles["Clients_container"]}>
-          {data.map((image) => (
-            <div className={styles["client"]}>
+          {data.map((image,index) => (
+            <div key={index} className={styles["client"]}>
               <Image src={image} />
             </div>
           ))}

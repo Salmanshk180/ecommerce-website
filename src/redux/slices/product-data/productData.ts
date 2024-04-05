@@ -1,5 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { product_1_img,product_2_img,product_3_img,product_4_img,product_5_img } from "../../../assets/images";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  product_1_img,
+  product_2_img,
+  product_3_img,
+  product_4_img,
+  product_5_img,
+} from "../../../assets/images";
+import axios from "axios";
+import { response } from "express";
 export const initialState = [
   {
     id: "p1",
@@ -207,7 +215,7 @@ export const initialState = [
     description: "English Department",
     original_price: 190.48,
     price: 16.48,
-    showColors: true, 
+    showColors: true,
     category: "Jwellery",
     brand: "Adidas",
   },
@@ -224,10 +232,57 @@ export const initialState = [
   },
 ];
 
+export interface Product {
+  id: string;
+}
+
+interface I {
+  isLoading: boolean;
+  products: Product[];
+  error: string | null | Object;
+}
+
+export const initialState2: I = {
+  isLoading: false,
+  products: [],
+  error: null,
+};
+interface Query {
+  brands: string[] | null;
+  category: string | null;
+}
+export const fetchProducts = createAsyncThunk(
+  "product/fetchProducts",
+  async (query: Query) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/product-variant?brand=${query.brands}&category=${query.category}`
+      );
+      return response.data;
+    } catch (error: any) {
+      return error.response.error;
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
-  initialState,
+  initialState: initialState2,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchProducts.fulfilled, (state, acion) => {
+        state.isLoading = false;
+        state.products = acion.payload.data;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.error = action.error.message as string;
+        state.isLoading = false;
+      });
+  },
 });
 
 export default productSlice.reducer;

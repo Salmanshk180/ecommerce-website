@@ -58,8 +58,9 @@ const Carousel = () => {
           <img src={grater_than_img} className={styles.greater_than} alt="" />
         </button>
         <div className={styles.container}>
-          {data.map((card) => (
+          {data.map((card,index) => (
             <div
+            key={index}
               style={{
                 transform: `translate(${-currentIndex * 100}%)`,
                 transition: "all 1s linear",

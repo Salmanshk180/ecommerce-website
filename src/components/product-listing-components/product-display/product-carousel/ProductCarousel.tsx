@@ -16,7 +16,7 @@ interface ObjectProps {
 interface Props {
   min: number;
   max: number;
-  data: ObjectProps[];
+  data: any;
 }
 const ProductCarousel = (props: Props) => {
   const navigate = useNavigate();
@@ -33,16 +33,17 @@ const ProductCarousel = (props: Props) => {
             No Data Found
           </h1>
         ) : (
-          props.data.slice(props.min, props.max).map((data) => (
-            <div onClick={() => handleNavigate(data.id)}>
+          props.data.slice(props.min, props.max).map((data: any) => (
+            <div  key={data.id} onClick={() => handleNavigate(data.id)}>
               <Card
+               
                 id={nanoid()}
-                src={data.src}
-                title={data.title}
+                src={data.images.src}
+                title={data.product.name}
                 description={data.description}
-                price={data.price}
-                original_price={data.original_price}
-                show_colors={data.showColors}
+                price={data.discount_price}
+                original_price={data.price}
+                show_colors={data.color}
               />
             </div>
             // <CardRow initialState={data} width={100} numberOfRows={10} />

@@ -1,14 +1,19 @@
 // Brands.tsx
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import styles from "./Brands.module.css";
 import CheckBox from "./CheckBox";
 import useBreakpoint from "../../../../hooks/breakpoint/useBreakpoints";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   filterAll,
   filterByBrand,
 } from "../../../../redux/slices/filter-products/filterProducts";
-import { AppDispatch } from "../../../../redux/store/Store";
+import { AppDispatch, RootState } from "../../../../redux/store/Store";
+import { fetchProducts } from "../../../../redux/slices/product-data/productData";
+import {
+  addBrand,
+  removeBrand,
+} from "../../../../redux/slices/filters/filters.slices";
 
 const Brands = () => {
   const breakpoint = useBreakpoint();
@@ -23,10 +28,19 @@ const Brands = () => {
   ];
   const dispatch = useDispatch<AppDispatch>();
   // const [brands, setBrands] = useState<string[]>([]);
-  const handleBrand = (text: string) => {
-    dispatch(filterByBrand({ brand: text }));
-    dispatch(filterAll());
+  const filters = useSelector((state: RootState) => state.filters.filter);
+  const handleBrand = async (text: string) => {
+    if (filters.brands?.includes(text.toLowerCase())) {
+      dispatch(removeBrand({ brand: text.toLowerCase() }));
+    } else {
+      dispatch(addBrand({ brand: text.toLowerCase() }));
+    }
+    dispatch(fetchProducts(filters));
   };
+
+  useEffect(() => {
+    dispatch(fetchProducts(filters));
+  }, [dispatch]);
   return (
     <Fragment>
       <div className={styles.brands}>

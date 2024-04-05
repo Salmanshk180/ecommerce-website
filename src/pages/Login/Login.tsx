@@ -36,6 +36,7 @@ const Login = () => {
       );
       if (response.payload.token) {
         toast.success(response.payload.message);
+        document.cookie = `accessToken=${response.payload.token}`;
         navigate("/products");
       }
       if (!response.payload.token) {

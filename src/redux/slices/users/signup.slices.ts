@@ -11,7 +11,7 @@ interface SignUpData {
 
 export const signUpUser = createAsyncThunk(
   'user/signUp',
-  async (signUpData: SignUpData, thunkAPI) => {
+  async (signUpData: SignUpData) => {
     try {
       const response = await axios.post('http://localhost:8000/signup', signUpData);
       return response.data;
@@ -20,3 +20,5 @@ export const signUpUser = createAsyncThunk(
     }
   }
 );
+
+

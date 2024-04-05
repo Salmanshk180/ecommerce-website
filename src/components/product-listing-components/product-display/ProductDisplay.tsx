@@ -4,8 +4,9 @@ import styles from "./ProductDisplay.module.css";
 import ProductCarousel from "./product-carousel/ProductCarousel";
 import Pagination from "../pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store/Store";
+import { AppDispatch, RootState } from "../../../redux/store/Store";
 import { filterAll } from "../../../redux/slices/filter-products/filterProducts";
+import { fetchProducts } from "../../../redux/slices/product-data/productData";
 
 interface Props {
   show: boolean;
@@ -17,12 +18,15 @@ const ProductDisplay = (props: Props) => {
   const filterData = useSelector(
     (state: RootState) => state.filterProducts.filteredProducts
   );
-  
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(filterAll());
-  }, [dispatch]);
 
+  const dispatch = useDispatch<AppDispatch>();
+  const filters = useSelector((state:RootState)=>state.filters.filter)
+  // useEffect(() => {
+  //   dispatch(filterAll());
+  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchProducts(filters));
+  }, [dispatch,filters]);  
   return (
     <Fragment>
       <div className={styles.product_display}>

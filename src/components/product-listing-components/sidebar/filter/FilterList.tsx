@@ -4,7 +4,7 @@ import List from "./List";
 const FilterList = () => {
   const [selectedItem, setSelectedItem] = useState("");
   const FilterArray = [
-    { text: "All Men's clothing" },
+    { text: "Men's clothing" },
     { text: "Women's clothing" },
     { text: "Footwear" },
     { text: "Watches" },
@@ -14,7 +14,7 @@ const FilterList = () => {
     { text: "Jwellery" },
   ];
   const handleItemClick = (text: string) => {
-    setSelectedItem(text); // Update selected item
+    setSelectedItem(text);
   };
 
   return (
@@ -22,8 +22,13 @@ const FilterList = () => {
       <div className={styles.filter}>
         <div className={styles.container}>
           <ul>
-            {FilterArray.map((data) => (
-              <List text={data.text} selected={selectedItem === data.text}  onClick={() => handleItemClick(data.text)}/>
+            {FilterArray.map((data, index) => (
+              <List
+                key={index}
+                text={data.text}
+                selected={selectedItem === data.text}
+                onClick={() => handleItemClick(data.text)}
+              />
             ))}
           </ul>
         </div>
