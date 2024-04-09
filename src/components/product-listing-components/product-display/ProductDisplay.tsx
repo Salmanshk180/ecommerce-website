@@ -17,6 +17,7 @@ interface Props {
 const ProductDisplay = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const filters = useSelector((state: RootState) => state.filters.filter);
+  const totalProduct = useSelector((state: RootState) => state.filters.total);
   const loadingProducts = useSelector(
     (state: RootState) => state.product.isLoading
   );
@@ -28,7 +29,7 @@ const ProductDisplay = (props: Props) => {
   }, [dispatch, filters]);
 
   useEffect(() => {
-    if (filters.maxprice !== 0 && filters.minprice !== 0) {
+    if (filters.maxprice !== 0) {
       dispatch(fetchFilterdProducts(filters));
     }
   }, [dispatch, filters]);
@@ -38,18 +39,18 @@ const ProductDisplay = (props: Props) => {
       <div className={styles.product_display}>
         <ProductDisplayNavbar show={props.show} setShow={props.setShow} />
         <div className={styles.content}>
-          {loadingProducts || products.products === undefined ? (
+          {loadingProducts? (
             <FadeLoader
               style={{
                 position: "relative",
                 left: "0%",
                 top: "50%",
                 transform: "translate(50%, -50%)",
-                width:"100%",
-                height:"230px"
+                width: "100%",
+                height: "230px",
               }}
             />
-          ) : products?.products?.length === 0 ? (
+          ) : totalProduct === 0 ? (
             <h1
               style={{
                 marginBlock: "200px",
@@ -63,7 +64,7 @@ const ProductDisplay = (props: Props) => {
           ) : (
             <div className={styles.carousel}>
               <ProductCarousel data={products.products} />
-              <Pagination numberOfCarousel={products.products?.length / 10} />
+              <Pagination  />
             </div>
           )}
         </div>

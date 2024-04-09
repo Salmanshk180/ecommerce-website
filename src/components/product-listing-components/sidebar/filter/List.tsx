@@ -2,8 +2,10 @@ import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import styles from "./List.module.css";
-import { fetchProducts } from "../../../../redux/slices/product-data/productData";
-import { addCategory } from "../../../../redux/slices/filters/filters.slices";
+import {
+  addCategory,
+  changePage,
+} from "../../../../redux/slices/filters/filters.slices";
 interface Props {
   text: string;
   selected: boolean;
@@ -11,10 +13,11 @@ interface Props {
 }
 const List = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const color = props.selected ? "#2352B6" : "black";
-  const fontWeigth = props.selected ? "bold" : "normal";
-  const filters = useSelector((state: RootState) => state.filters.filter);
-  
+  const selected = useSelector(
+    (state: RootState) => state.filters.filter.category
+  );
+  const color = selected === props.text.toLowerCase() ? "#2352B6" : "black";
+  const fontWeigth = selected === props.text.toLowerCase() ? "bold" : "normal";
   return (
     <Fragment>
       <button
@@ -22,7 +25,12 @@ const List = (props: Props) => {
         style={{ color: color, fontWeight: fontWeigth }}
         onClick={() => {
           props.onClick();
-          dispatch(addCategory({ category: props.text.toLowerCase() }));
+          dispatch(
+            addCategory({
+              category: props.text.toLowerCase(),
+            })
+          );
+          dispatch(changePage({ page: 1 }));
         }}
       >
         {props.text}

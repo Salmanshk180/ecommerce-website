@@ -6,11 +6,10 @@ import storage from "redux-persist/lib/storage";
 import users from "../slices/users/users";
 import loadingSlice from "../slices/loading/loading";
 import filterSlice from "../slices/filters/filters.slices";
-
+import brandAndCategorySlice from "../slices/filter-data/filterData";
 const persistConfig = {
   key: "root",
   storage,
-
 };
 
 const rootReducer = combineReducers({
@@ -19,12 +18,13 @@ const rootReducer = combineReducers({
   users: users,
   loadings: loadingSlice,
   filters: filterSlice,
+  brandAndCategory: brandAndCategorySlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

@@ -46,6 +46,12 @@
 
 
 .card:hover{
-  /* box-shadow: 1px 1px 10px 1px black; */
   cursor: pointer;
+}
+
+@media screen and (max-width: 320px){
+  .card img{
+    width: 180px;
+    margin: auto;
+  }
 }

@@ -12,7 +12,6 @@ import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../redux/slices/users/users";
 import { toast } from "react-toastify";
-import { setLoading } from "../../../../redux/slices/loading/loading";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const isLoggedin = useSelector(
@@ -29,8 +28,9 @@ const LightNavbar = () => {
       <div className={styles["ligh-navbar"]}>
         <div className={styles["container"]}>
           <div className={styles["logo"]}>
-            {/* <img src={logo} alt="logo" className={styles["logo-img"]} /> */}
-            <p className={styles["logo-text"]}>Bandage</p>
+            <p className={styles["logo-text"]}>
+              <NavLink to={"/"} style={{color:"black"}}>Bandage</NavLink>
+            </p>
           </div>
           <div
             className={`${styles["nav-container"]} ${

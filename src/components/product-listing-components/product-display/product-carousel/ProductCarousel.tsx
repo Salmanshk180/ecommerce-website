@@ -18,7 +18,7 @@ const ProductCarousel = (props: Props) => {
           <div key={data.id} onClick={() => handleNavigate(data.id)}>
             <Card
               id={nanoid()}
-              src={data.images.src}
+              src={data.images[0]}
               title={data.product.name}
               description={data.description}
               price={data.discount_price}

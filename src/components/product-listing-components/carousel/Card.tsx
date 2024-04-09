@@ -1,39 +1,24 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import styles from "./Card.module.css";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store/Store";
+import { useDispatch } from "react-redux";
+import { addCategory } from "../../../redux/slices/filters/filters.slices";
 interface Props {
   src?: string;
   title?: string;
-  items?: number;
-}
-interface ObjectProps {
-  id: string;
-  src: string;
-  title: string;
-  description: string;
-  price: number;
-  original_price: number;
-  showColors: boolean;
 }
 const Card = (props: Props) => {
-  const { id } = useParams();
-  const [product, setProduct] = useState<any>();
-  // useEffect(() => {
-  //   filterData?.products?.forEach((product:any) => {
-  //     if (product.id === id) {
-  //       setProduct(product);
-  //     }
-  //   });
-  // }, [id,filterData]);
+  const dispatch = useDispatch();
   return (
     <Fragment>
-      <div className={styles.card}>
-        <img src={product ? product.src : props.src} alt="" />
+      <div
+        className={styles.card}
+        onClick={() => {
+          dispatch(addCategory({ category: props.title }));
+        }}
+      >
+        <img src={props.src} alt="" />
         <div className={styles.description}>
-          <p>{product?"":props.title}</p>
-          <p>{props.items}</p>
+          <p>{props.title}</p>
         </div>
       </div>
     </Fragment>

@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import {
   addmaxPrice,
   addminPrice,
+  changePage,
 } from "../../../../redux/slices/filters/filters.slices";
 
 const Price = () => {
@@ -28,6 +29,7 @@ const Price = () => {
   const debouncedFetchProducts = debounce((value) => {
     dispatch(addminPrice(value[0]));
     dispatch(addmaxPrice(value[1]));
+    dispatch(changePage({ page: 1 }));
   }, 2000);
   useEffect(() => {
     debouncedFetchProducts(value);
