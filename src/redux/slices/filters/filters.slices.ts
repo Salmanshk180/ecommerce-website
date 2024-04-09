@@ -11,6 +11,7 @@ interface IState {
     products: [];
     minprice: number;
     maxprice: number;
+    sortby: string;
   };
   products: Product[];
   isLoading: boolean;
@@ -23,6 +24,7 @@ interface Query {
   category: string | null;
   minprice: number;
   maxprice: number;
+  sortby: string;
 }
 const initialState: IState = {
   filter: {
@@ -31,6 +33,7 @@ const initialState: IState = {
     products: [],
     minprice: 0,
     maxprice: 0,
+    sortby: "asc",
   },
   products: [],
   isLoading: false,
@@ -43,11 +46,11 @@ export const fetchFilterdProducts = createAsyncThunk(
   async (query: Query) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/product-variant-filter?brand=${query.brands}&category=${query.category}&min=${query.minprice}&max=${query.maxprice}`
+        `http://localhost:8000/product-variant-filter?brand=${query.brands}&category=${query.category}&min=${query.minprice}&max=${query.maxprice}&sortby=${query.sortby}`
       );
       return response.data.data;
     } catch (error: any) {
-      return error.response.error;
+      return error.response.error as string;
     }
   }
 );
@@ -66,7 +69,14 @@ export const filterSlice = createSlice({
       }
       if (action.payload.brand == "all") {
         state.selectedBrands = ["all"];
-        state.filter.brands = ["zara","levi's","adidas","peter england","allen solly","fabindia"];
+        state.filter.brands = [
+          "zara",
+          "levi's",
+          "adidas",
+          "peter england",
+          "allen solly",
+          "fabindia",
+        ];
       }
     },
     removeBrand: (state, action) => {
@@ -86,6 +96,9 @@ export const filterSlice = createSlice({
     addmaxPrice: (state, action) => {
       state.filter = { ...state.filter, maxprice: action.payload };
     },
+    sortBy: (state, action) => {
+      state.filter = { ...state.filter, sortby: action.payload.sortby };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -97,12 +110,12 @@ export const filterSlice = createSlice({
         state.products = acion.payload.products;
       })
       .addCase(fetchFilterdProducts.rejected, (state, action) => {
-        state.error = action.error.message as string;
+        state.error = action.error?.message!;
         state.isLoading = false;
       });
   },
 });
 
-export const { addBrand, addCategory, addmaxPrice, addminPrice, removeBrand } =
+export const { addBrand, addCategory, addmaxPrice, addminPrice, removeBrand,sortBy } =
   filterSlice.actions;
 export default filterSlice.reducer;

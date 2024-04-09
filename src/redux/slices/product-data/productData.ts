@@ -55,7 +55,7 @@ const productSlice = createSlice({
         state.data = acion.payload;
       })
       .addCase(fetchFilterdProducts.rejected, (state, action) => {
-        state.error = action.error.message as string;
+        state.error = action.error?.message!;
         state.isLoading = false;
       });
   },

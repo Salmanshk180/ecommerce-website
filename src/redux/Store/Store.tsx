@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productReducer from "../slices/product-data/productData";
-  import cartProductsSlice from "../slices/cart-products/cartProducts";
+import cartProductsSlice from "../slices/cart-products/cartProducts";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import users from "../slices/users/users";
@@ -10,6 +10,7 @@ import filterSlice from "../slices/filters/filters.slices";
 const persistConfig = {
   key: "root",
   storage,
+
 };
 
 const rootReducer = combineReducers({
@@ -23,6 +24,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const persistor = persistStore(store);

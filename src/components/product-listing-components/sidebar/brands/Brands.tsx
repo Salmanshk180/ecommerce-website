@@ -30,6 +30,13 @@ const Brands = () => {
       dispatch(addBrand({ brand: text.toLowerCase() }));
     }
   };
+  
+  useEffect(() =>{
+    if(brands?.length==0){
+      dispatch(addBrand({ brand: "all" }));
+    }
+  },[brands?.length])
+
   return (
     <Fragment>
       <div className={styles.brands}>

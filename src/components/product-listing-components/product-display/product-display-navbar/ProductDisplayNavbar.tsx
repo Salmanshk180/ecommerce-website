@@ -1,6 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import styles from "./ProductDisplayNavbar.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { sortBy } from "../../../../redux/slices/filters/filters.slices";
+import { RootState } from "../../../../redux/store/Store";
 // import { priceHighToLow, priceLowToHigh } from "../../../../redux/slices/filter-products/filterProducts";
 
 interface Props {
@@ -10,17 +12,18 @@ interface Props {
 
 const ProductDisplayNavbar = (props: Props) => {
   const dispatch = useDispatch();
- const handleChange=(event:React.ChangeEvent<HTMLSelectElement>)=>{
-    if(event.target.value==="pricelowtohigh"){
-      //  dispatch(priceLowToHigh()) 
+  const sortbyprice = useSelector((state:RootState)=>state.filters.filter.sortby)
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (event.target.value === "pricelowtohigh") {
+      dispatch(sortBy({ sortby: "asc" }));
     }
-    
-    if(event.target.value==="pricehightolow"){
-       
-      //  dispatch(priceHighToLow()) 
+
+    if (event.target.value === "pricehightolow") {
+      dispatch(sortBy({ sortby: "desc" }));
     }
-    
- }
+  };
+
+  useEffect(() => {}, []);
   return (
     <Fragment>
       <div className={styles.navbar}>
@@ -36,11 +39,15 @@ const ProductDisplayNavbar = (props: Props) => {
           >
             Filter By
           </button>
-          <select name="sort" id="sort" onChange={(event)=>handleChange(event)}>
-            {/* <option value="Popularity" selected>
-              Popularity
-            </option> */}
-            <option value="pricelowtohigh">Price: Low to High</option>
+          <select
+            name="sort"
+            id="sort"
+            defaultValue={sortbyprice=="asc" ? "pricelowtohigh" : "pricehightolow"}
+            onChange={(event) => handleChange(event)}
+          >
+            <option value="pricelowtohigh">
+              Price: Low to High
+            </option>
             <option value="pricehightolow">Price: High to Low</option>
           </select>
         </div>
