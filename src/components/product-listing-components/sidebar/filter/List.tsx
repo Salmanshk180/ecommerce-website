@@ -2,10 +2,6 @@ import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import styles from "./List.module.css";
-import {
-  filterAll,
-  filterByCategory,
-} from "../../../../redux/slices/filter-products/filterProducts"; // Update import path
 import { fetchProducts } from "../../../../redux/slices/product-data/productData";
 import { addCategory } from "../../../../redux/slices/filters/filters.slices";
 interface Props {
@@ -18,6 +14,7 @@ const List = (props: Props) => {
   const color = props.selected ? "#2352B6" : "black";
   const fontWeigth = props.selected ? "bold" : "normal";
   const filters = useSelector((state: RootState) => state.filters.filter);
+  
   return (
     <Fragment>
       <button
@@ -26,7 +23,6 @@ const List = (props: Props) => {
         onClick={() => {
           props.onClick();
           dispatch(addCategory({ category: props.text.toLowerCase() }));
-          dispatch(fetchProducts(filters));
         }}
       >
         {props.text}

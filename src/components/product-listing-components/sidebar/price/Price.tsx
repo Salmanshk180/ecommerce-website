@@ -3,48 +3,48 @@ import styles from "./Price.module.css";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import useBreakpoint from "../../../../hooks/breakpoint/useBreakpoints";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { debounce } from "lodash";
+import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import {
-  filterAll,
-  filterPrice,
-} from "../../../../redux/slices/filter-products/filterProducts";
-import { AppDispatch } from "../../../../redux/store/Store";
-import { fetchProducts, initialState } from "../../../../redux/slices/product-data/productData";
+  addmaxPrice,
+  addminPrice,
+} from "../../../../redux/slices/filters/filters.slices";
 
 const Price = () => {
   const breakpoint = useBreakpoint();
-  const dispatch = useDispatch<AppDispatch>();
-  // const filterData = useSelector(
-  //   (state: RootState) => state.filterProducts.filteredProducts
-  // );
-  const filterData = initialState;
-  const minOriginalPrice = filterData.reduce(
-    (min, product) => Math.min(min, product.original_price),
-    Infinity
+  const dispatch = useDispatch<AppDispatch>();  
+  const min = useSelector(
+    (state: RootState) => state.product.data.minimum_price
   );
-  const maxOriginalPrice = filterData.reduce(
-    (max, product) => Math.max(max, product.original_price),
-    0
+  const max = useSelector(
+    (state: RootState) => state.product.data.maximum_price
   );
-  const [value, setValue] = useState([minOriginalPrice, maxOriginalPrice]);
 
+  const [value, setValue] = useState([0, 0]); // Initial value set to [0, 0]
   useEffect(() => {
-    setValue([minOriginalPrice, maxOriginalPrice]);
-  }, [filterData, minOriginalPrice, maxOriginalPrice]);
+      setValue([min, max]);
+  }, [min, max]);
+  const debouncedFetchProducts = debounce((value) => {
+    dispatch(addminPrice(value[0]));
+    dispatch(addmaxPrice(value[1]));
+  }, 2000);
+  useEffect(() => {
+    debouncedFetchProducts(value);
+    return () => debouncedFetchProducts.cancel();
+  }, [value]);
 
   return (
     <Fragment>
       {breakpoint === "xs" ? "" : <p className={styles["price_text"]}>Price</p>}
       <div className={styles["range-slider-container"]}>
         <RangeSlider
-          min={minOriginalPrice}
-          max={maxOriginalPrice}
+          min={min || 0}
+          max={max || 100} 
           value={value}
-          onInput={async (val: any) => {
-             dispatch(filterPrice({ min: val[0], max: val[1] }));
-             dispatch(filterAll());
+          onInput={(val:number[])=>{
             setValue(val);
-          }}
+          }} 
         />
         <div className={styles["value_container"]}>
           <p>{value[0]}</p>

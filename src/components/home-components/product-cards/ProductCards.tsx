@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import styles from "./ProductCards.module.css";
-import CardRow from "./CardRow";
 import Card from "./Card";
 import useBreakpoint from "../../../hooks/breakpoint/useBreakpoints";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../../../redux/store/Store";
 import { fetchProducts } from "../../../redux/slices/product-data/productData";
+import { fetchFilterdProducts } from "../../../redux/slices/filters/filters.slices";
 interface ObjectProps {
   src: string;
   title: string;
@@ -18,21 +18,17 @@ interface ObjectProps {
 
 const ProductCards = () => {
   const breakpoint = useBreakpoint();
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(10);
-  const productData = useSelector((state: RootState) => state.product.products);
+  const productData = useSelector((state: RootState) => state.product.data.products);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   let numberOfCards = 10;
   if (breakpoint === "xs") {
     numberOfCards = 5;
   }
-
-  const filters = useSelector((state: RootState) => state.filters.filter);
+ const filters = useSelector((state:RootState) => state.filters.filter)
   useEffect(() => {
-    dispatch(fetchProducts(filters));
-  }, [dispatch]);
-
+    dispatch(fetchFilterdProducts(filters));
+  }, [dispatch]);  
   return (
     <Fragment>
       <div className={styles.product_cards}>
@@ -45,7 +41,7 @@ const ProductCards = () => {
             </h6>
           </div>
           <div className={styles["card-container"]}>
-            {productData.slice(min, max).map((data: any) => (
+            {productData?.slice(0,10).map((data: any) => (
               <Card
                 key={data.id}
                 src={data.images.src}
@@ -60,7 +56,6 @@ const ProductCards = () => {
 
           <button
             className={styles.load_button}
-            // onClick={() => setMax((prev) => prev + 10)}
             onClick={() => navigate("/products")}
           >
             LOAD MORE PRODUCTS

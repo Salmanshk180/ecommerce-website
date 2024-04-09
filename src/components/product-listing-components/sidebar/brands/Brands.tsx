@@ -4,12 +4,7 @@ import styles from "./Brands.module.css";
 import CheckBox from "./CheckBox";
 import useBreakpoint from "../../../../hooks/breakpoint/useBreakpoints";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterAll,
-  filterByBrand,
-} from "../../../../redux/slices/filter-products/filterProducts";
 import { AppDispatch, RootState } from "../../../../redux/store/Store";
-import { fetchProducts } from "../../../../redux/slices/product-data/productData";
 import {
   addBrand,
   removeBrand,
@@ -27,20 +22,14 @@ const Brands = () => {
     { text: "Fabindia" },
   ];
   const dispatch = useDispatch<AppDispatch>();
-  // const [brands, setBrands] = useState<string[]>([]);
-  const filters = useSelector((state: RootState) => state.filters.filter);
+  const brands = useSelector((state: RootState) => state.filters.selectedBrands);
   const handleBrand = async (text: string) => {
-    if (filters.brands?.includes(text.toLowerCase())) {
+    if (brands?.includes(text.toLowerCase())) {
       dispatch(removeBrand({ brand: text.toLowerCase() }));
     } else {
       dispatch(addBrand({ brand: text.toLowerCase() }));
     }
-    dispatch(fetchProducts(filters));
   };
-
-  useEffect(() => {
-    dispatch(fetchProducts(filters));
-  }, [dispatch]);
   return (
     <Fragment>
       <div className={styles.brands}>

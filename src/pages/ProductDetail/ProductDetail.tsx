@@ -25,13 +25,13 @@ interface ObjectProps{
 const ProductDetail = () => {
   const {id} = useParams();
   const [product,setProduct] = useState<any>();
-  const productData = useSelector((state:RootState)=>state.product.products);  
+  const productData = useSelector((state:RootState)=>state.product.data.products);  
   useEffect(()=>{
-    productData.forEach((productData)=>{
-      if(productData.id===id){
-        setProduct(productData)
-      }
-    })
+    // productData.forEach((productData)=>{
+    //   if(productData.id===id){
+    //     setProduct(productData)
+    //   }
+    // })
   },[id,productData])
   return (
     <React.Fragment>

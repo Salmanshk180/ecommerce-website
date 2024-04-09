@@ -20,16 +20,13 @@ interface ObjectProps {
 const Card = (props: Props) => {
   const { id } = useParams();
   const [product, setProduct] = useState<any>();
-  const filterData = useSelector(
-    (state: RootState) => state.filterProducts.filteredProducts
-  );
-  useEffect(() => {
-    filterData.forEach((product:any) => {
-      if (product.id === id) {
-        setProduct(product);
-      }
-    });
-  }, [id,filterData]);
+  // useEffect(() => {
+  //   filterData?.products?.forEach((product:any) => {
+  //     if (product.id === id) {
+  //       setProduct(product);
+  //     }
+  //   });
+  // }, [id,filterData]);
   return (
     <Fragment>
       <div className={styles.card}>

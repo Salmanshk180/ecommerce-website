@@ -3,22 +3,13 @@ import styles from "./Pagination.module.css";
 
 interface Props {
   numberOfCarousel: number;
-  setSliceMin: (i: number) => void | number;
-  setSliceMax: (i: number) => void | number;
 }
 
 const Pagination = (props: Props) => {
   const buttons = [];
   for (let i = 0; i < props.numberOfCarousel; i++) {
     buttons.push(
-      <button
-        key={i}
-        className={styles.pagination_btn}
-        onClick={() => {
-          props.setSliceMin(i*10);
-          props.setSliceMax(i*10+10);
-        }}
-      >
+      <button key={i} className={styles.pagination_btn} onClick={() => {}}>
         {i + 1}
       </button>
     );
@@ -28,23 +19,11 @@ const Pagination = (props: Props) => {
     <Fragment>
       <div className={styles.pagination}>
         <div className={styles.container}>
-          <button
-            className={styles.first_btn}
-            onClick={() => {
-              props.setSliceMin(0);
-              props.setSliceMax(10);
-            }}
-          >
+          <button className={styles.first_btn} onClick={() => {}}>
             First
           </button>
           {buttons}
-          <button
-            className={styles.next_btn}
-            onClick={() => {
-              props.setSliceMin(props.numberOfCarousel * 10 - 10);
-              props.setSliceMax(props.numberOfCarousel * 10);
-            }}
-          >
+          <button className={styles.next_btn} onClick={() => {}}>
             Next
           </button>
         </div>

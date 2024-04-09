@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import styles from "./ProductDisplayNavbar.module.css";
 import { useDispatch } from "react-redux";
-import { priceHighToLow, priceLowToHigh } from "../../../../redux/slices/filter-products/filterProducts";
+// import { priceHighToLow, priceLowToHigh } from "../../../../redux/slices/filter-products/filterProducts";
 
 interface Props {
   show: boolean;
@@ -12,12 +12,12 @@ const ProductDisplayNavbar = (props: Props) => {
   const dispatch = useDispatch();
  const handleChange=(event:React.ChangeEvent<HTMLSelectElement>)=>{
     if(event.target.value==="pricelowtohigh"){
-       dispatch(priceLowToHigh()) 
+      //  dispatch(priceLowToHigh()) 
     }
     
     if(event.target.value==="pricehightolow"){
        
-       dispatch(priceHighToLow()) 
+      //  dispatch(priceHighToLow()) 
     }
     
  }
