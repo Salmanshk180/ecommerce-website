@@ -14,7 +14,7 @@ import {
 
 const Price = () => {
   const breakpoint = useBreakpoint();
-  const dispatch = useDispatch<AppDispatch>();  
+  const dispatch = useDispatch<AppDispatch>();
   const min = useSelector(
     (state: RootState) => state.product.data.minimum_price
   );
@@ -24,7 +24,7 @@ const Price = () => {
 
   const [value, setValue] = useState([0, 0]); // Initial value set to [0, 0]
   useEffect(() => {
-      setValue([min, max]);
+    setValue([min, max]);
   }, [min, max]);
   const debouncedFetchProducts = debounce((value) => {
     dispatch(addminPrice(value[0]));
@@ -42,11 +42,11 @@ const Price = () => {
       <div className={styles["range-slider-container"]}>
         <RangeSlider
           min={min || 0}
-          max={max || 100} 
+          max={max || 100}
           value={value}
-          onInput={(val:number[])=>{
+          onInput={(val: number[]) => {
             setValue(val);
-          }} 
+          }}
         />
         <div className={styles["value_container"]}>
           <p>{value[0]}</p>

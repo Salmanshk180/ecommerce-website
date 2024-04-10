@@ -36,6 +36,8 @@
   font-size: 24px;
   font-weight: 700;
   color: #252b42;
+  display: flex;
+  gap: 10px;
 }
 .floating_para {
   font-size: 20px;
@@ -73,10 +75,16 @@
   gap: 20px;
 }
 
+.button_container > div{
+  display: flex;
+  gap: 10px;
+}
+
 .button_container button {
-  padding: 15px 40px;
-  background-color: #23a6f0;
-  color: #fff;
+  padding: 10px 20px;
+  background-color: #a8a8a8;
+  color: #000000;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
 }

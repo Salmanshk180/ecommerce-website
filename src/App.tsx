@@ -11,6 +11,7 @@ import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import ProtectedRoute from "./layout/protected-route/ProtectedRoute";
+import ErrorPage from "./components/error-page-component/ErrorPage";
 function App() {
   const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ function App() {
         },
       ],
     },
+    {
+      path:"*",
+      element:<ErrorPage/>
+    }
   ]);
 
   return (

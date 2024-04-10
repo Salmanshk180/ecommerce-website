@@ -26,10 +26,10 @@ const DesciptionContainer = () => {
           discount="discouny_price"
         />
         <div className={styles.color_container}>
-          <Color classname="first_color" />
+          {/* <Color classname="first_color" />
           <Color classname="second_color" />
           <Color classname="third_color" />
-          <Color classname="fourth_color" />
+          <Color classname="fourth_color" /> */}
         </div>
         <div className={styles.static_container}>
           <ImageDescription classname="time" src={feature_blogs_image_4} text="22h" />

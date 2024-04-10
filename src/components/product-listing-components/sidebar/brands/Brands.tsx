@@ -33,7 +33,7 @@ const Brands = () => {
   );
 
   useEffect(() => {
-    if (brands?.length == 0) {
+    if (brands?.length === 0) {
       dispatch(addBrand({ brand: "all" }));
       dispatch(changePage({ page: 1 }));
     }

@@ -9,7 +9,7 @@ import { fetchFilterdProducts } from "../../../redux/slices/filters/filters.slic
 const ProductCards = () => {
   const breakpoint = useBreakpoint();
   const productData = useSelector(
-    (state: RootState) => state.product.data.products
+    (state: RootState) => state.product.data?.products
   );
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
