@@ -43,7 +43,7 @@ const ProductDetail = () => {
               <Carousel data={product}/>
             </div>
             <div className={styles["detail_component"]}>
-              <DetailComponent data={product} />
+              <DetailComponent/>
             </div>
           </div>
         </div>

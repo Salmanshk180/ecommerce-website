@@ -7,6 +7,7 @@ import users from "../slices/users/users";
 import loadingSlice from "../slices/loading/loading";
 import filterSlice from "../slices/filters/filters.slices";
 import brandAndCategorySlice from "../slices/filter-data/filterData";
+import getOneProduct from "../slices/get-one-product/getOneProduct";
 const persistConfig = {
   key: "root",
   storage,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   loadings: loadingSlice,
   filters: filterSlice,
   brandAndCategory: brandAndCategorySlice,
+  oneProduct: getOneProduct,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

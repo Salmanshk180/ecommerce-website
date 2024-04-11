@@ -1,38 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./DetailComponent.module.css";
 import Color from "../../home-components/feature-blogs/color/Color";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/slices/cart-products/cartProducts";
 import { FaHeart } from "react-icons/fa6";
-import { FaShoppingCart,FaEye } from "react-icons/fa";
+import { FaShoppingCart, FaEye } from "react-icons/fa";
 import { star_img } from "../../../assets/images";
-interface ObjectProps {
-  id: string;
-  src: string;
-  title: string;
-  description: string;
-  original_price: number;
-  price: number;
-  showColors: boolean;
-  category: string;
-  brand: string;
-}
-interface Props {
-  data?: ObjectProps;
-}
+import { AppDispatch, RootState } from "../../../redux/store/Store";
+import { fetchOneProduct } from "../../../redux/slices/get-one-product/getOneProduct";
 
-const DetailComponent = (props: Props) => {
+const DetailComponent = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const product = useSelector((state: RootState) => state.oneProduct.data);
   const handleNavigate = () => {
-    dispatch(addToCart(props.data));
-    navigate("/shopping-cart");
+    // dispatch(addToCart(props.data));
+    // navigate("/shopping-cart");
   };
+  useEffect(()=>{
+    navigate(`/products/${product.product?.id}`)
+
+  },[product.product?.id])
   return (
     <React.Fragment>
       <div className={styles["detail-component"]}>
-        <p className={styles["floating_para"]}>{props.data?.title}</p>
+        <p className={styles["floating_para"]}>
+          {product.product?.product?.name}
+        </p>
         <div className={styles["review_container"]}>
           <img src={star_img} alt="" />
           <img src={star_img} alt="" />
@@ -42,32 +37,64 @@ const DetailComponent = (props: Props) => {
           <span>10 Reviews</span>
         </div>
         <div className={styles["price_container"]}>
-          ${props.data?.original_price}
+          ${product.product?.price}${product.product?.discount_price}
         </div>
         <div className={styles["availability_container"]}>
-          Availability: <span>In Stock</span>
+          Availability:{" "}
+          <span>{product.product?.in_stock ? "In Stock" : "Out Of Stock"}</span>
         </div>
         <div className={styles["description_container"]}>
-          <p>{props.data?.description}</p>
+          <p>{product.product?.description}</p>
           <hr />
         </div>
         <div className={styles["color_container"]}>
-          {props.data?.showColors ? (
-            <>
-              <Color classname="first_color" />
-              <Color classname="second_color" />
-              <Color classname="third_color" />
-              <Color classname="fourth_color" />
-            </>
-          ) : (
-            ""
-          )}
+          {product.product_variants
+            ?.map((product) => product.color)
+            .filter((color, index, self) => self.indexOf(color) === index)
+            .map((color) => (
+              <Color
+                key={color}
+                classname="first_color"
+                color={color}
+                // size={product.product?.size}
+                productid={product.product?.product.id}
+              />
+            ))}
         </div>
         <div className={styles["button_container"]}>
-          <button>Select Option</button>
-            <FaHeart fontSize="25px" color="red"/>
-            <FaShoppingCart fontSize="25px" color="#00A0FF" onClick={handleNavigate} />
-            <FaEye fontSize="25px"/>
+          {product.product_variants
+            ?.filter((variant) => variant.color === product.product?.color) // Filter variants by selected color
+            .map((variant) => variant.size) // Get sizes of variants with selected color
+            .filter((size, index, self) => self.indexOf(size) === index) // Remove duplicate sizes
+            .map((size) => (
+              <button
+                key={size}
+                style={{
+                  backgroundColor:
+                    product.product?.size == size ? "#23a6f0" : "#CCC",
+                  color: product.product?.size == size ? "#FFF" : "#000",
+                }}
+                onClick={() => {
+                  dispatch(
+                    fetchOneProduct({
+                      color: product.product?.color!,
+                      size: size,
+                      productid: product.product?.product.id,
+                    })
+                  );                  
+                }}
+              >
+                {size}
+              </button>
+            ))}
+
+          <FaHeart fontSize="25px" color="red" />
+          <FaShoppingCart
+            fontSize="25px"
+            color="#00A0FF"
+            onClick={handleNavigate}
+          />
+          <FaEye fontSize="25px" />
           {/* <img src={like} alt="" />
           <img src={cart} alt="" onClick={handleNavigate} />
           <img src={eye} alt="" /> */}

@@ -3,19 +3,38 @@ import styles from "./ProductCarousel.module.css";
 import Card from "../../../home-components/product-cards/Card";
 import { nanoid } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchOneProduct,
+} from "../../../../redux/slices/get-one-product/getOneProduct";
+import { AppDispatch, RootState } from "../../../../redux/store/Store";
 interface Props {
   data: any;
 }
 const ProductCarousel = (props: Props) => {
   const navigate = useNavigate();
-  const handleNavigate = (id: string) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const handleNavigate = (
+    id: string,
+    color: string,
+    size: string,
+    productid: string
+  ) => {
+    dispatch(
+      fetchOneProduct({ color: color!, size: size, productid: productid })
+    );
     navigate(`/products/${id}`);
   };
   return (
     <Fragment>
       <div className={styles.product_carousel}>
         {props.data?.map((data: any) => (
-          <div key={data.id} onClick={() => handleNavigate(data.id)}>
+          <div
+            key={data.id}
+            onClick={() => {
+              handleNavigate(data.id, data.color, data.size, data.product.id);
+            }}
+          >
             <Card
               id={nanoid()}
               src={data.images[0]}
