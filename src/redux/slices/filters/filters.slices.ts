@@ -3,6 +3,10 @@ import axios from "axios";
 
 export interface Product {
   id: string;
+  color:string;
+  product:{
+    id:string;
+  }
 }
 interface IState {
   filter: {
@@ -16,6 +20,7 @@ interface IState {
     limit: number;
   };
   products: Product[];
+  productVariants: Product[];
   total: number;
   isLoading: boolean;
   error: null | string;
@@ -43,6 +48,7 @@ const initialState: IState = {
     limit: 12,
   },
   products: [],
+  productVariants:[],
   total: 0,
   isLoading: false,
   error: null,
@@ -55,7 +61,7 @@ export const fetchFilterdProducts = createAsyncThunk(
     try {
       const response = await axios.get(
         `http://localhost:8000/product-variant-filter?brand=${query.brands}&category=${query.category}&min=${query.minprice}&max=${query.maxprice}&sortby=${query.sortby}&page=${query.page}&limit=${query.limit}`
-      );
+      );      
       return response.data.data;
     } catch (error: any) {
       return error.response.error as string;
@@ -123,6 +129,7 @@ export const filterSlice = createSlice({
         state.isLoading = false;
         state.products = acion.payload.products;
         state.total = acion.payload.total;
+        state.productVariants = acion.payload.productVariants;        
       })
       .addCase(fetchFilterdProducts.rejected, (state, action) => {
         state.error = action.error?.message!;

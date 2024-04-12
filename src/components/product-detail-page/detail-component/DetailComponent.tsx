@@ -18,10 +18,9 @@ const DetailComponent = () => {
     // dispatch(addToCart(props.data));
     // navigate("/shopping-cart");
   };
-  useEffect(()=>{
-    navigate(`/products/${product.product?.id}`)
-
-  },[product.product?.id])
+  useEffect(() => {
+    // navigate(`/products/${product.product?.id}`);
+  }, [product.product?.id]);
   return (
     <React.Fragment>
       <div className={styles["detail-component"]}>
@@ -37,8 +36,12 @@ const DetailComponent = () => {
           <span>10 Reviews</span>
         </div>
         <div className={styles["price_container"]}>
-          ${product.product?.price}${product.product?.discount_price}
+          <span style={{ color: "#aaa", textDecoration: "line-through" }}>
+            ${product.product?.price}
+          </span>
+          <span style={{ color: "green" }}>${product.product?.discount_price}</span>
         </div>
+
         <div className={styles["availability_container"]}>
           Availability:{" "}
           <span>{product.product?.in_stock ? "In Stock" : "Out Of Stock"}</span>
@@ -55,8 +58,8 @@ const DetailComponent = () => {
               <Color
                 key={color}
                 classname="first_color"
+                displayBorder={true}
                 color={color}
-                // size={product.product?.size}
                 productid={product.product?.product.id}
               />
             ))}
@@ -81,7 +84,7 @@ const DetailComponent = () => {
                       size: size,
                       productid: product.product?.product.id,
                     })
-                  );                  
+                  );
                 }}
               >
                 {size}

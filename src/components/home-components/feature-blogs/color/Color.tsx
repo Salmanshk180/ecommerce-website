@@ -8,6 +8,7 @@ interface Props {
   classname: string;
   color?: string;
   productid?: string;
+  displayBorder?: boolean;
 }
 const Color = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,31 +16,44 @@ const Color = (props: Props) => {
   const product = useSelector(
     (state: RootState) => state.oneProduct.data.product
   );
-  useEffect(() => {
-    if (product?.id) {
-      navigate(`/products/${product?.id}`);
-    }
-  }, [product]); // Navigate when product.id changes
 
   const handleNavigate = () => {
-    dispatch(fetchOneProduct({ color: props.color, productid: props.productid }));
+    dispatch(
+      fetchOneProduct({ color: props.color, productid: props.productid })
+    );
+    // navigate(`/products/${product?.id}`);
   };
+  // useEffect(() => {
+  //   if (product?.id) {
+  //   }
+  // }, [handleNavigate]); // Navigate when product.id changes
 
   return (
     <Fragment>
-      <button
-        style={{
-          backgroundColor: product?.color == props.color ? "red" : "#ccc",
-        }}
-        onClick={() => {
-          handleNavigate();
-        }}
-      >
+      {props.displayBorder ? (
+        <button
+          style={{
+            border:
+              product?.color == props.color
+                ? "3px solid rgb(35, 166, 240)"
+                : "none",
+            borderRadius: "50%",
+          }}
+          onClick={() => {
+            handleNavigate();
+          }}
+        >
+          <div
+            className={styles[props.classname]}
+            style={{ backgroundColor: props.color }}
+          ></div>
+        </button>
+      ) : (
         <div
           className={styles[props.classname]}
           style={{ backgroundColor: props.color }}
         ></div>
-      </button>
+      )}
     </Fragment>
   );
 };

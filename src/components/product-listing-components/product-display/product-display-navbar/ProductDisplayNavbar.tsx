@@ -23,8 +23,6 @@ const ProductDisplayNavbar = (props: Props) => {
       dispatch(sortBy({ sortby: "desc" }));
     }
   };
-
-  useEffect(() => {}, []);
   return (
     <Fragment>
       <div className={styles.navbar}>

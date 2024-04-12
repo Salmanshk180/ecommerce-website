@@ -32,7 +32,7 @@ const ProductCarousel = (props: Props) => {
           <div
             key={data.id}
             onClick={() => {
-              handleNavigate(data.id, data.color, data.size, data.product.id);
+              handleNavigate(data.product.id, data.color, data.size, data.product.id);
             }}
           >
             <Card
@@ -43,6 +43,7 @@ const ProductCarousel = (props: Props) => {
               price={data.discount_price}
               original_price={data.price}
               show_colors={data.color}
+              product={data.product}
             />
           </div>
         ))}
