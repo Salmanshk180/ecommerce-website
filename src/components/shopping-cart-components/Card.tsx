@@ -1,84 +1,83 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import styles from "./Card.module.css";
-import { useDispatch } from "react-redux";
-import {
-  changeQuantity,
-  removeFromCart,
-} from "../../redux/slices/cart-products/cartProducts";
+import { useDispatch, useSelector } from "react-redux";
 import { IoMdCloseCircle } from "react-icons/io";
-interface ObjectProps {
-  id: string;
-  src: string;
-  title: string;
-  description: string;
-  original_price: number;
-  price: number;
-  showColors: boolean;
-  category: string;
-  brand: string;
-  quantity: number;
-  subtotal: number;
-}
+import {
+  Product,
+  deleteCart,
+  getCartProducts,
+  updateCart,
+} from "../../redux/slices/cart-products/cartProducts";
+import { AppDispatch, RootState } from "../../redux/store/Store";
 
 interface Props {
-  data: ObjectProps;
+  data: Product;
 }
 
 const Card = (props: Props) => {
   const [quantity, setQuantity] = useState(props.data.quantity); // Initialize with data passed from parent
-  const [totalPrice, setTotalPrice] = useState(props.data.original_price);
-  const dispatch = useDispatch();
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const LoggedInUser = useSelector(
+    (state: RootState) => state.users.LoggedInUser
+  );
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const newQuantity = Number(e.target.value);
     setQuantity(newQuantity);
-    setTotalPrice(newQuantity * props.data.original_price);
-  };
-
-  useEffect(() => {
-    setTotalPrice(quantity * props.data.original_price);
-    dispatch(
-      changeQuantity({ id: props.data.id, quantity: quantity, totalPrice })
+    await dispatch(
+      updateCart({
+        product_variant_id: props.data.product_variants.id,
+        quantity: newQuantity,
+      })
     );
-  }, [
-    quantity,
-    handleChange,
-    props.data.id,
-    props.data.original_price,
-    totalPrice,
-    dispatch,
-  ]);
+    dispatch(getCartProducts(LoggedInUser!));
+  };
+  let price = props.data.product_variants.discount_price
+    ? props.data.product_variants.discount_price
+    : props.data.product_variants.price;
 
   return (
     <div className={styles["cart_card"]}>
       <div className={styles["card_container"]}>
-        <IoMdCloseCircle
-          className={styles["delete-btn"]}
-          fontSize={24}
-          color="#FF0000"
-          onClick={() => {
-            dispatch(removeFromCart({ id: props.data.id }));
-          }}
-        />
-        <img src={props.data.src} alt="" />
+        <div className={styles["img_container"]}>
+          <img src={props.data.product_variants.images[0]} alt="" />
+          <IoMdCloseCircle
+            className={styles["delete-btn"]}
+            fontSize={24}
+            color="#FF0000"
+            onClick={async () => {
+              await dispatch(deleteCart({ cart_id: props.data.id }));
+              dispatch(getCartProducts(LoggedInUser!));
+            }}
+          />
+        </div>
         <div className={styles["card_desc"]}>
           <div className={styles["inside_container"]}>
-            <p>{props.data.title}</p>
+            <p style={{ fontWeight: "700", fontSize: "18px" }}>
+              {props.data.product_variants.product.name}
+            </p>
             <p className={styles["color_container"]}>
               Color:
-              <div className={styles["color"]}></div>
+              <span
+                className={styles["color"]}
+                style={{ backgroundColor: props.data.product_variants.color }}
+              ></span>
             </p>
-            <p>Price: ${props.data.original_price}</p>
+            <p>
+              <span style={{ fontWeight: "700" }}>Price: </span>${price}
+            </p>
           </div>
-          <p>${totalPrice.toFixed(2)}</p>
-          <input
-            type="number"
-            min={1}
-            name=""
-            id=""
-            value={quantity}
-            onChange={handleChange}
-            className={styles["quantity_input"]}
-          />
+          <div className={styles["final_container"]}>
+            <p style={{ fontWeight: "700" }}>${props.data.subtotal}</p>
+            <input
+              type="number"
+              min={1}
+              name=""
+              id=""
+              value={quantity}
+              onChange={handleChange}
+              className={styles["quantity_input"]}
+            />
+          </div>
         </div>
       </div>
     </div>

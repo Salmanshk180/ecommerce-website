@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store/Store";
 const ShoppingCart = () => {
   const cartData = useSelector(
-    (state: RootState) => state.cartProducts.cartProducts
+    (state: RootState) => state.cartProducts.cartData
   );
   return (
     <React.Fragment>
@@ -24,7 +24,7 @@ const ShoppingCart = () => {
             {cartData.length === 0 ? (
               <h1 style={{ marginTop: "30px" }}>No Products</h1>
             ) : (
-              cartData.map((product) => <Card data={product} />)
+              cartData.map((product) => <Card key={product.id} data={product} />)
             )}
           </div>
           <div className={styles["second_container"]}>

@@ -1,78 +1,164 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-interface Product {
+export interface Product {
   id: string;
-  src: string;
-  title: string;
-  description: string;
-  price: number;
-  original_price: number;
-  showColors: boolean;
-  category: string;
-  brand: string;
   quantity: number;
   subtotal: number;
+  product_variants: {
+    id: string;
+    name: string;
+    images:string[];
+    color: string;
+    description: string;
+    currency: string;
+    default: boolean;
+    price: number;
+    discount_price: number;
+    product:{
+      id:string;
+      name:string;
+      brand:{
+        id:string;
+        name:string;
+      }
+      category:{
+        id:string;
+        name:string;
+      }
+    }
+  };
 }
 
 interface cartProductState {
-  cartProducts: Product[];
+  isLoading: boolean;
+  data: { cartProducts: Product[] };
+  cartData: Product[];
+  error: string | null;
+  update:string | null;
+  delete:string | null;
 }
 
 const initialState: cartProductState = {
-  cartProducts: [],
+  isLoading: false,
+  data: { cartProducts: [] },
+  cartData: [],
+  error: null,
+  update:null,
+  delete:null,
 };
 
+interface Query {
+  token?: string;
+  product_variant_id?: string;
+  quantity?: number;
+  cart_id?: string;
+}
+
+export const addToCartProduct = createAsyncThunk(
+  "cart/addToCartProduct",
+  async (query: Query) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/cart?product_variant_id=${query.product_variant_id}&token=${query.token}`
+      );
+      return response.data.data;
+    } catch (error: any) {
+      return error.response.error;
+    }
+  }
+);
+export const updateCart = createAsyncThunk(
+  "cart/updateCart",
+  async (query: Query) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:8000/cart?product_variant_id=${query.product_variant_id}&quantity=${query.quantity}`
+      );      
+      return response.data.data;
+    } catch (error: any) {
+      return error.response.error;
+    }
+  }
+);
+export const deleteCart = createAsyncThunk(
+  "cart/deleteCart",
+  async (query: Query) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8000/cart?cart_id=${query.cart_id}`
+      );      
+      return response.data.data;
+    } catch (error: any) {
+      return error.response.error;
+    }
+  }
+);
+
+export const getCartProducts = createAsyncThunk(
+  "cart/getCartProducts",
+  async (token: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/cart?token=${token}`
+      );
+      return response.data.data;
+    } catch (error: any) {
+      return error.response.error;
+    }
+  }
+);
 const cartProductsSlice = createSlice({
   name: "cartProductsSlices",
   initialState,
-  reducers: {
-    addToCart(state, action) {
-      const productToAdd = action.payload;
-      const existingProduct = state.cartProducts.find(
-        (product) => product.id === productToAdd.id
-      );
-      if (existingProduct) {
-        existingProduct.quantity += 1;
-        existingProduct.subtotal += existingProduct.price;
-      } else {
-        state.cartProducts.push({
-          id: productToAdd.id,
-          src: productToAdd.src,
-          title: productToAdd.title,
-          description: productToAdd.description,
-          price: productToAdd.price,
-          original_price: productToAdd.original_price,
-          showColors: productToAdd.showColors,
-          category: productToAdd.category,
-          brand: productToAdd.brand,
-          quantity: 1,
-          subtotal: productToAdd.original_price,
-        });
-      }
-    },
-    changeQuantity(state, action) {
-      const id = action.payload.id;
-      const quantity = action.payload.quantity;
-      const totalPrice = action.payload.totalPrice;
-      state.cartProducts.forEach((product) => {
-        if (product.id === id) {
-          product.quantity = quantity;
-          product.subtotal = totalPrice;
-        }
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(addToCartProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addToCartProduct.fulfilled, (state, acion) => {
+        state.isLoading = false;
+        state.data = acion.payload;
+      })
+      .addCase(addToCartProduct.rejected, (state, action) => {
+        state.error = action.error.message as string;
+        state.isLoading = false;
+      })
+      .addCase(getCartProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCartProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.cartData = action.payload;
+      })
+      .addCase(getCartProducts.rejected, (state, action) => {
+        state.error = action.error.message as string;
+        state.isLoading = false;
+      })
+      .addCase(updateCart.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateCart.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.update = action.payload;
+      })
+      .addCase(updateCart.rejected, (state, action) => {
+        state.error = action.error.message as string;
+        state.isLoading = false;
+      })
+      .addCase(deleteCart.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteCart.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.delete = action.payload;
+      })
+      .addCase(deleteCart.rejected, (state, action) => {
+        state.error = action.error.message as string;
+        state.isLoading = false;
       });
-    },
-    removeFromCart(state, action) {
-      const id = action.payload.id;
-      state.cartProducts = state.cartProducts.filter(
-        (product) => product.id !== id
-      );
-    },
-    onCheckout(state) {
-       state.cartProducts =[];
-    }
   },
 });
 
-export const { addToCart, changeQuantity, removeFromCart,onCheckout } =
-  cartProductsSlice.actions;
 export default cartProductsSlice.reducer;

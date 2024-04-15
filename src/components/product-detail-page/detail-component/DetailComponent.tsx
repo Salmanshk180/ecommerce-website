@@ -3,24 +3,46 @@ import styles from "./DetailComponent.module.css";
 import Color from "../../home-components/feature-blogs/color/Color";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../../redux/slices/cart-products/cartProducts";
+// import { addToCart } from "../../../redux/slices/cart-products/cartProducts";
 import { FaHeart } from "react-icons/fa6";
 import { FaShoppingCart, FaEye } from "react-icons/fa";
 import { star_img } from "../../../assets/images";
 import { AppDispatch, RootState } from "../../../redux/store/Store";
 import { fetchOneProduct } from "../../../redux/slices/get-one-product/getOneProduct";
+import { toast } from "react-toastify";
+import {
+  // addToCart,
+  addToCartProduct,
+  getCartProducts,
+} from "../../../redux/slices/cart-products/cartProducts";
 
 const DetailComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const product = useSelector((state: RootState) => state.oneProduct.data);
-  const handleNavigate = () => {
-    // dispatch(addToCart(props.data));
-    // navigate("/shopping-cart");
+  const isLoggedin = useSelector((state: RootState) => state.users.isLoggedin);
+  const cartProduct = useSelector(
+    (state: RootState) => state.cartProducts.cartData
+  );
+  const LoggedinUser = useSelector(
+    (state: RootState) => state.users.LoggedInUser
+  );
+  const addProductToCart = () => {
+    if (!isLoggedin) {
+      toast.error("You are not logged in !!");
+    } else {
+      dispatch(
+        addToCartProduct({
+          product_variant_id: product.product?.id!,
+          token: LoggedinUser!,
+        })
+      );
+      toast.success("Product added to cart successfully");
+    }
   };
-  useEffect(() => {
-    // navigate(`/products/${product.product?.id}`);
-  }, [product.product?.id]);
+  // useEffect(() => {
+  //   // dispatch(getCartProducts(LoggedinUser!))
+  // }, [dispatch]);
   return (
     <React.Fragment>
       <div className={styles["detail-component"]}>
@@ -39,7 +61,9 @@ const DetailComponent = () => {
           <span style={{ color: "#aaa", textDecoration: "line-through" }}>
             ${product.product?.price}
           </span>
-          <span style={{ color: "green" }}>${product.product?.discount_price}</span>
+          <span style={{ color: "green" }}>
+            ${product.product?.discount_price}
+          </span>
         </div>
 
         <div className={styles["availability_container"]}>
@@ -92,15 +116,14 @@ const DetailComponent = () => {
             ))}
 
           <FaHeart fontSize="25px" color="red" />
-          <FaShoppingCart
-            fontSize="25px"
-            color="#00A0FF"
-            onClick={handleNavigate}
-          />
+          <button
+            onClick={() => {              
+             addProductToCart()
+            }}
+          >
+            <FaShoppingCart fontSize="25px" color="#00A0FF" />
+          </button>
           <FaEye fontSize="25px" />
-          {/* <img src={like} alt="" />
-          <img src={cart} alt="" onClick={handleNavigate} />
-          <img src={eye} alt="" /> */}
         </div>
       </div>
     </React.Fragment>

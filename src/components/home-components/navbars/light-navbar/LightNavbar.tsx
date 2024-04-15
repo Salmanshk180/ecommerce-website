@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./LightNavbar.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
@@ -12,24 +12,35 @@ import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../redux/slices/users/users";
 import { toast } from "react-toastify";
+import { addToCartProduct, getCartProducts } from "../../../../redux/slices/cart-products/cartProducts";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const isLoggedin = useSelector(
     (state: RootState) => state.users.LoggedInUser
   );
+  const LoggedInUser = useSelector(
+    (state: RootState) => state.users.LoggedInUser
+  );
+  const cartProducts = useSelector(
+    (state: RootState) => state.cartProducts.cartData
+  );  
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const toggleNavbar = () => {
     setNavbarVisible(!navbarVisible);
-  };
-
+  };  
+  useEffect(()=>{
+      dispatch(getCartProducts(LoggedInUser!))
+  },[dispatch,LoggedInUser,addToCartProduct,cartProducts])
   return (
     <React.Fragment>
       <div className={styles["ligh-navbar"]}>
         <div className={styles["container"]}>
           <div className={styles["logo"]}>
             <p className={styles["logo-text"]}>
-              <NavLink to={"/"} style={{color:"black"}}>Bandage</NavLink>
+              <NavLink to={"/"} style={{ color: "black" }}>
+                Bandage
+              </NavLink>
             </p>
           </div>
           <div
@@ -71,6 +82,8 @@ const LightNavbar = () => {
                     className={styles["button"]}
                     onClick={() => {
                       dispatch(logout());
+                        localStorage.removeItem("accessToken")
+                        document.cookie =`accessToken=null`;
                       navigate("/");
                       toast.success("Logout Successfull");
                     }}
@@ -91,9 +104,16 @@ const LightNavbar = () => {
                 <button className={styles["button"]}>
                   <img src={search_img} alt="" />
                 </button>
-                <button className={styles["button"]}>
+                <button className={styles["button"]} onClick={()=>{
+                  if(!LoggedInUser){
+                    toast.error("You must be logged in");
+                  }
+                  else{
+                    navigate("/shopping-cart")
+                  }
+                }}>
                   <img src={cart_img} alt="" />
-                  <p>1</p>
+                  <p>{cartProducts?.length}</p>
                 </button>
                 <button className={styles["button"]}>
                   <img src={likes_img} alt="" />

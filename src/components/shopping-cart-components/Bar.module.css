@@ -7,14 +7,16 @@
   padding: 20px;
 }
 .first_part{
-    flex-grow: 1;
-    text-align: start;
+    /* flex-grow: 1; */
+    /* text-align: start; */
+    width: 150px;
 }
 .second_part {
+  width: 50%;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  flex-grow: 1;
+  /* align-items: center; */
+  /* flex-grow: 1; */
 }
 
 @media (max-width: 768px) {
