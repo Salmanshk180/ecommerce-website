@@ -10,9 +10,8 @@ import {
 } from "../../../../assets/images";
 import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../../redux/slices/users/users";
+import { getUser, logout } from "../../../../redux/slices/users/users";
 import { toast } from "react-toastify";
-import { addToCartProduct, getCartProducts } from "../../../../redux/slices/cart-products/cartProducts";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const isLoggedin = useSelector(
@@ -23,15 +22,15 @@ const LightNavbar = () => {
   );
   const cartProducts = useSelector(
     (state: RootState) => state.cartProducts.cartData
-  );  
+  );
+  const user = useSelector((state: RootState) => state.users.user);
+
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const toggleNavbar = () => {
     setNavbarVisible(!navbarVisible);
-  };  
-  useEffect(()=>{
-      dispatch(getCartProducts(LoggedInUser!))
-  },[dispatch,LoggedInUser,addToCartProduct,cartProducts])
+  };
+
   return (
     <React.Fragment>
       <div className={styles["ligh-navbar"]}>
@@ -78,18 +77,29 @@ const LightNavbar = () => {
             <div className={styles["nav-buttons-container"]}>
               <div className={styles["nav-buttons"]}>
                 {isLoggedin ? (
-                  <button
-                    className={styles["button"]}
-                    onClick={() => {
-                      dispatch(logout());
-                        localStorage.removeItem("accessToken")
-                        document.cookie =`accessToken=null`;
-                      navigate("/");
-                      toast.success("Logout Successfull");
-                    }}
-                  >
-                    Logout
-                  </button>
+                  <>
+                    <button
+                      className={styles["button"]}
+                      onClick={() => {
+                        dispatch(logout());
+                        localStorage.removeItem("accessToken");
+                        document.cookie = `accessToken=null`;
+                        navigate("/");
+                        toast.success("Logout Successfull");
+                      }}
+                    >
+                      Logout
+                    </button>
+                    <button
+                      className={styles["button"]}
+                      onClick={() => {
+                        dispatch(getUser(LoggedInUser!))
+                        navigate(`/profile/${user?.id}`)
+                      }}
+                    >
+                      Profile
+                    </button>
+                  </>
                 ) : (
                   <>
                     <p>
@@ -104,14 +114,16 @@ const LightNavbar = () => {
                 <button className={styles["button"]}>
                   <img src={search_img} alt="" />
                 </button>
-                <button className={styles["button"]} onClick={()=>{
-                  if(!LoggedInUser){
-                    toast.error("You must be logged in");
-                  }
-                  else{
-                    navigate("/shopping-cart")
-                  }
-                }}>
+                <button
+                  className={styles["button"]}
+                  onClick={() => {
+                    if (!LoggedInUser) {
+                      toast.error("You must be logged in");
+                    } else {
+                      navigate("/shopping-cart");
+                    }
+                  }}
+                >
                   <img src={cart_img} alt="" />
                   <p>{cartProducts?.length}</p>
                 </button>

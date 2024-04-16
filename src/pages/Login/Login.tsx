@@ -6,6 +6,7 @@ import { AppDispatch } from "../../redux/store/Store";
 import { login_img_cover } from "../../assets/images";
 import { loginUser } from "../../redux/slices/users/login.slices";
 import { toast } from "react-toastify";
+import { getUser } from "../../redux/slices/users/users";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -37,6 +38,7 @@ const Login = () => {
       if (response.payload.token) {
         toast.success(response.payload.message);
         document.cookie = `accessToken=${response.payload.token}`;
+        dispatch(getUser(response.payload.token));
         navigate("/products");
       }
       if (!response.payload.token) {

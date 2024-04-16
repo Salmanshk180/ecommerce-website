@@ -1,0 +1,41 @@
+.container{
+  padding: 10px 20px;
+}
+
+.address-form{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+}
+
+.add-address-container{
+    position: absolute;
+    right: 0%;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.address-form #address{
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.address-form button{
+    padding: 10px 20px;
+    background-color: #23A6F0;
+    border: none;
+    display: flex;
+    margin-left: auto;
+    justify-content: flex-end;
+    color: #FFF;
+}

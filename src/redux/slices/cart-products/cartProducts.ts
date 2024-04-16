@@ -8,25 +8,25 @@ export interface Product {
   product_variants: {
     id: string;
     name: string;
-    images:string[];
+    images: string[];
     color: string;
     description: string;
     currency: string;
     default: boolean;
     price: number;
     discount_price: number;
-    product:{
-      id:string;
-      name:string;
-      brand:{
-        id:string;
-        name:string;
-      }
-      category:{
-        id:string;
-        name:string;
-      }
-    }
+    product: {
+      id: string;
+      name: string;
+      brand: {
+        id: string;
+        name: string;
+      };
+      category: {
+        id: string;
+        name: string;
+      };
+    };
   };
 }
 
@@ -35,8 +35,8 @@ interface cartProductState {
   data: { cartProducts: Product[] };
   cartData: Product[];
   error: string | null;
-  update:string | null;
-  delete:string | null;
+  update: string | null;
+  delete: string | null;
 }
 
 const initialState: cartProductState = {
@@ -44,8 +44,8 @@ const initialState: cartProductState = {
   data: { cartProducts: [] },
   cartData: [],
   error: null,
-  update:null,
-  delete:null,
+  update: null,
+  delete: null,
 };
 
 interface Query {
@@ -74,7 +74,7 @@ export const updateCart = createAsyncThunk(
     try {
       const response = await axios.patch(
         `http://localhost:8000/cart?product_variant_id=${query.product_variant_id}&quantity=${query.quantity}`
-      );      
+      );
       return response.data.data;
     } catch (error: any) {
       return error.response.error;
@@ -87,7 +87,7 @@ export const deleteCart = createAsyncThunk(
     try {
       const response = await axios.delete(
         `http://localhost:8000/cart?cart_id=${query.cart_id}`
-      );      
+      );
       return response.data.data;
     } catch (error: any) {
       return error.response.error;

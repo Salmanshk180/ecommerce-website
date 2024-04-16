@@ -1,19 +1,13 @@
 import styles from "./TotalCart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store/Store";
-// import { onCheckout } from "../../redux/slices/cart-products/cartProducts";
+import { closeModal, openModal } from "../../redux/slices/modal/modal";
 
 const TotalCart = () => {
-  // const productData = useSelector(
-  //   (state: RootState) => state.cartProducts.data.cartProducts
-  // );
   const dispatch = useDispatch();
-  // const shoppingPrice = productData.reduce((total, product) => {
-  //   return total + product.subtotal; // Assuming subtotal is the total price of each product
-  // }, 0);
-
+  const isOpenModal = useSelector((state:RootState)=>state.modal.isOpen);
+  
   const shippingPrice = "Free";
-  // const total = shoppingPrice + shippingPrice === "Free" ? 0 : shoppingPrice;
   return (
     <div className={styles["total_cart"]}>
       <p className={styles["title"]}>Cart Total</p>
@@ -34,8 +28,7 @@ const TotalCart = () => {
       <button
         className={styles["checkout_btn"]}
         onClick={() => {
-          console.log("Checkout");
-          // dispatch(onCheckout());
+          dispatch(openModal());
         }}
       >
         Checkout

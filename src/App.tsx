@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import ProtectedRoute from "./layout/protected-route/ProtectedRoute";
 import ErrorPage from "./components/error-page-component/ErrorPage";
+import Profile from "./pages/Profile/Profile";
 function App() {
   const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ function App() {
         {
           path: "/sign-up",
           element: <Register />,
+        },
+        {
+          path: "/profile/:id",
+          element:  <ProtectedRoute element={Profile} />,
         },
         {
           path: "/about-us",

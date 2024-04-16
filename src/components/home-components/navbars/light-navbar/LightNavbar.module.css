@@ -32,6 +32,16 @@
     flex-wrap: wrap;
     gap: 15px;
   }
+  .profile{
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    color:#23a6f0;
+    padding:0px 10px;
+  }
+  .profile option{
+    color:black;
+  }
   .nav-links a {
     color: black;
   }
