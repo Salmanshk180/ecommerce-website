@@ -7,12 +7,12 @@ export interface Product {
   subtotal: number;
   product_variants: {
     id: string;
-    name: string;
     images: string[];
     color: string;
     description: string;
     currency: string;
     default: boolean;
+    size: string;
     price: number;
     discount_price: number;
     product: {
@@ -32,7 +32,7 @@ export interface Product {
 
 interface cartProductState {
   isLoading: boolean;
-  data: { cartProducts: Product[] };
+  // data: { cartProducts: Product[] };
   cartData: Product[];
   error: string | null;
   update: string | null;
@@ -41,7 +41,7 @@ interface cartProductState {
 
 const initialState: cartProductState = {
   isLoading: false,
-  data: { cartProducts: [] },
+  // data: { cartProducts: [] },
   cartData: [],
   error: null,
   update: null,
@@ -119,7 +119,7 @@ const cartProductsSlice = createSlice({
       })
       .addCase(addToCartProduct.fulfilled, (state, acion) => {
         state.isLoading = false;
-        state.data = acion.payload;
+        // state.data = acion.payload;
       })
       .addCase(addToCartProduct.rejected, (state, action) => {
         state.error = action.error.message as string;

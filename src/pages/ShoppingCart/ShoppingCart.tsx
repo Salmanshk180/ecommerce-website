@@ -15,9 +15,6 @@ const ShoppingCart = () => {
   const LoggedInUser = useSelector(
     (state: RootState) => state.users.LoggedInUser
   );
-  const cartProducts = useSelector(
-    (state: RootState) => state.cartProducts.cartData
-  );
   const isModalOpen = useSelector((state: RootState) => state.modal.isOpen);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -35,10 +32,10 @@ const ShoppingCart = () => {
             <div className={styles["bar_container"]}>
               <Bar />
             </div>
-            {cartData.length === 0 ? (
+            {cartData?.length === 0 ? (
               <h1 style={{ marginTop: "30px" }}>No Products</h1>
             ) : (
-              cartData.map((product) => (
+              cartData?.map((product) => (
                 <Card key={product.id} data={product} />
               ))
             )}

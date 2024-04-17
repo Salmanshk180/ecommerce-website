@@ -10,6 +10,7 @@ import brandAndCategorySlice from "../slices/filter-data/filterData";
 import getOneProduct from "../slices/get-one-product/getOneProduct";
 import modalSlice from "../slices/modal/modal";
 import address from "../slices/address/address";
+import order from "../slices/order/order";
 const persistConfig = {
   key: "root",
   storage,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   oneProduct: getOneProduct,
   modal: modalSlice,
   address: address,
+  order: order,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import styles from "./Step1.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/Store";
@@ -9,27 +15,45 @@ import {
 } from "../../../redux/slices/modal/modal";
 import AddressModal from "../../../pages/Profile/AddressModal";
 import { selectAddress } from "../../../redux/slices/address/address";
-const Step1 = () => {
+interface Props {
+  setShowNavigation: Dispatch<SetStateAction<boolean>>;
+}
+const Step1 = (props: Props) => {
   const addresses = useSelector((state: RootState) => state.address.addresses);
   const isOpen = useSelector((state: RootState) => state.modal.isOpen);
-  const adddressModal = useSelector((state: RootState) => state.modal.addressModal);
+  const adddressModal = useSelector(
+    (state: RootState) => state.modal.addressModal
+  );
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(closeModal());
-  //   dispatch(closeAddressModal());
-  // }, []);
+  useEffect(() => {
+    props.setShowNavigation(true);
+  }, [props]);
+  const handleAddressSelect = (address: any) => {
+    dispatch(selectAddress({address:address}));
+  };
   return (
     <>
-    {
-      adddressModal &&
-      <AddressModal />
-    }
+      {adddressModal && <AddressModal />}
       <div className={styles["container"]}>
         <form className={styles["address-form"]}>
           <h5>Choose Shipping Address:</h5>
-          <select name="address" id={styles["address"]}>
+          <select
+            name="address"
+            id={styles["address"]}
+            onChange={(e) => {
+              const selectedAddressId = e.target.value;
+              console.log(e.target.value);
+              
+              const selectedAddress = addresses?.find(
+                (address) => address.id === selectedAddressId
+              );
+              if (selectedAddress) {
+                handleAddressSelect(selectedAddress);
+              }
+            }}
+          >
             {addresses?.map((address) => (
-              <option value="address1">
+              <option value={address.id!}>
                 {address.building}, {address.street}, {address.city},{" "}
                 {address.state},{address.pincode}, {address.country}
               </option>
@@ -38,11 +62,9 @@ const Step1 = () => {
           <button
             type="button"
             onClick={() => {
-              dispatch(selectAddress({address:null}))
+              dispatch(selectAddress({ address: null }));
               dispatch(openAddressModal());
-              // if (isOpen) {
-                // dispatch(closeModal());
-              // }
+            
             }}
           >
             Add Address
