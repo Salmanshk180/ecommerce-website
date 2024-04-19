@@ -1,16 +1,12 @@
 import React, {
-  ChangeEventHandler,
   Dispatch,
   SetStateAction,
   useEffect,
-  useState,
 } from "react";
 import styles from "./Step1.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/Store";
 import {
-  closeAddressModal,
-  closeModal,
   openAddressModal,
 } from "../../../redux/slices/modal/modal";
 import AddressModal from "../../../pages/Profile/AddressModal";
@@ -20,7 +16,6 @@ interface Props {
 }
 const Step1 = (props: Props) => {
   const addresses = useSelector((state: RootState) => state.address.addresses);
-  const isOpen = useSelector((state: RootState) => state.modal.isOpen);
   const adddressModal = useSelector(
     (state: RootState) => state.modal.addressModal
   );

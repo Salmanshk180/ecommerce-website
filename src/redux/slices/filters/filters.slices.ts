@@ -4,8 +4,11 @@ import axios from "axios";
 export interface Product {
   id: string;
   color:string;
+  size?:string;
+  images?:string[];
   product:{
     id:string;
+    name?: string;
   }
 }
 interface IState {

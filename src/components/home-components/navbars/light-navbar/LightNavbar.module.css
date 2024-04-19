@@ -52,12 +52,23 @@
   .button {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     background: transparent;
     border: 0;
     color: #23a6f0;
     gap: 5px;
+  }
+  #options{
+    padding: 5px;
+    margin: auto;
+    border-bottom:1px solid #ccc;
+    width: 100%;
+    text-align: center;
+  }
+  #options:hover{
+    background-color: #23a6f0;
+    color: #fff;
   }
   .toggle-btn-container {
     display: none;

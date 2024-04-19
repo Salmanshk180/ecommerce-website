@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/store/Store";
 import { fetchOneProduct } from "../../../../redux/slices/get-one-product/getOneProduct";
 import { useNavigate } from "react-router-dom";
+import { getReview } from "../../../../redux/slices/reviews/reviews";
 interface Props {
   classname: string;
   color?: string;
@@ -12,21 +13,17 @@ interface Props {
 }
 const Color = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const product = useSelector(
     (state: RootState) => state.oneProduct.data.product
   );
 
-  const handleNavigate = () => {
-    dispatch(
+  const handleNavigate = async () => {
+    await dispatch(
       fetchOneProduct({ color: props.color, productid: props.productid })
-    );
-    // navigate(`/products/${product?.id}`);
+    ).then((data) => {
+      dispatch(getReview(data.payload.product.id));
+    });
   };
-  // useEffect(() => {
-  //   if (product?.id) {
-  //   }
-  // }, [handleNavigate]); // Navigate when product.id changes
 
   return (
     <Fragment>

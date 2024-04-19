@@ -7,7 +7,11 @@
   padding: 20px 24px;
   gap: 10px;
 }
-
+.star {
+  width: 20px;
+  height: 20px;
+ border: none;
+}
 .review_container,
 .color_container {
   display: flex;

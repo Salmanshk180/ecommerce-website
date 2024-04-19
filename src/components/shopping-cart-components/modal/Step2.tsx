@@ -1,4 +1,4 @@
-import React, { Dispatch, FormEvent, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import styles from "./Step2.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store/Store";
@@ -36,7 +36,7 @@ const Step2 = (props: Props) => {
     const cartdatas = cartData.map((cart) => ({
       product_variant_id: cart.product_variants.id,
       quantity: cart.quantity,
-      subtotal: cart.subtotal,
+      total: cart.subtotal,
     }));
     await dispatch(
       addOrder({

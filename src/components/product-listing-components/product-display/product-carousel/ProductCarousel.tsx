@@ -1,30 +1,40 @@
 import { Fragment } from "react";
 import styles from "./ProductCarousel.module.css";
 import Card from "../../../home-components/product-cards/Card";
-import { nanoid } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchOneProduct,
-} from "../../../../redux/slices/get-one-product/getOneProduct";
+import { fetchOneProduct } from "../../../../redux/slices/get-one-product/getOneProduct";
 import { AppDispatch, RootState } from "../../../../redux/store/Store";
+import { getReview } from "../../../../redux/slices/reviews/reviews";
+
 interface Props {
   data: any;
 }
+
 const ProductCarousel = (props: Props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const handleNavigate = (
+  const product_id = useSelector(
+    (state: RootState) => state.oneProduct.data.product?.id
+  );
+  const handleNavigate = async (
     id: string,
     color: string,
     size: string,
     productid: string
   ) => {
-    dispatch(
-      fetchOneProduct({ color: color!, size: size, productid: productid })
-    );
-    navigate(`/products/${id}`);
+    try {
+      await dispatch(
+        fetchOneProduct({ color: color!, size: size, productid: productid })
+      ).then(async (data) => {
+        await dispatch(getReview(data.payload.product.id));
+        navigate(`/products/${id}`);
+      });
+    } catch (error) {
+      console.error("Error navigating to product detail page:", error);
+    }
   };
+
   return (
     <Fragment>
       <div className={styles.product_carousel}>
@@ -32,11 +42,16 @@ const ProductCarousel = (props: Props) => {
           <div
             key={data.id}
             onClick={() => {
-              handleNavigate(data.product.id, data.color, data.size, data.product.id);
+              handleNavigate(
+                data.product.id,
+                data.color,
+                data.size,
+                data.product.id
+              );
             }}
           >
             <Card
-              id={nanoid()}
+              id={data.id}
               src={data.images[0]}
               title={data.product.name}
               description={data.description}

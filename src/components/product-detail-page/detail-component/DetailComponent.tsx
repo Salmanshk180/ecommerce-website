@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./DetailComponent.module.css";
 import Color from "../../home-components/feature-blogs/color/Color";
 import { useNavigate } from "react-router-dom";
@@ -10,20 +10,15 @@ import { star_img } from "../../../assets/images";
 import { AppDispatch, RootState } from "../../../redux/store/Store";
 import { fetchOneProduct } from "../../../redux/slices/get-one-product/getOneProduct";
 import { toast } from "react-toastify";
-import {
-  // addToCart,
-  addToCartProduct,
-  getCartProducts,
-} from "../../../redux/slices/cart-products/cartProducts";
+import { addToCartProduct } from "../../../redux/slices/cart-products/cartProducts";
+import { getReview } from "../../../redux/slices/reviews/reviews";
 
 const DetailComponent = () => {
-  const navigate = useNavigate();
+  const [addStar, setAddStar] = useState(0);
   const dispatch = useDispatch<AppDispatch>();
   const product = useSelector((state: RootState) => state.oneProduct.data);
   const isLoggedin = useSelector((state: RootState) => state.users.isLoggedin);
-  const cartProduct = useSelector(
-    (state: RootState) => state.cartProducts.cartData
-  );
+  const reviews = useSelector((state: RootState) => state.review);
   const LoggedinUser = useSelector(
     (state: RootState) => state.users.LoggedInUser
   );
@@ -40,9 +35,10 @@ const DetailComponent = () => {
       toast.success("Product added to cart successfully");
     }
   };
-  // useEffect(() => {
-  //   // dispatch(getCartProducts(LoggedinUser!))
-  // }, [dispatch]);
+  useEffect(() => {
+      setAddStar(reviews?.averageRating);
+  }, [reviews.averageRating]);
+
   return (
     <React.Fragment>
       <div className={styles["detail-component"]}>
@@ -50,12 +46,33 @@ const DetailComponent = () => {
           {product.product?.product?.name}
         </p>
         <div className={styles["review_container"]}>
-          <img src={star_img} alt="" />
-          <img src={star_img} alt="" />
-          <img src={star_img} alt="" />
-          <img src={star_img} alt="" />
-          <img src={star_img} alt="" />
-          <span>10 Reviews</span>
+          <button
+            className={styles["star"]}
+            onClick={() => setAddStar(1)}
+            style={{ backgroundColor: addStar >= 1 ? "yellow" : "#ccc" }}
+          ></button>
+          <button
+            className={styles["star"]}
+            onClick={() => setAddStar(1)}
+            style={{ backgroundColor: addStar >= 2 ? "yellow" : "#ccc" }}
+          ></button>
+          <button
+            className={styles["star"]}
+            onClick={() => setAddStar(1)}
+            style={{ backgroundColor: addStar >= 3 ? "yellow" : "#ccc" }}
+          ></button>
+          <button
+            className={styles["star"]}
+            onClick={() => setAddStar(1)}
+            style={{ backgroundColor: addStar >= 4 ? "yellow" : "#ccc" }}
+          ></button>
+          <button
+            className={styles["star"]}
+            onClick={() => setAddStar(1)}
+            style={{ backgroundColor: addStar >= 5 ? "yellow" : "#ccc" }}
+          ></button>
+
+          <span>{reviews?.numberOfReviews} Reviews</span>
         </div>
         <div className={styles["price_container"]}>
           <span style={{ color: "#aaa", textDecoration: "line-through" }}>
@@ -101,14 +118,16 @@ const DetailComponent = () => {
                     product.product?.size == size ? "#23a6f0" : "#CCC",
                   color: product.product?.size == size ? "#FFF" : "#000",
                 }}
-                onClick={() => {
-                  dispatch(
+                onClick={async () => {
+                  await dispatch(
                     fetchOneProduct({
                       color: product.product?.color!,
                       size: size,
                       productid: product.product?.product.id,
                     })
-                  );
+                  ).then((data: any) => {
+                    dispatch(getReview(data.payload.product.id));
+                  });
                 }}
               >
                 {size}
@@ -117,9 +136,10 @@ const DetailComponent = () => {
 
           <FaHeart fontSize="25px" color="red" />
           <button
-            onClick={() => {              
-             addProductToCart()
+            onClick={() => {
+              addProductToCart();
             }}
+            style={{ backgroundColor: "#fff" }}
           >
             <FaShoppingCart fontSize="25px" color="#00A0FF" />
           </button>

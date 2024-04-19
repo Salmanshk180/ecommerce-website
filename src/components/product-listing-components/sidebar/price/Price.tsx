@@ -22,10 +22,12 @@ const Price = () => {
     (state: RootState) => state.product.data.maximum_price
   );
 
-  const [value, setValue] = useState([0, 0]); // Initial value set to [0, 0]
+  const [value, setValue] = useState([0, 0]);
   useEffect(() => {
     setValue([min, max]);
   }, [min, max]);
+
+  
   const debouncedFetchProducts = debounce((value) => {
     dispatch(addminPrice(value[0]));
     dispatch(addmaxPrice(value[1]));

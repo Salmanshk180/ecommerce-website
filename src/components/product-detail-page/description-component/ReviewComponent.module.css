@@ -1,0 +1,33 @@
+.review {
+  width: 100%;
+}
+
+.review-card {
+  width: 100%;
+  background-color: #f1f1f1;
+  padding: 10px 0px;
+  border-radius: 10px;
+}
+.review-card > div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+}
+.review-card > div >p{
+    font-weight: 500;
+    color: #777;
+}
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.star {
+  width: 15px;
+  height: 15px;
+  border: none;
+}

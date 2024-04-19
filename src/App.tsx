@@ -13,6 +13,8 @@ import Register from "./pages/Register/Register";
 import ProtectedRoute from "./layout/protected-route/ProtectedRoute";
 import ErrorPage from "./components/error-page-component/ErrorPage";
 import Profile from "./pages/Profile/Profile";
+import OrderHistory from "./pages/order-history/OrderHistory";
+import OrderDetail from "./pages/order-history/OrderDetail";
 function App() {
   const router = createBrowserRouter([
     {
@@ -55,6 +57,16 @@ function App() {
           path: "/shopping-cart",
           element: <ProtectedRoute element={ShoppingCart} />,
         },
+        {
+          path: "/order-history",
+          element: <ProtectedRoute element={OrderHistory} />,
+         
+        },
+        {
+          path: "/order-history/order-detail",
+          element: <ProtectedRoute element={OrderDetail} />,
+        },
+    
       ],
     },
     {

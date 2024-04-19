@@ -6,3 +6,9 @@
     margin-block: 20px;
     flex-wrap: wrap;
 }
+
+.top-bar > button{
+    background-color: #FFF;
+    padding: 10px;
+    border: none;
+}

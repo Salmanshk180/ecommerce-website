@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./LightNavbar.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
@@ -14,6 +14,8 @@ import { getUser, logout } from "../../../../redux/slices/users/users";
 import { toast } from "react-toastify";
 const LightNavbar = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showShop, setShowShop] = useState(false);
   const isLoggedin = useSelector(
     (state: RootState) => state.users.LoggedInUser
   );
@@ -52,21 +54,66 @@ const LightNavbar = () => {
               <nav className={styles["nav-links"]}>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="#">
-                  <select
-                    defaultValue={"shop"}
-                    className={styles["select-button"]}
-                    onChange={(event) => {
-                      if (event.target.value === "shop") {
-                        navigate("/products");
-                      }
-                      if (event.target.value === "") {
-                        navigate("/");
-                      }
+                  <button
+                    onClick={() => setShowShop(!showShop)}
+                    style={{
+                      position: "relative",
+                      width: "100px",
+                      background: "transparent",
+                      border: "none",
+                      fontSize: "16px",
                     }}
                   >
-                    <option value="shop">Shop</option>
-                    <option value="shop">Shop</option>
-                  </select>
+                    Shop
+                    {showShop && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          backgroundColor: "#fefefe",
+                          width: "100%",
+                          padding: "10px 0px 0px 0px",
+                          margin: "auto",
+                          top: "120%",
+                          borderRadius: "10px 10px 10px 10px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            border: "1px solid #ccc",
+                            borderRadius: "10px",
+                            width: "100%",
+                            padding: "0px 0px",
+                          }}
+                        >
+                          <button
+                            id={styles["options"]}
+                            style={{
+                              borderRadius: "10px 10px 0px 0px",
+                            }}
+                            className={styles["button"]}
+                            onClick={() => {
+                              navigate(`products`);
+                            }}
+                          >
+                            Shop
+                          </button>
+
+                          <button
+                            id={styles["options"]}
+                            className={styles["button"]}
+                            style={{
+                              borderRadius: "0px 0px 10px 10px",
+                            }}
+                            onClick={() => {
+                              navigate("/products");
+                            }}
+                          >
+                            Shop
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </button>
                 </NavLink>
                 <NavLink to="/about-us">About</NavLink>
                 <NavLink to="/blogs">Blog</NavLink>
@@ -76,10 +123,64 @@ const LightNavbar = () => {
             </div>
             <div className={styles["nav-buttons-container"]}>
               <div className={styles["nav-buttons"]}>
+              
                 {isLoggedin ? (
                   <>
-                    <button
+                   <button
                       className={styles["button"]}
+                      onClick={() => setShowDropdown(!showDropdown)}
+                      style={{ position: "relative", width: "100px" }}
+                    >
+                      Profile
+                     {showDropdown && (
+                       <div
+                       style={{
+                         position: "absolute",
+                         backgroundColor: "#fefefe",
+                         width: "100%",
+                         padding: "10px 0px 0px 0px",
+                         margin: "auto",
+                         top: "120%",
+                    }}
+                  >
+                    <div
+                      style={{
+                        border: "1px solid #ccc",
+                        borderRadius: "10px",
+                        width: "100%",
+                        padding: "0px 0px",
+                      }}
+                      >
+                      
+                    <button
+                      id={styles["options"]}
+                      style={{
+                        borderRadius: "10px 10px 0px 0px",
+                      }}
+                      className={styles["button"]}
+                      onClick={() => {
+                        dispatch(getUser(LoggedInUser!));
+                        navigate(`/profile/${user?.id}`);
+                      }}
+                      >
+                      Profile
+                    </button>
+                    <button
+                      id={styles["options"]}
+                      className={styles["button"]}
+                      onClick={() => {
+                        dispatch(getUser(LoggedInUser!));
+                        navigate(`/order-history`);
+                      }}
+                      >
+                      Order History
+                    </button>
+                    <button
+                      id={styles["options"]}
+                      className={styles["button"]}
+                      style={{
+                        borderRadius: "0px 0px 10px 10px",
+                      }}
                       onClick={() => {
                         dispatch(logout());
                         localStorage.removeItem("accessToken");
@@ -87,18 +188,13 @@ const LightNavbar = () => {
                         navigate("/");
                         toast.success("Logout Successfull");
                       }}
-                    >
+                      >
                       Logout
                     </button>
-                    <button
-                      className={styles["button"]}
-                      onClick={() => {
-                        dispatch(getUser(LoggedInUser!))
-                        navigate(`/profile/${user?.id}`)
-                      }}
-                    >
-                      Profile
-                    </button>
+                    </div>
+                  </div>
+                )}
+                </button>
                   </>
                 ) : (
                   <>
@@ -111,6 +207,7 @@ const LightNavbar = () => {
                     </p>
                   </>
                 )}
+
                 <button className={styles["button"]}>
                   <img src={search_img} alt="" />
                 </button>
