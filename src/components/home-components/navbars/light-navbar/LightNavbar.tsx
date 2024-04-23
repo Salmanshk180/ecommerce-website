@@ -25,6 +25,9 @@ const LightNavbar = () => {
   const cartProducts = useSelector(
     (state: RootState) => state.cartProducts.cartData
   );
+  const watchlist = useSelector(
+    (state: RootState) => state.watchlist.watchList
+  );
   const user = useSelector((state: RootState) => state.users.user);
 
   const dispatch = useDispatch<AppDispatch>();
@@ -88,6 +91,8 @@ const LightNavbar = () => {
                           <button
                             id={styles["options"]}
                             style={{
+                              display:"flex",
+                              justifyContent:"flex-start",
                               borderRadius: "10px 10px 0px 0px",
                             }}
                             className={styles["button"]}
@@ -102,6 +107,8 @@ const LightNavbar = () => {
                             id={styles["options"]}
                             className={styles["button"]}
                             style={{
+                              display:"flex",
+                              justifyContent:"flex-start",
                               borderRadius: "0px 0px 10px 10px",
                             }}
                             onClick={() => {
@@ -116,85 +123,92 @@ const LightNavbar = () => {
                   </button>
                 </NavLink>
                 <NavLink to="/about-us">About</NavLink>
-                <NavLink to="/blogs">Blog</NavLink>
                 <NavLink to="/contact-us">Contact</NavLink>
-                <NavLink to="/pages">Pages</NavLink>
               </nav>
             </div>
             <div className={styles["nav-buttons-container"]}>
               <div className={styles["nav-buttons"]}>
-              
                 {isLoggedin ? (
                   <>
-                   <button
+                    <button
                       className={styles["button"]}
                       onClick={() => setShowDropdown(!showDropdown)}
                       style={{ position: "relative", width: "100px" }}
                     >
                       Profile
-                     {showDropdown && (
-                       <div
-                       style={{
-                         position: "absolute",
-                         backgroundColor: "#fefefe",
-                         width: "100%",
-                         padding: "10px 0px 0px 0px",
-                         margin: "auto",
-                         top: "120%",
-                    }}
-                  >
-                    <div
-                      style={{
-                        border: "1px solid #ccc",
-                        borderRadius: "10px",
-                        width: "100%",
-                        padding: "0px 0px",
-                      }}
-                      >
-                      
-                    <button
-                      id={styles["options"]}
-                      style={{
-                        borderRadius: "10px 10px 0px 0px",
-                      }}
-                      className={styles["button"]}
-                      onClick={() => {
-                        dispatch(getUser(LoggedInUser!));
-                        navigate(`/profile/${user?.id}`);
-                      }}
-                      >
-                      Profile
+                      {showDropdown && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            backgroundColor: "#fefefe",
+                            width: "100%",
+                            padding: "10px 0px 0px 0px",
+                            margin: "auto",
+                            top: "120%",
+                          }}
+                        >
+                          <div
+                            style={{
+                              border: "1px solid #ccc",
+                              borderRadius: "10px",
+                              width: "100%",
+                              padding: "0px 0px",
+                            }}
+                          >
+                            <button
+                              id={styles["options"]}
+                              style={{
+                                display: "flex",
+                                justifyContent: "flex-start",
+                                borderRadius: "10px 10px 0px 0px",
+                              }}
+                              className={styles["button"]}
+                              onClick={() => {
+                                dispatch(getUser(LoggedInUser!));
+                                navigate(`/profile/${user?.id}`);
+                              }}
+                            >
+                              Profile
+                            </button>
+                            <button
+                              style={{
+                                display: "flex",
+                                justifyContent: "flex-start",
+                              }}
+                              id={styles["options"]}
+                              className={styles["button"]}
+                              onClick={() => {
+                                dispatch(getUser(LoggedInUser!));
+                                navigate(`/order-history`);
+                              }}
+                            >
+                              Order History
+                            </button>
+                            <button
+                              id={styles["options"]}
+                              className={styles["button"]}
+                              style={{
+                                display: "flex",
+                                justifyContent: "flex-start",
+                                borderRadius: "0px 0px 10px 10px",
+                              }}
+                              onClick={() => {
+                                dispatch(logout());
+                                const expirationDate = new Date(
+                                  0
+                                ).toUTCString();
+                                document.cookie = `accessToken=; expires=${expirationDate};`;
+                                localStorage.clear();
+                                navigate("/");
+                                toast.success("Logout Successful");
+                              }}
+                            >
+                              Logout
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </button>
-                    <button
-                      id={styles["options"]}
-                      className={styles["button"]}
-                      onClick={() => {
-                        dispatch(getUser(LoggedInUser!));
-                        navigate(`/order-history`);
-                      }}
-                      >
-                      Order History
-                    </button>
-                    <button
-                      id={styles["options"]}
-                      className={styles["button"]}
-                      style={{
-                        borderRadius: "0px 0px 10px 10px",
-                      }}
-                      onClick={() => {
-                        dispatch(logout());
-                        localStorage.removeItem("accessToken");
-                        document.cookie = `accessToken=null`;
-                        navigate("/");
-                        toast.success("Logout Successfull");
-                      }}
-                      >
-                      Logout
-                    </button>
-                    </div>
-                  </div>
-                )}
-                </button>
                   </>
                 ) : (
                   <>
@@ -222,11 +236,23 @@ const LightNavbar = () => {
                   }}
                 >
                   <img src={cart_img} alt="" />
-                  <p>{cartProducts?.length}</p>
+                  <p>
+                    {cartProducts?.length && cartProducts?.length >= 1
+                      ? cartProducts.length
+                      : 0}
+                  </p>
                 </button>
-                <button className={styles["button"]}>
+                <button className={styles["button"]} onClick={()=>{
+                   if (!LoggedInUser) {
+                    toast.error("You must be logged in");
+                  } else {
+                    navigate("/watch-list");
+                  }
+                }}>
                   <img src={likes_img} alt="" />
-                  <p>1</p>
+                  <p>{watchlist?.length && watchlist?.length >= 1
+                      ? watchlist.length
+                      : 0}</p>
                 </button>
               </div>
             </div>

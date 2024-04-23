@@ -4,11 +4,7 @@ import React, { useEffect } from "react";
 import styles from "./OrderHistory.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store/Store";
-import {
-  getOrder,
-  getOrderById,
-  setOpenModal,
-} from "../../redux/slices/order/order";
+import { getOrder, getOrderById } from "../../redux/slices/order/order";
 import OrderDetail from "./OrderDetail";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +19,7 @@ const OrderHistory = () => {
 
   useEffect(() => {
     dispatch(getOrder({ token: token! }));
-  }, []);
+  }, [dispatch, token]);
 
   return (
     <div className={styles["outer-container"]}>
@@ -51,15 +47,17 @@ const OrderHistory = () => {
                   <td className={styles["first-1"]}>{order.id}</td>
                   <td>{order.quantity}</td>
                   <td>${order.total}</td>
-                  <td>{order.address?.building}</td>
+                  <td>
+                    {order.address?.building}, {order.address?.street},{" "}
+                    {order.address?.city}, {order.address?.state},{" "}
+                    {order.address?.pincode}, {order.address?.country}
+                  </td>
                   <td>{order.order_status}</td>
                   <td>{order.created_at?.toString().split("T")[0]!}</td>
                   <td>
                     <button
                       onClick={() => {
-                        
-                        // dispatch(setOpenModal());
-                        navigate("order-detail")
+                        navigate("order-detail");
                         dispatch(getOrderById({ order_id: order.id! }));
                       }}
                     >

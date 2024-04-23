@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./DetailComponent.module.css";
 import Color from "../../home-components/feature-blogs/color/Color";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { addToCart } from "../../../redux/slices/cart-products/cartProducts";
 import { FaHeart } from "react-icons/fa6";
-import { FaShoppingCart, FaEye } from "react-icons/fa";
-import { star_img } from "../../../assets/images";
+import { FaShoppingCart } from "react-icons/fa";
 import { AppDispatch, RootState } from "../../../redux/store/Store";
 import { fetchOneProduct } from "../../../redux/slices/get-one-product/getOneProduct";
 import { toast } from "react-toastify";
-import { addToCartProduct } from "../../../redux/slices/cart-products/cartProducts";
+import {
+  addToCartProduct,
+  getCartProducts,
+} from "../../../redux/slices/cart-products/cartProducts";
 import { getReview } from "../../../redux/slices/reviews/reviews";
+import { addToWatchList, getWatchlist } from "../../../redux/slices/watchlist/watchlist";
 
 const DetailComponent = () => {
   const [addStar, setAddStar] = useState(0);
@@ -31,12 +32,25 @@ const DetailComponent = () => {
           product_variant_id: product.product?.id!,
           token: LoggedinUser!,
         })
-      );
+      ).then(() => dispatch(getCartProducts(LoggedinUser!)));
       toast.success("Product added to cart successfully");
     }
   };
+  const addProductToWatchList = () => {
+    if (!isLoggedin) {
+      toast.error("You are not logged in !!");
+    } else {
+      dispatch(
+        addToWatchList({
+          product_variant_id: product.product?.id!,
+          token: LoggedinUser!,
+        })
+      ).then(() => dispatch(getWatchlist(LoggedinUser!)));
+      toast.success("Product added to Watchlist successfully");
+    }
+  };
   useEffect(() => {
-      setAddStar(reviews?.averageRating);
+    setAddStar(reviews?.averageRating);
   }, [reviews.averageRating]);
 
   return (
@@ -79,7 +93,7 @@ const DetailComponent = () => {
             ${product.product?.price}
           </span>
           <span style={{ color: "green" }}>
-            ${product.product?.discount_price}
+            ${product.product?.discount_price }
           </span>
         </div>
 
@@ -134,16 +148,26 @@ const DetailComponent = () => {
               </button>
             ))}
 
-          <FaHeart fontSize="25px" color="red" />
+          <button
+            onClick={() => {
+             addProductToWatchList();
+            }}
+          style={{ backgroundColor: "#fff" }}
+          >
+            <FaHeart fontSize="25px" color="red" />
+          </button>
           <button
             onClick={() => {
               addProductToCart();
             }}
+            disabled={!product.product?.in_stock ? true : false}
             style={{ backgroundColor: "#fff" }}
           >
-            <FaShoppingCart fontSize="25px" color="#00A0FF" />
+            <FaShoppingCart
+              fontSize="25px"
+              color={!product.product?.in_stock ? "#ccc" : "#00A0FF"}
+            />
           </button>
-          <FaEye fontSize="25px" />
         </div>
       </div>
     </React.Fragment>

@@ -15,6 +15,7 @@ import ErrorPage from "./components/error-page-component/ErrorPage";
 import Profile from "./pages/Profile/Profile";
 import OrderHistory from "./pages/order-history/OrderHistory";
 import OrderDetail from "./pages/order-history/OrderDetail";
+import WatchList from "./pages/WatchList/WatchList";
 function App() {
   const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ function App() {
         {
           path: "/order-history/order-detail",
           element: <ProtectedRoute element={OrderDetail} />,
+        },
+        {
+          path: "/watch-list",
+          element: <ProtectedRoute element={WatchList} />,
         },
     
       ],

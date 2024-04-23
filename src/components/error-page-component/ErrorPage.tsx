@@ -16,7 +16,7 @@ const ErrorPage = () => {
         <h3>Page not found</h3>
         <p>The page you are looking for doesn't exist!!!</p>
         <button className={styles["back_btn"]}>
-          <NavLink to={".."} style={{ color: "#FFF" }}>
+          <NavLink to={"../"} style={{ color: "#FFF" }}>
             Go Back
           </NavLink>
         </button>

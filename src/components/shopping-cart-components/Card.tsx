@@ -28,8 +28,9 @@ const Card = (props: Props) => {
         product_variant_id: props.data.product_variants.id,
         quantity: newQuantity,
       })
-    );
-    dispatch(getCartProducts(LoggedInUser!));
+    ).then(()=>{
+      dispatch(getCartProducts(LoggedInUser!));
+    })
   };
   let price = props.data.product_variants.discount_price
     ? props.data.product_variants.discount_price
@@ -74,7 +75,7 @@ const Card = (props: Props) => {
               name=""
               id=""
               value={quantity}
-              onChange={handleChange}
+              onChange={(e)=>handleChange(e)}
               className={styles["quantity_input"]}
             />
           </div>

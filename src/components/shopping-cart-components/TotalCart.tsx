@@ -1,13 +1,15 @@
 import styles from "./TotalCart.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store/Store";
+import { AppDispatch, RootState } from "../../redux/store/Store";
 import { closeModal, openModal } from "../../redux/slices/modal/modal";
+import { getAddress } from "../../redux/slices/address/address";
 
 const TotalCart = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const cartData = useSelector(
     (state: RootState) => state.cartProducts.cartData
   );
+  const LoggedInUser = useSelector((state:RootState)=>state.users.user)
   const shoppingTotal = cartData?.reduce(
     (total, cart) => total + cart.subtotal,
     0
@@ -35,8 +37,9 @@ const TotalCart = () => {
         className={styles["checkout_btn"]}
         onClick={() => {
           dispatch(openModal());
+          dispatch(getAddress({id:LoggedInUser?.id!}))
         }}
-        style={{ opacity: `${cartData.length == 0 ? 0.5 : 1}` }}
+        style={{ opacity: `${cartData?.length == 0 ? 0.5 : 1}` }}
         disabled={cartData?.length === 0}
       >
         Checkout

@@ -12,6 +12,7 @@ import modalSlice from "../slices/modal/modal";
 import address from "../slices/address/address";
 import order from "../slices/order/order";
 import reviews from "../slices/reviews/reviews";
+import watchlist from "../slices/watchlist/watchlist";
 const persistConfig = {
   key: "root",
   storage,
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   modal: modalSlice,
   address: address,
   order: order,
-  review: reviews
+  review: reviews,
+  watchlist: watchlist
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

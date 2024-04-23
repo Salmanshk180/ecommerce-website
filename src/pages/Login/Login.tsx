@@ -1,18 +1,22 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store/Store";
 import { login_img_cover } from "../../assets/images";
 import { loginUser } from "../../redux/slices/users/login.slices";
 import { toast } from "react-toastify";
 import { getUser } from "../../redux/slices/users/users";
+import { getCartProducts } from "../../redux/slices/cart-products/cartProducts";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const LoggedInUser = useSelector(
+    (state: RootState) => state.users.LoggedInUser
+  );
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+{};:,<.>]).{8,16}$/;
   const handleSignIn = async (e: FormEvent<HTMLFormElement>) => {
@@ -38,7 +42,9 @@ const Login = () => {
       if (response.payload.token) {
         toast.success(response.payload.message);
         document.cookie = `accessToken=${response.payload.token}`;
-        dispatch(getUser(response.payload.token));
+        dispatch(getUser(response.payload.token)).then((data) =>        
+          dispatch(getCartProducts(response.payload.token))
+        );
         navigate("/products");
       }
       if (!response.payload.token) {

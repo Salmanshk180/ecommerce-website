@@ -5,6 +5,7 @@ import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { useEffect, useState } from "react";
 import { addReview } from "../../redux/slices/reviews/reviews";
+import { getOrderById } from "../../redux/slices/order/order";
 const OrderDetail = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [open, setOpen] = useState(false);
@@ -16,7 +17,7 @@ const OrderDetail = () => {
   const orderDetail = useSelector(
     (state: RootState) => state.order.order_details
   );
-  const user_id = useSelector((state: RootState) => state.users.user?.id);  
+  const user_id = useSelector((state: RootState) => state.users.user?.id);
   useEffect(() => {
     setAddStar(0);
   }, []);
@@ -30,16 +31,16 @@ const OrderDetail = () => {
       >
         <h2>Add Review</h2>
         <div className={styles["review-container"]}>
-          <label htmlFor="description">Description: </label>
+          <label htmlFor="description">Description:</label>
           <textarea
             name="description"
-            id="description"
+            id={styles["description"]}
             value={description}
             cols={50}
             rows={5}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <div className={styles["star-container"]}>
+          <div className={styles["star-contaner"]}>
             <button
               className={styles["star"]}
               onClick={() => setAddStar(1)}
@@ -78,6 +79,7 @@ const OrderDetail = () => {
                   product_variant_id: product_variant_id!,
                 })
               );
+              dispatch(getOrderById({ order_id: orderDetail?.order.id! }));
               setAddStar(0);
               setDescription("");
               setOpen(false);
@@ -87,9 +89,6 @@ const OrderDetail = () => {
           </button>
         </div>
       </Modal>
-      <div
-        style={{ position: "fixed", background: "red", width: "100vw" }}
-      ></div>
       <div className={styles["order-detail-page"]}>
         <h1>Order Detail</h1>
         <div className={styles["order-details"]}>
@@ -103,105 +102,135 @@ const OrderDetail = () => {
             {orderDetail?.order.address.country}
           </p>
         </div>
-        <div className={styles["Header-component"]} id={styles["headers"]}>
-          <div className={styles["header-1"]}>
-            <p>Product</p>
-            <div>
-              <p className={styles["details"]}>Details</p>
+        <div className={styles["outer"]}>
+          <div className={styles["inner-one"]}>
+            <div className={styles["outer-header"]}>
+              <div>
+                <p>Product</p>
+              </div>
             </div>
           </div>
-          <div className={styles["header-2"]}>
-            <p>Amount</p>
-            <p>Quantity</p>
-            <p>Subtotal</p>
-            <p>Reviews</p>
+          <div className={styles["inner-two"]}>
+            <div className={styles["detail-container"]}>
+              <p>Details</p>
+            </div>
+            <div>
+              <p>Amount</p>
+            </div>
+            <div>
+              <p>Quantity</p>
+            </div>
+            <div>
+              <p>Subtotal</p>
+            </div>
+            <div>
+              <p>Review</p>
+            </div>
           </div>
         </div>
-        <div className={styles["content"]}>
+        <div className={styles["outer-two"]}>
           {orderDetail?.order.metadata?.map((variant) => (
-            <div
-              className={styles["Header-component"]}
-              key={variant.product_variant_id}
-            >
-              <div className={styles["header-1"]}>
+            <div className={styles["outer-three"]}>
+              <div className={styles["inner-three"]}>
                 <img
                   src={variant?.product_variant?.images[0]}
                   alt="Product image"
                   className={styles["image"]}
                 />
-                <div>
-                  <h4>{variant?.product_variant?.product.name}</h4>
-                  <div className={styles["color"]}>
-                    <p>Color:</p>
-                    <div
-                      style={{
-                        backgroundColor: `${variant?.product_variant?.color}`,
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                      }}
-                    ></div>
-                  </div>
-                  <p>Size: {variant?.product_variant?.size}</p>
-                </div>
               </div>
-              <div className={styles["header-2"]}>
-                <p>${variant.product_variant.discount_price}</p>
-                <p>{variant.quantity}</p>
-                <p>${variant.total}</p>
-                {variant.star ? (
-                  <div className={styles['button-contaner']}>
-                   <button
-                    className={styles["star"]}
-                    style={{
-                      backgroundColor: variant?.star! >= 1 ? "yellow" : "#ccc",
-                    }}
-                  ></button>
-                  <button
-                    className={styles["star"]}
-                    style={{
-                      backgroundColor: variant?.star! >= 2 ? "yellow" : "#ccc",
-                    }}
-                  ></button>
-                  <button
-                    className={styles["star"]}
-                    style={{
-                      backgroundColor: variant?.star! >= 3 ? "yellow" : "#ccc",
-                    }}
-                  ></button>
-                  <button
-                    className={styles["star"]}
-                    style={{
-                      backgroundColor: variant?.star! >= 4 ? "yellow" : "#ccc",
-                    }}
-                  ></button>
-                  <button
-                    className={styles["star"]}
-                    style={{
-                      backgroundColor: variant?.star! >= 5 ? "yellow" : "#ccc",
-                    }}
-                  ></button>
+              <div className={styles["inner-four"]}>
+                <div id={styles["details"]}>
+                  <div>
+                    <h4>{variant?.product_variant?.product.name}</h4>
+                    <div className={styles["color"]}>
+                      <p>Color:</p>
+                      <div
+                        style={{
+                          backgroundColor: `${variant?.product_variant?.color}`,
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "50%",
+                        }}
+                      ></div>
+                    </div>
+                    <div className={styles["color"]}>
+                      <p>Size:</p>
+                      <p>{variant?.product_variant?.size}</p>
+                    </div>
                   </div>
-                ) : (
-                  <button
-                    className={styles["button"]}
-                    onClick={() => {
-                      setProductVariantId(variant.product_variant_id);
-                      onOpenModal();
-                    }}
-                  >
-                    Add Review
-                  </button>
-                )}
-              
+                </div>
+                <div className={styles["price-container"]}>
+                  <p className={styles["price"]}>Price:</p>
+                  <p>${variant.product_variant.discount_price}</p>
+                </div>
+                <div className={styles["price-container"]}>
+                  <p className={styles["price"]}>Quantity:</p>
+                  <p>{variant.quantity}</p>
+                </div>
+                <div className={styles["price-container"]}>
+                  <p className={styles["price"]}>Amount:</p>
+                  <p>${variant.total}</p>
+                </div>
+                <div className={styles["reviews"]}>
+                  {variant.star ? (
+                    <div className={styles["button-contaner"]}>
+                      <button
+                        className={styles["star"]}
+                        style={{
+                          backgroundColor:
+                            variant?.star! >= 1 ? "yellow" : "#ccc",
+                        }}
+                      ></button>
+                      <button
+                        className={styles["star"]}
+                        style={{
+                          backgroundColor:
+                            variant?.star! >= 2 ? "yellow" : "#ccc",
+                        }}
+                      ></button>
+                      <button
+                        className={styles["star"]}
+                        style={{
+                          backgroundColor:
+                            variant?.star! >= 3 ? "yellow" : "#ccc",
+                        }}
+                      ></button>
+                      <button
+                        className={styles["star"]}
+                        style={{
+                          backgroundColor:
+                            variant?.star! >= 4 ? "yellow" : "#ccc",
+                        }}
+                      ></button>
+                      <button
+                        className={styles["star"]}
+                        style={{
+                          backgroundColor:
+                            variant?.star! >= 5 ? "yellow" : "#ccc",
+                        }}
+                      ></button>
+                    </div>
+                  ) : (
+                    <button
+                      className={styles["button"]}
+                      onClick={() => {
+                        setProductVariantId(variant.product_variant_id);
+                        onOpenModal();
+                      }}
+                    >
+                      Add Review
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
+
         <hr />
         <div className={styles["total"]}>
           <p>Total:</p>
-          <p>${orderDetail?.order.total}</p>
+          <p className={styles["total-value"]}>${orderDetail?.order.total}</p>
         </div>
       </div>
     </>
